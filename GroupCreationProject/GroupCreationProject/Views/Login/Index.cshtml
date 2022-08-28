@@ -1,0 +1,80 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GroupCreationProject.styles.css" asp-append-version="true" />
+
+    <style>
+
+        body, html {
+            height:100%;
+            width: 100%;
+        }
+
+        body{
+            display: flex !important;
+            background-image: url("/images/corporateMemphisBullshit.png");
+            background-color: cornflowerblue;
+            background-repeat: no-repeat;
+        }
+
+        .loginbox{
+            margin:auto;
+            background-color: floralwhite;
+            border-radius: 25px;
+            padding: 20px;
+            padding-bottom: 10px;
+            padding-top: 10px;
+        }
+
+        .loginbox > *{
+            margin-bottom:5px;
+        }
+
+        button{
+            margin:auto;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="loginbox">
+        <div class="row">
+            <div class="col-12">
+                <h2>Login</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4"><label for="tb_username">Username: </label></div>
+            <div class="col-8"><input type="text" id="tb_username"></div>
+        </div>
+        <div class="row">
+            <div class="col-4"><label for="tb_pwd">Password: </label></div>
+            <div class="col-8"><input type="password" id="tb_pwd"></div>
+        </div>
+        <div class="row">
+            <div class="col-3" style="text-align:center"><button class="bg-success">Login</button></div>
+            <div class="col-4" style="text-align:center"><button type="button" class="bg-info" data-toggle="modal" data-target="#signupmodal">Sign Up</button></div>
+        </div>
+
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+
+</html>
+
+

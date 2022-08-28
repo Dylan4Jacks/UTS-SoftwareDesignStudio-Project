@@ -22,12 +22,12 @@
 
         body{
             display: flex !important;
-            background-image: url("/images/corporateMemphisBullshit.png");
+            background-image: url("~/images/corporateMemphisBullshit.png");
             background-color: cornflowerblue;
             background-repeat: no-repeat;
         }
 
-        .loginbox{
+        .loginbox, .signupbox{
             margin:auto;
             background-color: floralwhite;
             border-radius: 25px;
@@ -63,16 +63,30 @@
             <div class="col-8"><input type="password" id="tb_pwd"></div>
         </div>
         <div class="row">
-            <div class="col-3" style="text-align:center"><button class="bg-success">Login</button></div>
-            <div class="col-4" style="text-align:center"><button type="button" class="bg-info" data-toggle="modal" data-target="#signupmodal">Sign Up</button></div>
+            <div class="col-3" style="text-align:center">
+                <button class="bg-success" onclick="console.log( $('#btn_signupmodal').attr('data-target'))" >Login</button>
+            </div>
+            <div class="col-4" style="text-align:center">
+                <button class="bg-info" onclick="showSignUpModal()" >Sign Up</button>
+            </div>
         </div>
 
+        <partial name="~/Views/Login/_signupModal.cshtml" />
     </div>
 
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+<script type="text/javascript">
+
+function showSignUpModal(){
+    $('#signupmodal').modal('show');
+
+}
+
+</script>
+
 </body>
 
 </html>

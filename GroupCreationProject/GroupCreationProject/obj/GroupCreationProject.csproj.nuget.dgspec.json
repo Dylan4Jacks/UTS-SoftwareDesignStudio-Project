@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SeanSavanah\\Documents\\GitHub\\UTS-SoftwareDesignStudio-Project\\GroupCreationProject\\GroupCreationProject\\GroupCreationProject.csproj": {}
+    "C:\\Users\\meist\\Documents\\GitHub\\UTS-SoftwareDesignStudio-Project\\GroupCreationProject\\GroupCreationProject\\GroupCreationProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SeanSavanah\\Documents\\GitHub\\UTS-SoftwareDesignStudio-Project\\GroupCreationProject\\GroupCreationProject\\GroupCreationProject.csproj": {
+    "C:\\Users\\meist\\Documents\\GitHub\\UTS-SoftwareDesignStudio-Project\\GroupCreationProject\\GroupCreationProject\\GroupCreationProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SeanSavanah\\Documents\\GitHub\\UTS-SoftwareDesignStudio-Project\\GroupCreationProject\\GroupCreationProject\\GroupCreationProject.csproj",
+        "projectUniqueName": "C:\\Users\\meist\\Documents\\GitHub\\UTS-SoftwareDesignStudio-Project\\GroupCreationProject\\GroupCreationProject\\GroupCreationProject.csproj",
         "projectName": "GroupCreationProject",
-        "projectPath": "C:\\Users\\SeanSavanah\\Documents\\GitHub\\UTS-SoftwareDesignStudio-Project\\GroupCreationProject\\GroupCreationProject\\GroupCreationProject.csproj",
-        "packagesPath": "C:\\Users\\SeanSavanah\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SeanSavanah\\Documents\\GitHub\\UTS-SoftwareDesignStudio-Project\\GroupCreationProject\\GroupCreationProject\\obj\\",
+        "projectPath": "C:\\Users\\meist\\Documents\\GitHub\\UTS-SoftwareDesignStudio-Project\\GroupCreationProject\\GroupCreationProject\\GroupCreationProject.csproj",
+        "packagesPath": "C:\\Users\\meist\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\meist\\Documents\\GitHub\\UTS-SoftwareDesignStudio-Project\\GroupCreationProject\\GroupCreationProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\SeanSavanah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\meist\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -67,7 +67,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -79,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

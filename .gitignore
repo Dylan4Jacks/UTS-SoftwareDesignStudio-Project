@@ -4,8 +4,10 @@
 #Ignore .Net6 files
 /.vs
 /GroupCreationProject/.vs
+/GroupCreationProject/.vs/GroupCreationProject
 /GroupCreationProject/GroupCreationProject/bin/Debug/net6.0
 /GroupCreationProject/GroupCreationProject/obj/
+/GroupCreationProject/GroupCreationProject/obj/Debug
 /GroupCreationProject/GroupCreationProject/wwwroot/lib
 /GroupCreationProject/GroupCreationProject/bin/Release/net6.0
 

@@ -388,3 +388,12 @@ msbuild.wrn
 .vs/
 GroupCreationProject/GroupCreationProject/obj/GroupCreationProject.csproj.nuget.dgspec.json
 GroupCreationProject/GroupCreationProject/obj/GroupCreationProject.csproj.nuget.g.props
+GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.AssemblyInfo.cs
+GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.assets.cache
+GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.csproj.AssemblyReference.cache
+GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.AssemblyInfoInputs.cache
+GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.GeneratedMSBuildEditorConfig.editorconfig
+GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.RazorAssemblyInfo.cache
+GroupCreationProject/GroupCreationProject/obj/GroupCreationProject.csproj.nuget.dgspec.json
+GroupCreationProject/GroupCreationProject/obj/project.assets.json
+GroupCreationProject/GroupCreationProject/obj/project.nuget.cache

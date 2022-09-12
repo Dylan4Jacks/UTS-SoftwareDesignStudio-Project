@@ -1,12 +1,12 @@
 #Ignore .Net6 files
-/.vs
-/GroupCreationProject/.vs
-/GroupCreationProject/.vs/GroupCreationProject
-/GroupCreationProject/GroupCreationProject/bin/Debug/net6.0
-/GroupCreationProject/GroupCreationProject/obj/*
-/GroupCreationProject/GroupCreationProject/obj
-/GroupCreationProject/GroupCreationProject/obj/Debug
-/GroupCreationProject/GroupCreationProject/bin/Release/net6.0
+.vs
+GroupCreationProject/.vs
+GroupCreationProject/.vs/GroupCreationProject
+GroupCreationProject/GroupCreationProject/bin/Debug/net6.0
+GroupCreationProject/GroupCreationProject/obj/*
+GroupCreationProject/GroupCreationProject/obj
+GroupCreationProject/GroupCreationProject/obj/Debug
+GroupCreationProject/GroupCreationProject/bin/Release/net6.0
 
 
 # User-specific files
@@ -401,3 +401,4 @@ GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.
 GroupCreationProject/GroupCreationProject/obj/GroupCreationProject.csproj.nuget.dgspec.json
 GroupCreationProject/GroupCreationProject/obj/project.assets.json
 GroupCreationProject/GroupCreationProject/obj/project.nuget.cache
+

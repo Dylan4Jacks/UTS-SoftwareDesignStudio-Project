@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupCreationProject", "GroupCreationProject\GroupCreationProject.csproj", "{4CB57D52-F1E1-4217-8F6F-7BD0635E7EA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupCreationAPI", "GroupCreationAPI\GroupCreationAPI.csproj", "{E0B4B88D-E9C1-4BAA-98ED-AC9AFDE2F531}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupCreationAPI", "GroupCreationAPI\GroupCreationAPI.csproj", "{E0B4B88D-E9C1-4BAA-98ED-AC9AFDE2F531}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroupCreationAPI2", "GroupCreationAPI2\GroupCreationAPI2.csproj", "{42771FB1-90A3-4337-B196-CB02B2CD9294}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{E0B4B88D-E9C1-4BAA-98ED-AC9AFDE2F531}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0B4B88D-E9C1-4BAA-98ED-AC9AFDE2F531}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0B4B88D-E9C1-4BAA-98ED-AC9AFDE2F531}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42771FB1-90A3-4337-B196-CB02B2CD9294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42771FB1-90A3-4337-B196-CB02B2CD9294}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42771FB1-90A3-4337-B196-CB02B2CD9294}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42771FB1-90A3-4337-B196-CB02B2CD9294}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

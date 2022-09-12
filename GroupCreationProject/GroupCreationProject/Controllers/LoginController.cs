@@ -21,7 +21,7 @@ namespace GroupCreationProject.Controllers
             {
                 HttpClient c = new HttpClient();
                 var content = new StringContent(JsonConvert.SerializeObject(new { username = "Sean", password = "bar" }), System.Text.Encoding.UTF8, "application/json");
-                var result = c.PostAsync("https://localhost:44341/Login/auth",  content).Result;
+                var result = c.PostAsync("https://localhost:7235/Login/auth",  content).Result;
 
                 if (result.IsSuccessStatusCode)
                 {

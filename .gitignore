@@ -3,10 +3,17 @@
 GroupCreationProject/.vs
 GroupCreationProject/.vs/GroupCreationProject
 GroupCreationProject/GroupCreationProject/bin/Debug/net6.0
-GroupCreationProject/GroupCreationProject/obj/*
+GroupCreationProject/GroupCreationProject/obj/
 GroupCreationProject/GroupCreationProject/obj
 GroupCreationProject/GroupCreationProject/obj/Debug
 GroupCreationProject/GroupCreationProject/bin/Release/net6.0
+
+GroupCreationProject/.vs/GroupCreationAPI2
+GroupCreationProject/GroupCreationAPI2/bin/Debug/net6.0
+GroupCreationProject/GroupCreationAPI2/obj/
+GroupCreationProject/GroupCreationAPI2/obj
+GroupCreationProject/GroupCreationAPI2/obj/Debug
+GroupCreationProject/GroupCreationAPI2/bin/Release/net6.0
 
 
 # User-specific files
@@ -390,19 +397,5 @@ msbuild.wrn
 
 # Visual Studio 2015
 .vs/
-GroupCreationProject/GroupCreationProject/obj/GroupCreationProject.csproj.nuget.dgspec.json
-GroupCreationProject/GroupCreationProject/obj/GroupCreationProject.csproj.nuget.g.props
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.AssemblyInfo.cs
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.assets.cache
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.csproj.AssemblyReference.cache
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.AssemblyInfoInputs.cache
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.GeneratedMSBuildEditorConfig.editorconfig
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.RazorAssemblyInfo.cache
-GroupCreationProject/GroupCreationProject/obj/GroupCreationProject.csproj.nuget.dgspec.json
-GroupCreationProject/GroupCreationProject/obj/project.assets.json
-GroupCreationProject/GroupCreationProject/obj/project.nuget.cache
 
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.assets.cache
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.assets.cache
-GroupCreationProject/GroupCreationProject/obj/GroupCreationProject.csproj.nuget.g.props
-GroupCreationProject/GroupCreationProject/obj/project.nuget.cache
+

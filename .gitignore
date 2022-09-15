@@ -1,11 +1,26 @@
 #Ignore .Net6 files
 /.vs
+.vs/
 /GroupCreationProject/.vs
 /GroupCreationProject/.vs/GroupCreationProject
 /GroupCreationProject/GroupCreationProject/bin/Debug/net6.0
 /GroupCreationProject/GroupCreationProject/obj/
 /GroupCreationProject/GroupCreationProject/obj/Debug
 /GroupCreationProject/GroupCreationProject/bin/Release/net6.0
+
+/GroupCreationProject/.vs
+/GroupCreationProject/.vs/DataAccess
+/GroupCreationProject/DataAccess/bin/Debug/net6.0
+/GroupCreationProject/DataAccess/obj/
+/GroupCreationProject/DataAccess/obj/Debug
+/GroupCreationProject/DataAccess/bin/Release/net6.0
+
+/GroupCreationProject/.vs
+/GroupCreationProject/.vs/UserDB
+/GroupCreationProject/UserDB/bin/Debug/net6.0
+/GroupCreationProject/UserDB/obj/
+/GroupCreationProject/UserDB/obj/Debug
+/GroupCreationProject/UserDB/bin/Release/net6.0
 
 
 # User-specific files
@@ -386,17 +401,3 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
-
-# Visual Studio 2015
-.vs/
-GroupCreationProject/GroupCreationProject/obj/GroupCreationProject.csproj.nuget.dgspec.json
-GroupCreationProject/GroupCreationProject/obj/GroupCreationProject.csproj.nuget.g.props
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.AssemblyInfo.cs
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.assets.cache
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.csproj.AssemblyReference.cache
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.AssemblyInfoInputs.cache
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.GeneratedMSBuildEditorConfig.editorconfig
-GroupCreationProject/GroupCreationProject/obj/Debug/net6.0/GroupCreationProject.RazorAssemblyInfo.cache
-GroupCreationProject/GroupCreationProject/obj/GroupCreationProject.csproj.nuget.dgspec.json
-GroupCreationProject/GroupCreationProject/obj/project.assets.json
-GroupCreationProject/GroupCreationProject/obj/project.nuget.cache

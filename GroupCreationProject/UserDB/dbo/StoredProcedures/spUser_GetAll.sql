@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[spUser_GetAll]
 AS
-begin
-	select Id, FirstName, LastName
-	from dbo.[User];
-end
+BEGIN
+	SELECT Id, FirstName, LastName, Email, Preferences, Skills
+	FROM dbo.[User];
+END

@@ -4,8 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GroupCreationProject", "GroupCreationProject\GroupCreationProject.csproj", "{4CB57D52-F1E1-4217-8F6F-7BD0635E7EA4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9E889C9F-A247-458A-8C92-D2DC8109D0A7} = {9E889C9F-A247-458A-8C92-D2DC8109D0A7}
+	EndProjectSection
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "UserDB", "UserDB\UserDB.sqlproj", "{5389C253-04A4-4A4E-B3C5-62A8B8E956B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{9E889C9F-A247-458A-8C92-D2DC8109D0A7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +28,10 @@ Global
 		{5389C253-04A4-4A4E-B3C5-62A8B8E956B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5389C253-04A4-4A4E-B3C5-62A8B8E956B5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5389C253-04A4-4A4E-B3C5-62A8B8E956B5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9E889C9F-A247-458A-8C92-D2DC8109D0A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E889C9F-A247-458A-8C92-D2DC8109D0A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E889C9F-A247-458A-8C92-D2DC8109D0A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E889C9F-A247-458A-8C92-D2DC8109D0A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

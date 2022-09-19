@@ -17,7 +17,7 @@ This is a University project completed by Group 6.
 ```
  {
   "ConnectionStrings": {
-    "DefaultConnection": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=GroupCreationProjectDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+    "DefaultConnection": "[YOUR CONNECTION STRING]"
   }
  }
 ```

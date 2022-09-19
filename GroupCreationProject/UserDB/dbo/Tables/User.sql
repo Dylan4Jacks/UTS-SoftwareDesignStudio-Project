@@ -5,5 +5,6 @@
     [LastName] NVARCHAR(50) NOT NULL,
     [Email] NVARCHAR(100) NOT NULL,
     [Preferences] NVARCHAR(100) NOT NULL,
-    [Skills] NVARCHAR(100) NOT NULL
+    [Skills] NVARCHAR(100) NOT NULL,
+    [GroupId] INT NOT NULL FOREIGN KEY (GroupId) REFERENCES Group(GroupId)
 )

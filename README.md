@@ -12,10 +12,13 @@ This is a University project completed by Group 6.
 7.	Navigate to your database (And click on it)
 8.	While your database is selected, Click on “Properties” found on right side of screen
 9.	Copy Full connection string
-10.	Paste into `appsettings.json` like example below:
+10. Right-Click on the 'GroupCreationProject' + Select 'Manage User Secrets'
+10.	Paste the connection string into `secrets.json` like example below:
 ```
+ {
   "ConnectionStrings": {
-    "DefaultConnection": "[YOUR CONNECTION STRING GOES HERE]"
-  },
+    "DefaultConnection": "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=GroupCreationProjectDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+  }
+ }
 ```
 

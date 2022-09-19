@@ -11,7 +11,7 @@ var DBConnectionString = builder.Configuration["ConnectionStrings:DefaultConnect
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString(DBConnectionString);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));
+    options.UseSqlServer(DBConnectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)

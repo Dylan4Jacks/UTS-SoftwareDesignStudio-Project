@@ -17,7 +17,7 @@ This is a University project completed by Group 6.
 ```
  {
   "ConnectionStrings": {
-    "DefaultConnection": "[YOUR CONNECTION STRING]"
+    "Default": "[YOUR CONNECTION STRING]"
   }
  }
 ```

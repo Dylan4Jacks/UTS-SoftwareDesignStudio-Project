@@ -5,4 +5,16 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    @if (User.IsInRole("teacher"))
+    {
+        <p>This User is a teacher</p>
+    }
+
+    @if (User.IsInRole("student"))
+    {
+        <p>This User is a student</p>
+        
+    }
+
 </div>

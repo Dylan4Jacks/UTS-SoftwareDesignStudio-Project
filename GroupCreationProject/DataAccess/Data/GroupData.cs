@@ -17,25 +17,26 @@ public class GroupData : IGroupData
         _db = db;
     }
 
-    public Task<IEnumerableGroupModel>> GetGroups() =>
+    public Task<IEnumerable<GroupModel>> GetGroups() =>
         _db.LoadData<GroupModel, dynamic>("dbo.spGroup_GetAll", new { });
 
     public async Task<GroupModel?> GetGroup(int id)
     {
         var results = await _db.LoadData<GroupModel, dynamic>(
             "dbo.spGroup_Get",
-            new { GroupId = groupId });
+            new { GroupId = id });
         return results.FirstOrDefault();
     }
 
     public Task InsertGroup(GroupModel group) =>
         _db.SaveData("dbo.spGroup_Insert", new {
-            group.GroupName
+            group.GroupName,
+            group.GroupDetails
         });
 
     public Task UpdateGroup(GroupModel group) =>
         _db.SaveData("dbo.spGroup_Update", group);
 
     public Task DeleteGroup(int id) =>
-        _db.SaveData("dbo.spGroup_Delete", new { GroupId = groupId });
+        _db.SaveData("dbo.spGroup_Delete", new { GroupId = id });
 }

@@ -10,4 +10,5 @@ public class GroupModel
 {
     public int GroupId { get; set; }
     public string GroupName { get; set; }
+    public string GroupDetails { get; set; }
 }

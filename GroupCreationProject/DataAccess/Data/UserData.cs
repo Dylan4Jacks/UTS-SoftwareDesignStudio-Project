@@ -24,7 +24,7 @@ public class UserData : IUserData
     {
         var results = await _db.LoadData<UserModel, dynamic>(
             "dbo.spUser_Get",
-            new { Id = id });
+            new { UserId = id });
         return results.FirstOrDefault();
     }
 

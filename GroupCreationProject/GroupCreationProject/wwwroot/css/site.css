@@ -1,5 +1,7 @@
 html {
   font-size: 14px;
+  padding: 0;
+  margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -19,9 +21,46 @@ body {
 
 
 
+/* Student & Teacher Views */
+#UserWrapper {
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+    align-items: center;
+}
 
-/* Main View Styles */
+#UserUpper {
+    height: 20%;
+    width: 100%;
+}
 
-#Test {
-    background-color: chartreuse;
+#UserLogoutBtn{
+
+}
+
+#UserBtnWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: center;
+    align-items: center;
+}
+
+#UserBtn {
+
+}
+
+#UserUpperDivider{
+
+}
+
+
+
+#UserLower {
+    height: auto;
+    width: 100%;
 }

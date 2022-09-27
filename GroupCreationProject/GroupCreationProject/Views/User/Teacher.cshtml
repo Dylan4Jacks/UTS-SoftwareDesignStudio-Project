@@ -9,17 +9,37 @@
     
 <partial name="_UserHead" />
 
-<body>
-    <partial name="_ViewWrapper" />
-    @if (true)
-    {
-        <div>
-
+    <body>
+        <div id="UserWrapper">
+            <div id="UserUpper">
+            <button id="UserLogoutBtn" onclick="logout()" >Logout</button>
+            <div id="UserBtnWrapper">
+                <button id="UserBtn" onclick="showGroupsPartial()" >Groups</button>
+                <button id="UserBtn" onclick="showStudentsPartial()" >Students</button>
+            </div>
+            <div id="UserUpperDivider"/>
         </div>
-    }else {
+        <div id="UserLower">
+           h
+        </div>
+        </div>
         
-    }
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    
+        <script type="text/javascript">
+            function showGroupsPartial(){
+                $('#GroupsPartial').modal('show');
+            }
+            function showStudentsPartial(){
+                $('#StudentsPartial').modal('show');
+            }
+            function logout(){
+                $('#StudentsPartial').modal('show');
+            }
 
-</body>
+        </script>
 
+    </body>
 </html>

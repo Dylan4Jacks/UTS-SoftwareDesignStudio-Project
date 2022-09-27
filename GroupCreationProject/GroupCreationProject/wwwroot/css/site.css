@@ -1,7 +1,8 @@
 html {
-  font-size: 14px;
-  padding: 0;
-  margin: 0;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    font-family: 'Arial';
 }
 
 @media (min-width: 768px) {
@@ -15,52 +16,7 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
-}
-
 
 
 /* Student & Teacher Views */
-#UserWrapper {
-    font-size: 14px;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: center;
-    align-items: center;
-}
 
-#UserUpper {
-    height: 20%;
-    width: 100%;
-}
-
-#UserLogoutBtn{
-
-}
-
-#UserBtnWrapper {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    text-align: center;
-    align-items: center;
-}
-
-#UserBtn {
-
-}
-
-#UserUpperDivider{
-
-}
-
-
-
-#UserLower {
-    height: auto;
-    width: 100%;
-}

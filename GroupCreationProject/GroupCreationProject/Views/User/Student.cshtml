@@ -1,19 +1,40 @@
 ﻿@{
-    ViewData["Title"] = "Student Page";
+    ViewData["Title"] = "Teacher Page";
     
 }
 
 <!DOCTYPE html>
 
-<html>
+<html> 
+    <head>
+        <link rel="stylesheet" href="~/css/user/student.css" asp-append-version="true" />
+    </head>
 
-<partial name="_UserHead" />
+    <body class="site">
+      <form id="form1" runat="server">
+        <header>
 
-<body>
-    <partial name="_ViewWrapper" />
-    <div>
+          <nav class="alignCenter">
+            <!-- for vertical and horizontal alignment -->
 
-    </div>
+            <ul>
+              <li><a href="Default.aspx" title="">Forside</a>
+              </li>
+              <li><a href="portfolio.aspx" title="">Portfolio</a>
+              </li>
+              <li><a href="kontakt.aspx" title="">Kontakt</a>
+              </li>
+            </ul>
+          </nav>
+        </header>
+        <main class="siteContent">
+          <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+          </asp:ContentPlaceHolder>
+        </main>
+
+        <footer>
+          <p>Some footer text</p>
+        </footer>
+      </form>
 </body>
-
 </html>

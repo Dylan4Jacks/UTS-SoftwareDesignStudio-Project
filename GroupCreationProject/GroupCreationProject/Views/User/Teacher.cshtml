@@ -7,21 +7,29 @@
 
 <html> 
     
-<partial name="_UserHead" />
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/user/user.css" asp-append-version="true" />
+    </head>
 
     <body>
-        <div id="UserWrapper">
-            <div id="UserUpper">
-            <button id="UserLogoutBtn" onclick="logout()" >Logout</button>
-            <div id="UserBtnWrapper">
-                <button id="UserBtn" onclick="showGroupsPartial()" >Groups</button>
-                <button id="UserBtn" onclick="showStudentsPartial()" >Students</button>
+        <div class="FlexWrapper">
+            <div class="FlexUpper">
+                <div class="Btn LogoutBtn">Logout</div>
+                <div class="Navigation">
+                    <div class="Btn NavigationBtn">Groups</div>
+                    <div class="Btn NavigationBtn">Students</div>
+                    <div class="Btn NavigationBtn">Categories</div>
+                </div>
+                <div class="FlexUpperDividerLine"/>
             </div>
-            <div id="UserUpperDivider"/>
-        </div>
-        <div id="UserLower">
-           h
-        </div>
+            <div class="FlexLower">
+                <div>
+                    <partial name="_CategoriesPartial.cshtml" />
+                </div>
+            </div>
         </div>
         
         <script src="~/lib/jquery/dist/jquery.min.js"></script>

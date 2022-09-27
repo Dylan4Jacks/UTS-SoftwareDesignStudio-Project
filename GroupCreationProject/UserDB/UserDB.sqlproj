@@ -71,6 +71,5 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="UserDB.publish.xml" />
-    <None Include="dbo\Tables\Group.sql" />
   </ItemGroup>
 </Project>

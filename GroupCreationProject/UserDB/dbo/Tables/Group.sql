@@ -1,5 +1,0 @@
-﻿CREATE TABLE [dbo].[Group]
-(
-	[GroupId] INT NOT NULL PRIMARY KEY IDENTITY,
-    [GroupName] NVARCHAR(50) NOT NULL
-)

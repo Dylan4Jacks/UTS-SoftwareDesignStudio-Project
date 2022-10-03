@@ -65,6 +65,8 @@
     <Build Include="dbo\StoredProcedures\spUser_GetAll.sql" />
     <Build Include="dbo\StoredProcedures\spUser_Insert.sql" />
     <Build Include="dbo\StoredProcedures\spUser_Update.sql" />
+    <Build Include="dbo\Tables\teacher.sql" />
+    <Build Include="dbo\StoredProcedures\spteacher_auth.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

@@ -23,10 +23,12 @@ public class UserData : IUserData
     public async Task<UserModel?> GetUser(int id)
     {
         var results = await _db.LoadData<UserModel, dynamic>(
-            "dbo.spUser_Get",
+            "spUser_Get",
             new { Id = id });
         return results.FirstOrDefault();
     }
+
+
 
     public Task InsertUser(UserModel user) =>
         _db.SaveData("dbo.spUser_Insert", new {

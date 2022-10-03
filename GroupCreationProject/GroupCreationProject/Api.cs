@@ -11,6 +11,7 @@ public static class Api
         app.MapPut("/Users", UpdateUser);
         app.MapDelete("/Users", DeleteUser);
         app.MapPost("/teacher/login", loginTeacher);
+        app.MapPost("/Users/login", loginUser);
     }
     
     public static async Task<IResult> GetUsers(IUserData data)
@@ -78,6 +79,19 @@ public static class Api
         try
         {
             var result = await Data.loginTeacher(req.email, req.password);
+            if (result == null) return Results.NotFound();
+            return Results.Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
+    private static async Task<IResult> loginUser(loginRequest req, IUserData Data)
+    {
+        try
+        {
+            var result = await Data.LoginUser(req.email, req.password);
             if (result == null) return Results.NotFound();
             return Results.Ok(result);
         }

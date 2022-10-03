@@ -8,4 +8,5 @@ public interface IUserData
     Task<IEnumerable<UserModel>> GetUsers();
     Task InsertUser(UserModel user);
     Task UpdateUser(UserModel user);
+    Task<UserModel?> LoginUser(string email, string password);
 }

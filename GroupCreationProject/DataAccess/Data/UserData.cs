@@ -44,4 +44,12 @@ public class UserData : IUserData
 
     public Task DeleteUser(int id) =>
         _db.SaveData("dbo.spUser_Delete", new { Id = id });
+
+    public async Task<UserModel?> LoginUser(string email, string password)
+    {
+        var results = await _db.LoadData<UserModel, dynamic>(
+                   "spUser_auth",
+                   new { email = email, password = password });
+        return results.FirstOrDefault();
+    }
 }

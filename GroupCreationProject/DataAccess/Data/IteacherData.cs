@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Data
 {
-    public interface IteacherData
+    public interface ITeacherData
     {
 
         public Task<teacherModel?> loginTeacher(string email, string password);

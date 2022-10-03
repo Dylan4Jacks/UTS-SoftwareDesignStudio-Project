@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Data
 {
-    public class teacherData : IteacherData
+    public class TeacherData : ITeacherData
     {
         private readonly ISqlDataAccess _db;
-
-        public teacherData(ISqlDataAccess db)
+        
+        public TeacherData(ISqlDataAccess db)
         {
             _db = db;
         }
@@ -21,7 +21,7 @@ namespace DataAccess.Data
         {
 
             var results = await _db.LoadData<teacherModel, dynamic>(
-            "dbo.spteacher_Auth",
+            "dbo.spteacher_auth",
             new { email = email, password = password});
             return results.FirstOrDefault();
 

@@ -1,4 +1,6 @@
-﻿public static class Api
+﻿using Microsoft.AspNetCore.Mvc;
+
+public static class Api
 {
     public static void ConfigureApi(this WebApplication app)
     {
@@ -64,11 +66,18 @@
         }
     }
 
-    private static async Task<IResult> loginTeacher(string email, string password, IteacherData Data)
+
+    public class loginRequest
+    {
+        public string? email { get; set; }
+        public string? password { get; set; }
+    }
+
+    private static async Task<IResult> loginTeacher(loginRequest req, ITeacherData Data)
     {
         try
         {
-            var result = await Data.loginTeacher(email, password);
+            var result = await Data.loginTeacher(req.email, req.password);
             if (result == null) return Results.NotFound();
             return Results.Ok(result);
         }

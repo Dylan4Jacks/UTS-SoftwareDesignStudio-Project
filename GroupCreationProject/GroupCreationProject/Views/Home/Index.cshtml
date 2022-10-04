@@ -9,12 +9,15 @@
     @if (User.IsInRole("teacher"))
     {
         <p>This User is a teacher</p>
+        <p>Name: @User.Identity.Name</p>
+        <p>ID: @User.Claims.Where(a => a.Type == "id").FirstOrDefault()</p>
     }
 
     @if (User.IsInRole("student"))
     {
-        <p>This User is a student</p>
-        
+        <p>Welcome Student </p>
+        <p>Name: @User.Identity.Name</p>
+        <p>ID: @User.Claims.Where(a => a.Type == "id").FirstOrDefault()</p>
     }
 
 </div>

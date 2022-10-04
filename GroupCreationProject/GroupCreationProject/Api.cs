@@ -74,7 +74,7 @@ public static class Api
         public string? password { get; set; }
     }
 
-    private static async Task<IResult> loginTeacher(loginRequest req, ITeacherData Data)
+    public static async Task<IResult> loginTeacher(loginRequest req, ITeacherData Data)
     {
         try
         {
@@ -87,7 +87,7 @@ public static class Api
             return Results.Problem(ex.Message);
         }
     }
-    private static async Task<IResult> loginUser(loginRequest req, IUserData Data)
+    public static async Task<IResult> loginUser(loginRequest req, IUserData Data)
     {
         try
         {

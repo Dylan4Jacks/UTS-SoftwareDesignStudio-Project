@@ -21,62 +21,76 @@ namespace GroupCreationProject.Controllers
         {
             try
             {
-                //HttpClient c = new HttpClient();
-                //var content = new StringContent(JsonConvert.SerializeObject(new { username = "Sean", password = "bar" }), System.Text.Encoding.UTF8, "application/json");
-                //var result = c.PostAsync("https://localhost:7235/Login/auth",  content).Result;
+                HttpClient c = new HttpClient();
+                var content = new StringContent(JsonConvert.SerializeObject(new { email = data.Email, password = data.Password }), System.Text.Encoding.UTF8, "application/json");
+                string name = "";
+                int id = -1; 
 
                 string role;
-                if (data.Email.Contains("teacher"))
-                    role = "teacher";
-                else
+                if (!data.Email.Contains("teacher"))
+                {
                     role = "student";
-
-
-                var result = new
-                {
-                    success = true,
-                    values = new
+                    var Postresult = c.PostAsync("https://localhost:7041/Users/login",  content).Result;
+                    
+                    if(Postresult.IsSuccessStatusCode)
                     {
-                        type = "student",
-                        name = "sean"
+                        var user = JsonConvert.DeserializeObject<UserModel>(Postresult.Content.ReadAsStringAsync().Result);
+                        if(user != null && user.FirstName != null&& user.LastName != null)
+                        {
+                            name = user.FirstName + " " + user.LastName;
+                            id = user.Id;
+                        }
                     }
-                };
-
-                if (true)
+                    else
+                    {
+                        throw new Exception("Auth Failed");
+                    }
+                }
+                else
                 {
-                    //var definition = new { username = "", type = "" };
-                    //var values = JsonConvert.DeserializeAnonymousType( result.Content.ReadAsStringAsync().Result, definition);
+                    role = "teacher";
+                    var Postresult = c.PostAsync("https://localhost:7041/teacher/login", content).Result;
 
-                    //Response.Cookies.Append("type", result.values.type);
-
+                    if (Postresult.IsSuccessStatusCode)
+                    {
+                        var teacher = JsonConvert.DeserializeObject<teacherModel>(Postresult.Content.ReadAsStringAsync().Result);
+                        if(teacher != null && teacher.name != null)
+                        {
+                            name = teacher.name;
+                            id = teacher.Id;
+                        }
+                        else
+                        {
+                            throw new Exception("User Data Corrupted");
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Auth Failed");
+                    }
+                }
+                if (name != null && name != "" && id != -1)
+                {
                     var claims = new List<Claim>
                     {
-                        new Claim(ClaimTypes.Name, data.Email),
-                        new Claim(ClaimTypes.Role, role)
+                        new Claim(ClaimTypes.Name, name),
+                        new Claim(ClaimTypes.Role, role),
+                        new Claim(type: "id", id.ToString())
                     };
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                   // var authProperties = new AuthenticationProperties
-                   // {
-                   //     AllowRefresh = true,
-                   //     ExpiresUtc = DateTimeOffset.UtcNow.AddHours(48),
-                   //     IsPersistent = true,
-                   //     IssuedUtc = DateTimeOffset.UtcNow,
-                   // };
-
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    return LocalRedirect("~Home/Privacy");
+                    throw new Exception("This shouldn't happen");
                 }
             }
             catch
             {
-                return LocalRedirect("~Home/Privacy");
+                return RedirectToAction("Index", "Login");
             }
         }
     }

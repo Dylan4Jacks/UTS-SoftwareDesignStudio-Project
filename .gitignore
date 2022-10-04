@@ -1,12 +1,21 @@
 #Ignore .Net6 files
-/.vs
-.vs/
-/GroupCreationProject/.vs
-/GroupCreationProject/.vs/GroupCreationProject
-/GroupCreationProject/GroupCreationProject/bin/Debug/net6.0
-/GroupCreationProject/GroupCreationProject/obj/
-/GroupCreationProject/GroupCreationProject/obj/Debug
-/GroupCreationProject/GroupCreationProject/bin/Release/net6.0
+
+.vs
+GroupCreationProject/.vs
+GroupCreationProject/.vs/GroupCreationProject
+GroupCreationProject/GroupCreationProject/bin/Debug/net6.0
+GroupCreationProject/GroupCreationProject/obj/
+GroupCreationProject/GroupCreationProject/obj
+GroupCreationProject/GroupCreationProject/obj/Debug
+GroupCreationProject/GroupCreationProject/bin/Release/net6.0
+
+GroupCreationProject/.vs/GroupCreationAPI2
+GroupCreationProject/GroupCreationAPI2/bin/Debug/net6.0
+GroupCreationProject/GroupCreationAPI2/obj/
+GroupCreationProject/GroupCreationAPI2/obj
+GroupCreationProject/GroupCreationAPI2/obj/Debug
+GroupCreationProject/GroupCreationAPI2/bin/Release/net6.0
+
 
 
 /GroupCreationProject/.vs
@@ -402,4 +411,5 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
+
 

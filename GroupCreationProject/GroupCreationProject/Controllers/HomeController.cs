@@ -8,6 +8,7 @@ namespace GroupCreationProject.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -15,6 +16,8 @@ namespace GroupCreationProject.Controllers
 
         public IActionResult Index()
         {
+            var x = User;
+
             return View();
         }
 

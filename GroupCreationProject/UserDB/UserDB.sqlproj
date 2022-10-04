@@ -67,6 +67,8 @@
     <Build Include="dbo\StoredProcedures\spUser_Update.sql" />
     <Build Include="dbo\Tables\teacher.sql" />
     <Build Include="dbo\StoredProcedures\spteacher_auth.sql" />
+    <Build Include="dbo\StoredProcedures\spUser_auth_1.sql" />
+    <Build Include="dbo\StoredProcedures\spUser_auth.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

@@ -32,7 +32,7 @@
         }
     }
 
-    private static async Task<IResult> InsertUser(UserModel user, IUserData Data)
+    private static  async Task<IResult> InsertUser(UserModel user, IUserData Data)
     {
         try {
             await Data.InsertUser(user);

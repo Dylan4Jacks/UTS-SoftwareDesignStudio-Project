@@ -27,23 +27,95 @@
             </ul>
           </nav>
         </header>
+
         <main class="siteContent">
           <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
           </asp:ContentPlaceHolder>
+            <label><strong>First Name:</strong> </label> <p id="firstname"></p>
+            <label><strong>Last Name: </strong></label> <p id="lastname"></p>
+            <label><strong>Email:     </strong>  </label> <p id="email"></p>
+            <label><strong>Skills:    </strong>  </label> <p id="skills"></p>
+            <label><strong>Preferences:    </strong>  </label> <p id="prefs"></p>
+            <br>
+            <br />
+            <br />
+            <label>Change Skill</label>
+            <input type=text id="skillinput"/>
+            <label>Change Pref</label>
+            <input type=text id="prefinput"/>
+            <button onclick="UpdateUserClicked()">update user</button>
         </main>
+
+
 
         <footer>
           <p>Some footer text</p>
         </footer>
       </form>
 </body>
+ <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
 
 <script>
+    var StudentData
 
     $(document).ready(function(){
-        debugger;
-        console.log(':)')
+        var studentId = 1 //@User.Claims.Where(a => a.Type == "id").FirstOrDefault(); use this once merged into main 
+        StudentData = getStudentData(studentId)
+        console.log(StudentData)
+
+        $("#firstname").text(StudentData.firstName)
+        $("#lastname").text(StudentData.lastName)
+        $("#email").text(StudentData.email)
+        $("#skills").text(StudentData.skills)
+        $("#prefs").text(StudentData.preferences)
+
     })
+
+    function getStudentData(studentId) {
+            var studentData
+            
+            $.ajax({
+                url: 'https://localhost:7041/Users/' + studentId,
+                type: 'GET',
+                success: function(data, status, jqxhr) {
+                    studentData = data;
+                },
+                error:  function(data, status, jqxhr) {
+                    console.log(status);
+                },
+                async: false,
+            })
+
+            return studentData;
+    }
+
+    function updateStudent(skills, preferences) {
+        StudentData.skills = skills;
+        StudentData.preferences = preferences;
+        
+        $.ajax({
+                url: 'https://localhost:7041/Users',
+                type: 'PUT',
+                data: JSON.stringify(StudentData),
+                contentType : 'application/json',
+                success: function(data, status, jqxhr) {
+                    location.reload();
+                },
+                error:  function(data, status, jqxhr) {
+                    console.log(status);
+                },
+                async: false,
+            })
+    }
+
+    function UpdateUserClicked() {
+        var skilltext = $("#skillinput").val()
+        var preftext = $("#prefinput").val()
+    
+        updateStudent(skilltext, preftext);
+    }
 
 </script>
 </html>

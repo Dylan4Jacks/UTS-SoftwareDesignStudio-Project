@@ -1,4 +1,5 @@
 #Ignore .Net6 files
+
 .vs
 GroupCreationProject/.vs
 GroupCreationProject/.vs/GroupCreationProject
@@ -14,6 +15,22 @@ GroupCreationProject/GroupCreationAPI2/obj/
 GroupCreationProject/GroupCreationAPI2/obj
 GroupCreationProject/GroupCreationAPI2/obj/Debug
 GroupCreationProject/GroupCreationAPI2/bin/Release/net6.0
+
+
+
+/GroupCreationProject/.vs
+/GroupCreationProject/.vs/DataAccess
+/GroupCreationProject/DataAccess/bin/Debug/net6.0
+/GroupCreationProject/DataAccess/obj/
+/GroupCreationProject/DataAccess/obj/Debug
+/GroupCreationProject/DataAccess/bin/Release/net6.0
+
+/GroupCreationProject/.vs
+/GroupCreationProject/.vs/UserDB
+/GroupCreationProject/UserDB/bin/Debug/net6.0
+/GroupCreationProject/UserDB/obj/
+/GroupCreationProject/UserDB/obj/Debug
+/GroupCreationProject/UserDB/bin/Release/net6.0
 
 
 # User-specific files
@@ -394,8 +411,5 @@ bld/
 msbuild.log
 msbuild.err
 msbuild.wrn
-
-# Visual Studio 2015
-.vs/
 
 

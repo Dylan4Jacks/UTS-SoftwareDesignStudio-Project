@@ -9,10 +9,11 @@ namespace DataAccess.Models;
 public class UserModel
 {
     public int Id { get; set; }
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string Email { get; set; }
-    public string Preferences { get; set; }
-    public string Skills { get; set; }
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? Email { get; set; }
+    public string? Preferences { get; set; }
+    public string? Skills { get; set; }
+    public string? password { get; set; }
 
 }

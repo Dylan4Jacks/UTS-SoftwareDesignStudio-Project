@@ -1,4 +1,6 @@
-﻿public static class Api
+﻿using Microsoft.AspNetCore.Mvc;
+
+public static class Api
 {
     public static void ConfigureApi(this WebApplication app)
     {
@@ -8,6 +10,8 @@
         app.MapPost("/Users", InsertUser);
         app.MapPut("/Users", UpdateUser);
         app.MapDelete("/Users", DeleteUser);
+        app.MapPost("/teacher/login", loginTeacher);
+        app.MapPost("/Users/login", loginUser);
     }
     
     public static async Task<IResult> GetUsers(IUserData data)
@@ -59,6 +63,40 @@
             return Results.Ok();
         }
         catch (Exception ex) {
+            return Results.Problem(ex.Message);
+        }
+    }
+
+
+    public class loginRequest
+    {
+        public string? email { get; set; }
+        public string? password { get; set; }
+    }
+
+    private static async Task<IResult> loginTeacher(loginRequest req, ITeacherData Data)
+    {
+        try
+        {
+            var result = await Data.loginTeacher(req.email, req.password);
+            if (result == null) return Results.NotFound();
+            return Results.Ok(result);
+        }
+        catch (Exception ex)
+        {
+            return Results.Problem(ex.Message);
+        }
+    }
+    private static async Task<IResult> loginUser(loginRequest req, IUserData Data)
+    {
+        try
+        {
+            var result = await Data.LoginUser(req.email, req.password);
+            if (result == null) return Results.NotFound();
+            return Results.Ok(result);
+        }
+        catch (Exception ex)
+        {
             return Results.Problem(ex.Message);
         }
     }

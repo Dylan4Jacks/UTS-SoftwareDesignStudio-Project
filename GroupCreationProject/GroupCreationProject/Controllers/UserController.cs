@@ -21,6 +21,16 @@ namespace GroupCreationProject.Controllers
             return View();
         }
 
+        public IActionResult StudentsPartial()
+        {
+            return PartialView("_StudentsPartial");
+        }
+
+        public IActionResult GroupsPartial()
+        {
+            return PartialView("_GroupsPartial");
+        }
+
         public IActionResult CategoriesPartial()
         {
             return PartialView("_CategoriesPartial");

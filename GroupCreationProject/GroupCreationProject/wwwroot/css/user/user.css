@@ -101,7 +101,7 @@ img {
             border-color: black;
             border-bottom-color: white;
         }
-        .navbar li > button#open, .navbar li > button#open:hover {
+        .navbar li > button#selectedPartial, .navbar li > button#selectedPartial:hover {
             border-color: black;
             border-bottom: 3px solid white;
             border-top-left-radius: 10px;
@@ -110,7 +110,6 @@ img {
             -webkit-border-top-right-radius: 10px;
             -moz-border-radius-topleft: 10px;
             -moz-border-radius-topright: 10px;
-
         }
 
         .navbar .flex {

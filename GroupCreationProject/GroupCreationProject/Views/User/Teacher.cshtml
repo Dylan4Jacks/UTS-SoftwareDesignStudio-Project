@@ -19,19 +19,20 @@
 			    <button id="logout" class="btn btn-primary">Logout</button>
 			    <nav>
 				    <ul>
-					    <li><button id="open" onclick="showStudentsPartial()">Students</button></li>
-					    <li><button onclick="showGroupsPartial()">Groups</button></li>
-					    <li><button onclick="showCategoriesPartial()">Categories</button></li>
+					    <li><button onclick="    showPartial(this, 'Students');">Students</button></li>
+					    <li><button onclick="    showPartial(this, 'Groups');">Groups</button></li>
+					    <li><button onclick="    showPartial(this, 'Categories');">Categories</button></li>
 				    </ul>
 			    </nav>
-                
 		    </div>
 	    </div>
 
         <!-- Showcase -->
+        
         <section class="showcase">
-	        <div class="container grid">
-		        <div class="showcase-text">
+	        <div class="container">
+                <div id="partialview"></div>
+		        @*<div class="showcase-text">
 			        <h1>Potato Review</h1>
 			        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi laboriosam odio alias quam ab fuga, perferendis sint neque? Quam necessitatibus natus ex aspernatur magni molestias maiores enim odit veniam debitis?</p>
 			        <a href="features.html" class="btn btn-outline">Read More</a>
@@ -50,7 +51,7 @@
 				        </div>
 				        <input type="submit" value="Send" class="btn btn-primary">
 			        </form>
-		        </div>
+		        </div>*@
 	        </div>
         </section>
 
@@ -98,16 +99,19 @@
 
                 return studentData;
             }
+
+            function showPartial(selectedBtn, partialName){
+                $('#partialview').load('https://localhost:7041/user/'+ partialName +'Partial');
+                selection = document.querySelector('#selectedPartial')
+                if (selection !== null) {
+                    selection.removeAttribute('id');
+                    selection.disabled = false;
+                }
+                selectedBtn.setAttribute('id', 'selectedPartial');
+                selectedBtn.disabled = true;
+
+            }
             
-            function showStudentsPartial(){
-                $('#StudentsPartial').modal('show');
-            }
-            function showGroupsPartial(){
-                $('#GroupsPartial').modal('show');
-            }
-            function showCategoriesPartial(){
-                $('#StudentsPartial').modal('show');
-            }
             function logout(){
                 $('#StudentsPartial').modal('show');
             }

@@ -2,9 +2,12 @@
 
 * {
     /** Allows us to add Borders and padding without having to add to the width of an element  */
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
+    box-sizing: border-box; /* Opera/IE 8+ */
     padding: 0;
     margin: 0;
+
 }
 
 body {
@@ -45,13 +48,12 @@ img {
 
 
 /* Navbar */
-
 .navbar {
     color: #FFFF;
     height: 180px;
-    border-bottom: 2px solid #000000;
     padding: 0;
     margin: 0;
+    border-bottom: 3px solid black;
 }
     .navbar nav {
         align-self: start;
@@ -59,37 +61,59 @@ img {
     .navbar ul {
         list-style: none;
         display: flex;
+        position: relative;
+        top: 3px;
     }
     .navbar li > button {
-        /* Remove Styles */
-        background: none;
+        /* Remove Default Styles */
         color: inherit;
-        padding: 0;
         font: inherit;
         cursor: pointer;
         outline: inherit;
-        /* add styles */
-        border: 3px solid #000000;
-        
+        /* Add Styles */
+        min-width: 100px;
+        color: black;
+        padding: 0 5px;
+        margin: 0 5px;
+        display: block;
+        text-align: center;
+        background: none;
+        border: 3px solid #FFFF;
+        border-bottom: 3px solid black;
+        /* Curved Corners*/
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         -webkit-border-top-left-radius: 10px;
         -webkit-border-top-right-radius: 10px;
         -moz-border-radius-topleft: 10px;
         -moz-border-radius-topright: 10px;
-
-        min-width: 100px;
-        border-bottom: none;
-        color: black;
-        padding: 0 5px;
-        margin: 0 5px;
-        display: block;
-        text-align: center;
     }
         .navbar li > button:hover {
-            color: #01afd7;
+            /* Hover Transision*/
+            -webkit-transition: border-color 0.2s ease-in;
+            -moz-transition: border-color 0.2s ease-in;
+            -o-transition: border-color 0.2s ease-in;
+            transition: border-color 0.2s ease-in;
+            -webkit-transition: border-bottom-color 0.2s ease-in;
+            -moz-transition: border-bottom-color 0.2s ease-in;
+            -o-transition: border-bottom-color 0.2s ease-in;
+            transition: border-bottom-color 0.2s ease-in;
+            border-color: black;
+            border-bottom-color: white;
         }
-    .navbar .flex {
+        .navbar li > button#open, .navbar li > button#open:hover {
+            border-color: black;
+            border-bottom: 3px solid white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            -webkit-border-top-left-radius: 10px;
+            -webkit-border-top-right-radius: 10px;
+            -moz-border-radius-topleft: 10px;
+            -moz-border-radius-topright: 10px;
+
+        }
+
+        .navbar .flex {
         justify-content: space-between;
         flex-direction: column;
     }
@@ -104,7 +128,7 @@ img {
 .container {
     max-width: 100%;
     margin: 0 auto;
-    overflow: auto;
+    overflow: visible;
     padding: 8px 8px 0 8px;
 }
 

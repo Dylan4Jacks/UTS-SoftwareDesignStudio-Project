@@ -19,11 +19,12 @@
 			    <button id="logout" class="btn btn-primary">Logout</button>
 			    <nav>
 				    <ul>
-					    <li><a href="index.html">Home</a></li>
-					    <li><a href="features.html">Features</a></li>
-					    <li><a href="docs.html">docs</a></li>
+					    <li><button onclick="showStudentsPartial()">Students</button></li>
+					    <li><button onclick="showGroupsPartial()">Groups</button></li>
+					    <li><button onclick="showCategoriesPartial()">Categories</button></li>
 				    </ul>
 			    </nav>
+                
 		    </div>
 	    </div>
 
@@ -46,11 +47,6 @@
         </main>
 
 
-
-        <footer>
-            <p>Some footer text</p>
-        </footer>
-        </form>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>

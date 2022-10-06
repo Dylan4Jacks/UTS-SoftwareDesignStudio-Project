@@ -19,11 +19,12 @@
 			    <button id="logout" class="btn btn-primary">Logout</button>
 			    <nav>
 				    <ul>
-					    <li><a href="index.html">Students</a></li>
-					    <li><a href="features.html">Groups</a></li>
-					    <li><a href="docs.html">Categories</a></li>
+					    <li><button onclick="showStudentsPartial()">Students</button></li>
+					    <li><button onclick="showGroupsPartial()">Groups</button></li>
+					    <li><button onclick="showCategoriesPartial()">Categories</button></li>
 				    </ul>
 			    </nav>
+                
 		    </div>
 	    </div>
 
@@ -98,10 +99,13 @@
                 return studentData;
             }
             
+            function showStudentsPartial(){
+                $('#StudentsPartial').modal('show');
+            }
             function showGroupsPartial(){
                 $('#GroupsPartial').modal('show');
             }
-            function showStudentsPartial(){
+            function showCategoriesPartial(){
                 $('#StudentsPartial').modal('show');
             }
             function logout(){

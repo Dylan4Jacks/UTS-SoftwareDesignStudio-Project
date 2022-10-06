@@ -12,23 +12,20 @@
         <link rel="stylesheet" href="~/css/user/student.css" asp-append-version="true" />
     </head>
 
-    <body class="site">
-        <form id="form1" runat="server">
-        <header>
-
-            <nav class="alignCenter">
-            <!-- for vertical and horizontal alignment -->
-
-            <ul>
-                <li><a href="Default.aspx" title="">Forside</a>
-                </li>
-                <li><a href="portfolio.aspx" title="">Portfolio</a>
-                </li>
-                <li><a href="kontakt.aspx" title="">Kontakt</a>
-                </li>
-            </ul>
-            </nav>
-        </header>
+    <body>
+        <!-- Navbar -->
+	    <div class="navbar">
+		    <div class="container flex">
+			    <button id="logout" class="btn btn-primary">Logout</button>
+			    <nav>
+				    <ul>
+					    <li><a href="index.html">Home</a></li>
+					    <li><a href="features.html">Features</a></li>
+					    <li><a href="docs.html">docs</a></li>
+				    </ul>
+			    </nav>
+		    </div>
+	    </div>
 
         <main class="siteContent">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

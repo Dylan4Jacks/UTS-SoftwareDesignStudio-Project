@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Student Page";
+    ViewData["Title"] = "Teacher Page";
     
 }
 
@@ -12,39 +12,48 @@
         <link rel="stylesheet" href="~/css/user/student.css" asp-append-version="true" />
     </head>
 
-    <body class="site">
-        <form id="form1" runat="server">
-        <header>
+    <body>
+        <!-- Navbar -->
+	    <div class="navbar">
+		    <div class="container flex">
+			    <button id="logout" class="btn btn-primary">Logout</button>
+			    <nav>
+				    <ul>
+					    <li><a href="index.html">Students</a></li>
+					    <li><a href="features.html">Groups</a></li>
+					    <li><a href="docs.html">Categories</a></li>
+				    </ul>
+			    </nav>
+		    </div>
+	    </div>
 
-            <nav>
-            <!-- for vertical and horizontal alignment -->
+        <!-- Showcase -->
+        <section class="showcase">
+	        <div class="container grid">
+		        <div class="showcase-text">
+			        <h1>Potato Review</h1>
+			        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi laboriosam odio alias quam ab fuga, perferendis sint neque? Quam necessitatibus natus ex aspernatur magni molestias maiores enim odit veniam debitis?</p>
+			        <a href="features.html" class="btn btn-outline">Read More</a>
+		        </div>
+		        <div class="showcase-form card">
+			        <h2>Request a Demo</h2>
+			        <form>
+				        <div class="form-control">
+					        <input type="text" name="name" placeholder="Name">
+				        </div>
+				        <div class="form-control">
+					        <input type="text" name="company" placeholder="Company Name">
+				        </div>
+				        <div class="form-control">
+					        <input type="email" name="email" placeholder="Email">
+				        </div>
+				        <input type="submit" value="Send" class="btn btn-primary">
+			        </form>
+		        </div>
+	        </div>
+        </section>
 
-            <ul>
-                <li>
-                    <a href="Default.aspx" title="">Forside</a>
-                </li>
-                <li>
-                    <a href="portfolio.aspx" title="">Portfolio</a>
-                </li>
-                <li>
-                    <a href="kontakt.aspx" title="">Kontakt</a>
-                </li>
-            </ul>
-            </nav>
-        </header>
-
-        <main class="siteContent">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-            
-            <button onclick="studentDetailsClicked(1)">Student Details Clicked 1</button>
-            <button onclick="studentDetailsClicked(2)">Student Details Clicked 2</button>
-        </main>
-
-        <footer>
-            <p>Some footer text</p>
-        </footer>
-        </form>
+        <!-- Scripts -->
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>

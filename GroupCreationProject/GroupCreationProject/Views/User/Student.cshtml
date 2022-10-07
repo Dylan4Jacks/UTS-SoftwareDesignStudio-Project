@@ -19,9 +19,9 @@
 			    <button id="logout" class="btn btn-primary">Logout</button>
 			    <nav>
 				    <ul>
-					    <li><button onclick="showStudentsPartial()">Students</button></li>
-					    <li><button onclick="showGroupsPartial()">Groups</button></li>
-					    <li><button onclick="showCategoriesPartial()">Categories</button></li>
+					    <li><button onclick="    showPartial(this, 'Students');">Students</button></li>
+					    <li><button onclick="    showPartial(this, 'Groups');">Groups</button></li>
+					    <li><button onclick="    showPartial(this, 'Categories');">Categories</button></li>
 				    </ul>
 			    </nav>
                 
@@ -109,6 +109,17 @@
                 var preftext = $("#prefinput").val()
     
                 updateStudent(skilltext, preftext);
+            }
+
+            function showPartial(selectedBtn, partialName){
+                $('#partialview').load('https://localhost:7041/user/'+ partialName +'Partial');
+                selection = document.querySelector('#selectedPartial')
+                if (selection !== null) {
+                    selection.removeAttribute('id');
+                    selection.disabled = false;
+                }
+                selectedBtn.setAttribute('id', 'selectedPartial');
+                selectedBtn.disabled = true;
             }
 
         </script>

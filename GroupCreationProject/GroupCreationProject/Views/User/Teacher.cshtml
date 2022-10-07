@@ -19,39 +19,25 @@
 			    <button id="logout" class="btn btn-primary">Logout</button>
 			    <nav>
 				    <ul>
-					    <li><button onclick="    showPartial(this, 'Students');">Students</button></li>
-					    <li><button onclick="    showPartial(this, 'Groups');">Groups</button></li>
-					    <li><button onclick="    showPartial(this, 'Categories');">Categories</button></li>
+					    <li><button onclick="    showPartial(this, 'StudentsPartial');">Students</button></li>
+					    <li><button onclick="    showPartial(this, 'GroupsPartial');">Groups</button></li>
+					    <li><button onclick="    showPartial(this, 'CategoriesPartial');">Categories</button></li>
 				    </ul>
 			    </nav>
 		    </div>
 	    </div>
 
-        <!-- Showcase -->
+        <!-- Content -->
         
         <section class="showcase">
-	        <div class="container">
-                <div id="partialview"></div>
-		        @*<div class="showcase-text">
-			        <h1>Potato Review</h1>
-			        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nisi laboriosam odio alias quam ab fuga, perferendis sint neque? Quam necessitatibus natus ex aspernatur magni molestias maiores enim odit veniam debitis?</p>
-			        <a href="features.html" class="btn btn-outline">Read More</a>
-		        </div>
-		        <div class="showcase-form card">
-			        <h2>Request a Demo</h2>
-			        <form>
-				        <div class="form-control">
-					        <input type="text" name="name" placeholder="Name">
-				        </div>
-				        <div class="form-control">
-					        <input type="text" name="company" placeholder="Company Name">
-				        </div>
-				        <div class="form-control">
-					        <input type="email" name="email" placeholder="Email">
-				        </div>
-				        <input type="submit" value="Send" class="btn btn-primary">
-			        </form>
-		        </div>*@
+	        <div class="container" id="StudentsPartial" style="display: none;">
+                <partial name="~/Views/User/_StudentsPartial.cshtml"/>
+	        </div>
+	        <div class="container" id="GroupsPartial" style="display: none;">
+                <partial name="~/Views/User/_GroupsPartial.cshtml"/>
+	        </div>
+	        <div class="container" id="CategoriesPartial" style="display: none;">
+                <partial name="~/Views/User/_CategoriesPartial.cshtml"/>
 	        </div>
         </section>
 
@@ -62,6 +48,8 @@
 
         <script type="text/javascript">
             var studentsList;
+            var visiblePartial = null;
+            var selectedBtn = null;
 
             $(document).ready(function(){
                 getStudents();
@@ -100,16 +88,21 @@
                 return studentData;
             }
 
-            function showPartial(selectedBtn, partialName){
-                $('#partialview').load('https://localhost:7041/user/'+ partialName +'Partial');
-                selection = document.querySelector('#selectedPartial')
-                if (selection !== null) {
-                    selection.removeAttribute('id');
-                    selection.disabled = false;
+            function showPartial(eventBtn, partialId){
+                eventBtn.disabled = true;
+                if (visiblePartial !== null ) {
+                    visiblePartial.style.display = 'none';
                 }
-                selectedBtn.setAttribute('id', 'selectedPartial');
-                selectedBtn.disabled = true;
+                visiblePartial = document.getElementById(partialId);
+                visiblePartial.style.display = 'block';
 
+                if (selectedBtn !== null) {
+                    selectedBtn.removeAttribute('id');
+                    selectedBtn.disabled = false;
+                }
+                selectedBtn = eventBtn;
+                selectedBtn.setAttribute('id', 'selectedBtn');
+                
             }
             
             function logout(){

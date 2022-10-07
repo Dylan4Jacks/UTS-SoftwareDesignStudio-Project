@@ -1,5 +1,8 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    font-family: 'Arial';
 }
 
 @media (min-width: 768px) {
@@ -13,6 +16,7 @@ html {
   min-height: 100%;
 }
 
-body {
-  margin-bottom: 60px;
-}
+
+
+/* Student & Teacher Views */
+

@@ -2,5 +2,5 @@
 (
 	[GroupId] INT NOT NULL PRIMARY KEY IDENTITY,
     [GroupName] NVARCHAR(50) NULL, 
-    [GroupDetails] NCHAR(255) NULL
+    [Details] NCHAR(255) NULL
 )

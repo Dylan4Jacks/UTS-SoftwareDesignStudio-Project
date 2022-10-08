@@ -1,7 +1,9 @@
-﻿CREATE TABLE [dbo].[teacher]
+﻿CREATE TABLE [dbo].[Teacher]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
-    [name] VARCHAR(50) NULL, 
-    [password] VARCHAR(50) NULL,
-    [email] Varchar(50) Null,
+	[TeacherId] INT NOT NULL PRIMARY KEY IDENTITY, 
+	[FirstName] NVARCHAR(50) NOT NULL, 
+    [LastName] NVARCHAR(50) NULL,
+    [Email] NVARCHAR(100) NOT NULL,
+	[Password] NVARCHAR(50) NOT NULL
+
 )

@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccess.Models
-{
-    public class teacherModel
-    {
+namespace DataAccess.Models;
 
-        public int Id { get; set; }
-        public string? name { get; set; } 
-        public string? password { get ; set; }
-    }
+public class TeacherModel
+{
+    public int TeacherId { get; set; }
+    public string FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
+
 }

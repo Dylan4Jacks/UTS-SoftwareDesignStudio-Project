@@ -39,6 +39,22 @@ namespace GroupCreationProject.Controllers
                         {
                             name = user.FirstName + " " + user.LastName;
                             id = user.Id;
+
+                            var claims = new List<Claim>
+                            {
+                                new Claim(ClaimTypes.Name, name),
+                                new Claim(ClaimTypes.Role, role),
+                                new Claim(type: "id", id.ToString())
+                            };
+
+                            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
+                            return RedirectToAction("Student", "User");
+                        }
+                        else
+                        {
+                            throw new Exception("Auth Failed");
                         }
                     }
                     else
@@ -58,6 +74,18 @@ namespace GroupCreationProject.Controllers
                         {
                             name = teacher.name;
                             id = teacher.Id;
+
+                            var claims = new List<Claim>
+                            {
+                                new Claim(ClaimTypes.Name, name),
+                                new Claim(ClaimTypes.Role, role),
+                                new Claim(type: "id", id.ToString())
+                            };
+
+                            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
+                            return RedirectToAction("Teacher", "User");
                         }
                         else
                         {
@@ -69,26 +97,8 @@ namespace GroupCreationProject.Controllers
                         throw new Exception("Auth Failed");
                     }
                 }
-                if (name != null && name != "" && id != -1)
-                {
-                    var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, name),
-                        new Claim(ClaimTypes.Role, role),
-                        new Claim(type: "id", id.ToString())
-                    };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    throw new Exception("This shouldn't happen");
-                }
             }
-            catch
+            catch(Exception ex)
             {
                 return RedirectToAction("Index", "Login");
             }

@@ -32,12 +32,8 @@ BEGIN
 	VALUES 
 		('John', 'Smith', 'John.Smith@Teacher.com', '12345'),
 		('Mary', 'Jane', 'Mary.Jane@Teacher.com', 'b'),
-		('Sue', 'Solomon', 'Sue.Solomon@google.Teacher.com', 'c'),
 		('Kate', 'Allen', 'Kate.Allen@Teacher.com', 'd'),
-		('Test_A', null, 'TestA@Teacher.com', 'Test_A'),
-		('Test_B', null, 'Test.B@Teacher.com', 'Test_B'),
-		('Test_C', 'A', 'Test_C@google.Teacher.com', 'Test_C'),
-		('Test_D', null, 'TestD@Teacher.com', 'Test_D');
+		('Test_A', null, 'TestA@Teacher.com', 'Test_A');
 	
 	--NOTE: NEWID()   is the equivlant to RANDOM()
 
@@ -59,6 +55,6 @@ BEGIN
 	('Test_E', null, 'TestD@Student.com', 'Test_D', null);
 
 	INSERT  INTO dbo.[CategorySelection] (StudentId, CategoryItemId, Content)
-	SELECT TOP 10 StudentID, CategoryItemId, null FROM dbo.[Student] CROSS JOIN dbo.[CategoryItem] ORDER BY NEWID();
+	SELECT TOP 20 StudentID, CategoryItemId, null FROM dbo.[Student] CROSS JOIN dbo.[CategoryItem] ORDER BY NEWID();
 
 end

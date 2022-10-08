@@ -28,6 +28,22 @@ public class CategorySelectionData : ICategorySelectionData
         return results.FirstOrDefault();
     }
 
+    public async Task<CategorySelectionModel?> GetCategorySelectionStudent(int studentId)
+    {
+        var results = await _db.LoadData<CategorySelectionModel, dynamic>(
+            "dbo.spCategorySelection_Student_Get",
+            new { StudentId = studentId });
+        return results.FirstOrDefault();
+    }
+
+    public async Task<CategorySelectionModel?> GetCategorySelectionItem(int categoryItemId)
+    {
+        var results = await _db.LoadData<CategorySelectionModel, dynamic>(
+            "dbo.spCategorySelection_Item_Get",
+            new { CategoryItemId = categoryItemId });
+        return results.FirstOrDefault();
+    }
+
     public Task InsertCategorySelection(CategorySelectionModel categorySelection) =>
         _db.SaveData("dbo.spCategorySelection_Insert", new {
             categorySelection.CategoryItemId,

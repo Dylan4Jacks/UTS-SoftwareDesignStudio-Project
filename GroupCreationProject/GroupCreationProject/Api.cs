@@ -20,7 +20,9 @@
 
         //CategorySelection API Endpoints
         app.MapGet("/CategorySelections", GetCategorySelections);
-        app.MapGet("/CategorySelections/{StudentId}/{categoryItemId}", GetCategorySelection);
+        app.MapGet("/CategorySelections/{studentId}/{categoryItemId}", GetCategorySelection);
+        app.MapGet("/CategorySelections/Student/{studentId}", GetCategorySelectionStudent);
+        app.MapGet("/CategorySelections/Item/{categoryItemId}", GetCategorySelectionItem);
         app.MapPost("/CategorySelections", InsertCategorySelection);
         app.MapPut("/CategorySelections", UpdateCategorySelection);
         app.MapDelete("/CategorySelections", DeleteCategorySelection);
@@ -166,10 +168,34 @@
         }
     }
 
-    private static async Task<IResult> GetCategorySelection(int StudentId, int categoryItemId, ICategorySelectionData data)
+    private static async Task<IResult> GetCategorySelection(int studentId, int categoryItemId, ICategorySelectionData data)
     {
         try {
-            var results = await data.GetCategorySelection(StudentId, categoryItemId);
+            var results = await data.GetCategorySelection(studentId, categoryItemId);
+            if (results == null) return Results.NotFound();
+            return Results.Ok(results);
+        }
+        catch (Exception ex) {
+            return Results.Problem(ex.Message);
+        }
+    }
+
+    private static async Task<IResult> GetCategorySelectionStudent(int studentId, ICategorySelectionData data)
+    {
+        try {
+            var results = await data.GetCategorySelectionStudent(studentId);
+            if (results == null) return Results.NotFound();
+            return Results.Ok(results);
+        }
+        catch (Exception ex) {
+            return Results.Problem(ex.Message);
+        }
+    }
+
+    private static async Task<IResult> GetCategorySelectionItem(int categoryItemId, ICategorySelectionData data)
+    {
+        try {
+            var results = await data.GetCategorySelectionItem(categoryItemId);
             if (results == null) return Results.NotFound();
             return Results.Ok(results);
         }

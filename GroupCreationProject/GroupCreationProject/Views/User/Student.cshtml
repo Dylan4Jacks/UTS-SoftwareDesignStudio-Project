@@ -13,20 +13,22 @@
     </head>
 
     <body>
+        @if (User.IsInRole("student"))
+        {
         <!-- Navbar -->
-	    <div class="navbar">
-		    <div class="container flex">
-			    <button id="logout" class="btn btn-primary">Logout</button>
-			    <nav>
-				    <ul>
-					    <li><button onclick="    showPartial(this, 'Students');">Students</button></li>
-					    <li><button onclick="    showPartial(this, 'Groups');">Groups</button></li>
-					    <li><button onclick="    showPartial(this, 'Categories');">Categories</button></li>
-				    </ul>
-			    </nav>
-                
-		    </div>
-	    </div>
+        <div class="navbar">
+            <div class="container flex">
+                <button id="logout" class="btn btn-primary">Logout</button>
+                <nav>
+                    <ul>
+                        <li><button onclick="    showPartial(this, 'Students');">Students</button></li>
+                        <li><button onclick="    showPartial(this, 'Groups');">Groups</button></li>
+                        <li><button onclick="    showPartial(this, 'Categories');">Categories</button></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
 
         <main class="siteContent">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -45,8 +47,6 @@
             <input type=text id="prefinput"/>
             <button onclick="UpdateUserClicked()">update user</button>
         </main>
-
-
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
@@ -55,7 +55,7 @@
             var StudentData
 
             $(document).ready(function(){
-                var studentId = 1 //@User.Claims.Where(a => a.Type == "id").FirstOrDefault(); use this once merged into main 
+                var studentId = @User.Claims.Where(a => a.Type == "id").FirstOrDefault().Value;
                 StudentData = getStudentData(studentId)
                 console.log(StudentData)
 
@@ -123,6 +123,15 @@
             }
 
         </script>
+    }
+    else
+    {
+        <div>
+            <p>Access Denied</p>
+        </div>
+    }
+
+
     </body>
     
 </html>

@@ -20,9 +20,9 @@
 
         //CategorySelection API Endpoints
         app.MapGet("/CategorySelections", GetCategorySelections);
+        app.MapGet("/CategorySelections/Student/{studentId}", GetCategorySelectionsStudent);
+        app.MapGet("/CategorySelections/Item/{categoryItemId}", GetCategorySelectionsItem);
         app.MapGet("/CategorySelections/{studentId}/{categoryItemId}", GetCategorySelection);
-        app.MapGet("/CategorySelections/Student/{studentId}", GetCategorySelectionStudent);
-        app.MapGet("/CategorySelections/Item/{categoryItemId}", GetCategorySelectionItem);
         app.MapPost("/CategorySelections", InsertCategorySelection);
         app.MapPut("/CategorySelections", UpdateCategorySelection);
         app.MapDelete("/CategorySelections", DeleteCategorySelection);
@@ -167,6 +167,25 @@
             return Results.Problem(ex.Message);
         }
     }
+    private static async Task<IResult> GetCategorySelectionsStudent(int studentId, ICategorySelectionData data)
+    {
+        try {
+            return Results.Ok(await data.GetCategorySelectionsStudent(studentId));
+        }
+        catch (Exception ex) {
+            return Results.Problem(ex.Message);
+        }
+    }
+
+    private static async Task<IResult> GetCategorySelectionsItem(int categoryItemId, ICategorySelectionData data)
+    {
+        try {
+            return Results.Ok(await data.GetCategorySelectionsItem(categoryItemId));
+        }
+        catch (Exception ex) {
+            return Results.Problem(ex.Message);
+        }
+    }
 
     private static async Task<IResult> GetCategorySelection(int studentId, int categoryItemId, ICategorySelectionData data)
     {
@@ -180,29 +199,6 @@
         }
     }
 
-    private static async Task<IResult> GetCategorySelectionStudent(int studentId, ICategorySelectionData data)
-    {
-        try {
-            var results = await data.GetCategorySelectionStudent(studentId);
-            if (results == null) return Results.NotFound();
-            return Results.Ok(results);
-        }
-        catch (Exception ex) {
-            return Results.Problem(ex.Message);
-        }
-    }
-
-    private static async Task<IResult> GetCategorySelectionItem(int categoryItemId, ICategorySelectionData data)
-    {
-        try {
-            var results = await data.GetCategorySelectionItem(categoryItemId);
-            if (results == null) return Results.NotFound();
-            return Results.Ok(results);
-        }
-        catch (Exception ex) {
-            return Results.Problem(ex.Message);
-        }
-    }
 
     private static async Task<IResult> InsertCategorySelection(CategorySelectionModel categorySelection, ICategorySelectionData Data)
     {

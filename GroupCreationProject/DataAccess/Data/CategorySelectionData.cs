@@ -19,6 +19,11 @@ public class CategorySelectionData : ICategorySelectionData
 
     public Task<IEnumerable<CategorySelectionModel>> GetCategorySelections() =>
         _db.LoadData<CategorySelectionModel, dynamic>("dbo.spCategorySelection_GetAll", new { });
+    public Task<IEnumerable<CategorySelectionModel>> GetCategorySelectionsStudent(int studentId) =>
+        _db.LoadData<CategorySelectionModel, dynamic>("dbo.spCategorySelection_Student_GetAll", new { StudentId = studentId });
+
+    public Task<IEnumerable<CategorySelectionModel>> GetCategorySelectionsItem(int categoryItemId) =>
+        _db.LoadData<CategorySelectionModel, dynamic>("dbo.spCategorySelection_Item_GetAll", new { CategoryItemId = categoryItemId });
 
     public async Task<CategorySelectionModel?> GetCategorySelection(int studentId, int categoryItemId)
     {
@@ -28,21 +33,6 @@ public class CategorySelectionData : ICategorySelectionData
         return results.FirstOrDefault();
     }
 
-    public async Task<CategorySelectionModel?> GetCategorySelectionStudent(int studentId)
-    {
-        var results = await _db.LoadData<CategorySelectionModel, dynamic>(
-            "dbo.spCategorySelection_Student_Get",
-            new { StudentId = studentId });
-        return results.FirstOrDefault();
-    }
-
-    public async Task<CategorySelectionModel?> GetCategorySelectionItem(int categoryItemId)
-    {
-        var results = await _db.LoadData<CategorySelectionModel, dynamic>(
-            "dbo.spCategorySelection_Item_Get",
-            new { CategoryItemId = categoryItemId });
-        return results.FirstOrDefault();
-    }
 
     public Task InsertCategorySelection(CategorySelectionModel categorySelection) =>
         _db.SaveData("dbo.spCategorySelection_Insert", new {

@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[spCategorySelection_Item_Get]
+﻿CREATE PROCEDURE [dbo].[spCategorySelection_Item_GetAll]
 	@CategoryItemId int
 AS
 BEGIN

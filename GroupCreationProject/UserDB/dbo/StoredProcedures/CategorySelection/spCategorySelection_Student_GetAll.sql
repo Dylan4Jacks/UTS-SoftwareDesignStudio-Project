@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[spCategorySelection_Student_Get]
+﻿CREATE PROCEDURE [dbo].[spCategorySelection_Student_GetAll]
 	@StudentId int
 AS
 BEGIN

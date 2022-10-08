@@ -5,6 +5,6 @@
 AS
 BEGIN
 	UPDATE dbo.[Group]
-	SET GroupId = @GroupId, GroupName = @GroupName, Details = @Details
+	SET GroupName = @GroupName, Details = @Details
 	WHERE GroupId = @GroupId
 END

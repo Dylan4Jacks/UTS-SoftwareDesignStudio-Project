@@ -61,9 +61,8 @@
     <Folder Include="dbo\StoredProcedures\Group" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="dbo\Tables\User.sql" />
-    <Build Include="dbo\Tables\StudentUser.sql" />
-    <Build Include="dbo\Tables\TeacherUser.sql" />
+    <Build Include="dbo\Tables\Student.sql" />
+    <Build Include="dbo\Tables\Teacher.sql" />
     <Build Include="dbo\Tables\CategoryItem.sql" />
     <Build Include="dbo\Tables\CategoryList.sql" />
     <Build Include="dbo\StoredProcedures\User\spUser_Delete.sql" />
@@ -71,13 +70,13 @@
     <Build Include="dbo\StoredProcedures\User\spUser_GetAll.sql" />
     <Build Include="dbo\StoredProcedures\User\spUser_Insert.sql" />
     <Build Include="dbo\StoredProcedures\User\spUser_Update.sql" />
+    <Build Include="dbo\Tables\Group.sql" />
+    <Build Include="dbo\Tables\CategorySelection.sql" />
     <Build Include="dbo\StoredProcedures\Group\spGroup_Delete.sql" />
     <Build Include="dbo\StoredProcedures\Group\spGroup_Get.sql" />
     <Build Include="dbo\StoredProcedures\Group\spGroup_GetAll.sql" />
     <Build Include="dbo\StoredProcedures\Group\spGroup_Insert.sql" />
     <Build Include="dbo\StoredProcedures\Group\spGroup_Update.sql" />
-    <Build Include="dbo\Tables\Group.sql" />
-    <Build Include="dbo\Tables\CategorySelection.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

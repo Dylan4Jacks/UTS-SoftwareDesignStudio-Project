@@ -17,16 +17,6 @@ public class TeacherData : ITeacherData
         _db = db;
     }
 
-    public async Task<teacherModel?> loginTeacher(string email, string password)
-    {
-
-        var results = await _db.LoadData<teacherModel, dynamic>(
-        "dbo.spteacher_auth",
-        new { email = email, password = password});
-        return results.FirstOrDefault();
-
-    }
-
     public Task<IEnumerable<TeacherModel>> GetTeachers() =>
         _db.LoadData<TeacherModel, dynamic>("dbo.spTeacher_GetAll", new { });
 
@@ -35,6 +25,14 @@ public class TeacherData : ITeacherData
         var results = await _db.LoadData<TeacherModel, dynamic>(
             "dbo.spTeacher_Get",
             new { TeacherId = id });
+        return results.FirstOrDefault();
+    }
+
+    public async Task<TeacherModel?> AuthenticateTeacher(string email, string password)
+    {
+        var results = await _db.LoadData<TeacherModel, dynamic>(
+            "dbo.spTeacher_Auth_Get",
+            new { Email = email, Password = password });
         return results.FirstOrDefault();
     }
 

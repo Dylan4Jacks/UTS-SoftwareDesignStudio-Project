@@ -49,6 +49,9 @@ public static class Api
         app.MapPost("/Teachers", InsertTeacher);
         app.MapPut("/Teachers", UpdateTeacher);
         app.MapDelete("/Teachers", DeleteTeacher);
+
+        //Authenticate Login
+
     }
 
     //CategoryItem API Functions
@@ -396,35 +399,34 @@ public static class Api
     }
 
 
+
+
+    // -------------  Authentication Functions  ---------------
     public class loginRequest
     {
         public string? email { get; set; }
         public string? password { get; set; }
     }
 
-    public static async Task<IResult> loginTeacher(loginRequest req, ITeacherData Data)
+    private static async Task<IResult> AuthenticateStudent(loginRequest req, IStudentData data)
     {
-        try
-        {
-            var result = await Data.loginTeacher(req.email, req.password);
-            if (result == null) return Results.NotFound();
-            return Results.Ok(result);
+        try {
+            var results = await data.AuthenticateStudent(req.email, req.password);
+            if (results == null) return Results.NotFound();
+            return Results.Ok(results);
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
             return Results.Problem(ex.Message);
         }
     }
-    public static async Task<IResult> loginUser(loginRequest req, IUserData Data)
+    private static async Task<IResult> AuthenticateTeacher(loginRequest req, ITeacherData data)
     {
-        try
-        {
-            var result = await Data.LoginUser(req.email, req.password);
-            if (result == null) return Results.NotFound();
-            return Results.Ok(result);
+        try {
+            var results = await data.AuthenticateTeacher(req.email, req.password);
+            if (results == null) return Results.NotFound();
+            return Results.Ok(results);
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
             return Results.Problem(ex.Message);
         }
     }

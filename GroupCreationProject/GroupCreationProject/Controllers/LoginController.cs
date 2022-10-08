@@ -34,6 +34,7 @@ namespace GroupCreationProject.Controllers
                     
                     if(Postresult.IsSuccessStatusCode)
                     {
+                        //NOTE USER is Depricated. Check for return type of Student or Teacher
                         var user = JsonConvert.DeserializeObject<UserModel>(Postresult.Content.ReadAsStringAsync().Result);
                         if(user != null && user.FirstName != null&& user.LastName != null)
                         {

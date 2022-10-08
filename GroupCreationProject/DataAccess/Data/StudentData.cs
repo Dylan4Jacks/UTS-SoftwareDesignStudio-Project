@@ -28,6 +28,14 @@ public class StudentData : IStudentData
         return results.FirstOrDefault();
     }
 
+    public async Task<StudentModel?> AuthenticateStudent(string email, string password)
+    {
+        var results = await _db.LoadData<StudentModel, dynamic>(
+            "dbo.spStudent_Auth_Get",
+            new { Email = email, Password = password });
+        return results.FirstOrDefault();
+    }
+
     public Task InsertStudent(StudentModel student) =>
         _db.SaveData("dbo.spStudent_Insert", new {
             student.FirstName,

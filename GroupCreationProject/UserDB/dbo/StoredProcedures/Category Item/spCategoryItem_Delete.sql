@@ -5,4 +5,7 @@ BEGIN
 	DELETE
 	FROM dbo.[CategoryItem]
 	WHERE CategoryItemId = @CategoryItemId;
+	DELETE
+	FROM dbo.[CategorySelection]
+	WHERE CategoryItemId = @CategoryItemId;
 END

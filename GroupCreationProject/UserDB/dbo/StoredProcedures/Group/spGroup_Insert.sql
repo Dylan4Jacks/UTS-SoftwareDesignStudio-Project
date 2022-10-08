@@ -1,11 +1,9 @@
-﻿CREATE PROCEDURE [dbo].[spUser_Insert]
-	@FirstName nvarchar(50),
-	@LastName nvarchar(50),
-	@Email nvarchar(100),
-	@Preferences nvarchar(100),
-	@Skills nvarchar(100)
+﻿CREATE PROCEDURE [dbo].[spGroup_Insert]
+	@GroupId int,
+	@GroupName nvarchar(50),
+	@Details nvarchar(50)
 AS
-begin
-	insert into dbo.[User] (FirstName, LastName, Email, Preferences, Skills)
-	values (@FirstName, @LastName, @Email, @Preferences, @Skills);
-end
+BEGIN
+	INSERT INTO dbo.[Group] (GroupId, GroupName, Details)
+	VALUES (@GroupId, @GroupName, @Details)
+END

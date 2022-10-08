@@ -1,8 +1,8 @@
-﻿CREATE PROCEDURE [dbo].[spUser_Delete]
-	@UserId int
+﻿CREATE PROCEDURE [dbo].[spGroup_Delete]
+	@GroupId int
 AS
 BEGIN
 	DELETE
-	FROM dbo.[User]
-	WHERE UserId = @UserId;
+	FROM dbo.[Group]
+	WHERE GroupId = @GroupId;
 END

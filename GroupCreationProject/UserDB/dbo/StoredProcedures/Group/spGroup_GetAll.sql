@@ -1,6 +1,6 @@
-﻿CREATE PROCEDURE [dbo].[spUser_GetAll]
+﻿CREATE PROCEDURE [dbo].[spGroup_GetAll]
 AS
 BEGIN
-	SELECT UserId, FirstName, LastName, Email, Preferences, Skills
-	FROM dbo.[User];
+	SELECT GroupId, GroupName, Details
+	FROM dbo.[Group];
 END

@@ -1,13 +1,10 @@
-﻿CREATE PROCEDURE [dbo].[spUser_Update]
-	@UserId int,
-	@FirstName nvarchar(50),
-	@LastName nvarchar(50),
-	@Email nvarchar(100),
-	@Preferences nvarchar(100),
-	@Skills nvarchar(100)
+﻿CREATE PROCEDURE [dbo].[spGroup_Update]
+	@GroupId int,
+	@GroupName nvarchar(50),
+	@Details nvarchar(50)
 AS
 BEGIN
-	UPDATE dbo.[User]
-	SET FirstName = @FirstName, LastName = @LastName, Email = @Email, Preferences = @Preferences, Skills = @Skills
-	WHERE UserId = @UserId
+	UPDATE dbo.[Group]
+	SET GroupId = @GroupId, GroupName = @GroupName, Details = @Details
+	WHERE GroupId = @GroupId
 END

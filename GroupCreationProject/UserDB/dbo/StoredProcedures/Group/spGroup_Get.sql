@@ -1,8 +1,8 @@
-﻿CREATE PROCEDURE [dbo].[spUser_Get]
-	@UserId int
+﻿CREATE PROCEDURE [dbo].[spGroup_Get]
+	@GroupId int
 AS
 BEGIN
-	SELECT UserId, FirstName, LastName, Email, Preferences, Skills
-	FROM dbo.[User]
-	WHERE UserId = @UserId;
+	SELECT GroupId, GroupName, Details
+	FROM dbo.[Group]
+	WHERE GroupId = @GroupId;
 END

@@ -11,40 +11,41 @@
         <link rel="stylesheet" href="~/css/user/user.css" asp-append-version="true" />
         <link rel="stylesheet" href="~/css/user/student.css" asp-append-version="true" />
     </head>
+        <body>
+        @if (User.IsInRole("teacher"))
+        {
+            <!-- Navbar -->
+	        <div class="navbar">
+		        <div class="container flex">
+			        <button id="logout" class="btn btn-primary">Logout</button>
+			        <nav>
+				        <ul>
+					        <li><button onclick="    showPartial(this, 'StudentsPartial');">Students</button></li>
+					        <li><button onclick="    showPartial(this, 'GroupsPartial');">Groups</button></li>
+					        <li><button onclick="    showPartial(this, 'CategoriesPartial');">Categories</button></li>
+				        </ul>
+			        </nav>
+		        </div>
+	        </div>
 
-    <body>
-        <!-- Navbar -->
-	    <div class="navbar">
-		    <div class="container flex">
-			    <button id="logout" class="btn btn-primary">Logout</button>
-			    <nav>
-				    <ul>
-					    <li><button onclick="    showPartial(this, 'StudentsPartial');">Students</button></li>
-					    <li><button onclick="    showPartial(this, 'GroupsPartial');">Groups</button></li>
-					    <li><button onclick="    showPartial(this, 'CategoriesPartial');">Categories</button></li>
-				    </ul>
-			    </nav>
-		    </div>
-	    </div>
-
-        <!-- Content -->
+            <!-- Content -->
         
-        <section class="showcase">
-	        <div class="container" id="StudentsPartial" style="display: none;">
-                <partial name="~/Views/User/_StudentsPartial.cshtml"/>
-	        </div>
-	        <div class="container" id="GroupsPartial" style="display: none;">
-                <partial name="~/Views/User/_GroupsPartial.cshtml"/>
-	        </div>
-	        <div class="container" id="CategoriesPartial" style="display: none;">
-                <partial name="~/Views/User/_CategoriesPartial.cshtml"/>
-	        </div>
-        </section>
+            <section class="showcase">
+	            <div class="container" id="StudentsPartial" style="display: none;">
+                    <partial name="~/Views/User/_StudentsPartial.cshtml"/>
+	            </div>
+	            <div class="container" id="GroupsPartial" style="display: none;">
+                    <partial name="~/Views/User/_GroupsPartial.cshtml"/>
+	            </div>
+	            <div class="container" id="CategoriesPartial" style="display: none;">
+                    <partial name="~/Views/User/_CategoriesPartial.cshtml"/>
+	            </div>
+            </section>
 
-        <!-- Scripts -->
-        <script src="~/lib/jquery/dist/jquery.min.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+            <!-- Scripts -->
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+            <script src="~/js/site.js" asp-append-version="true"></script>
 
         <script type="text/javascript">
             var studentsList;
@@ -52,70 +53,77 @@
             var selectedBtn = null;
 
             $(document).ready(function(){
-                getStudents();
-                console.log(studentsList);
+            getStudents();
+            console.log(studentsList);
             })
-        
-            function getStudents(){
-                $.ajax({
-                    url: 'https://localhost:7041/Users',
-                    type: 'GET',
-                    success: function(data, status, jqxhr) {
-                        studentsList = data;
-                    },
-                    error:  function(data, status, jqxhr) {
-                        console.log(status);
-                    },
-                    async: false,
-                })
-            }
-        
-            function getStudentData(studentId) {
-                var studentData
-            
-                $.ajax({
-                    url: 'https://localhost:7041/Users/' + studentId,
-                    type: 'GET',
-                    success: function(data, status, jqxhr) {
-                        studentData = data;
-                    },
-                    error:  function(data, status, jqxhr) {
-                        console.log(status);
-                    },
-                    async: false,
-                })
 
-                return studentData;
+            function getStudents(){
+            $.ajax({
+            url: 'https://localhost:7041/Users',
+            type: 'GET',
+            success: function(data, status, jqxhr) {
+            studentsList = data;
+            },
+            error:  function(data, status, jqxhr) {
+            console.log(status);
+            },
+            async: false,
+            })
+            }
+
+            function getStudentData(studentId) {
+            var studentData
+
+            $.ajax({
+            url: 'https://localhost:7041/Users/' + studentId,
+            type: 'GET',
+            success: function(data, status, jqxhr) {
+            studentData = data;
+            },
+            error:  function(data, status, jqxhr) {
+            console.log(status);
+            },
+            async: false,
+            })
+
+            return studentData;
             }
 
             function showPartial(eventBtn, partialId){
-                eventBtn.disabled = true;
-                if (visiblePartial !== null ) {
-                    visiblePartial.style.display = 'none';
-                }
-                visiblePartial = document.getElementById(partialId);
-                visiblePartial.style.display = 'block';
-
-                if (selectedBtn !== null) {
-                    selectedBtn.removeAttribute('id');
-                    selectedBtn.disabled = false;
-                }
-                selectedBtn = eventBtn;
-                selectedBtn.setAttribute('id', 'selectedBtn');
-                
+            eventBtn.disabled = true;
+            if (visiblePartial !== null ) {
+            visiblePartial.style.display = 'none';
             }
-            
+            visiblePartial = document.getElementById(partialId);
+            visiblePartial.style.display = 'block';
+
+            if (selectedBtn !== null) {
+            selectedBtn.removeAttribute('id');
+            selectedBtn.disabled = false;
+            }
+            selectedBtn = eventBtn;
+            selectedBtn.setAttribute('id', 'selectedBtn');
+
+            }
+
             function logout(){
-                $('#StudentsPartial').modal('show');
+            $('#StudentsPartial').modal('show');
             }
 
             function studentDetailsClicked(studentId) { //This runs when a student is selected, anda  model should show up showing the student details 
-                var student = getStudentData(studentId) //
-                $('#StudentsPartial').modal('show');
-                //then set the values of the modal to the values from student;
-                console.log(student);
+            var student = getStudentData(studentId) //
+            $('#StudentsPartial').modal('show');
+            //then set the values of the modal to the values from student;
+            console.log(student);
             }
 
         </script>
-    </body>
+        }
+        else
+        {
+            <div>
+              <p>Access Denied</p>
+            </div>
+        }
+</body>
 </html>

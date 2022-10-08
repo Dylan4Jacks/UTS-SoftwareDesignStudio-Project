@@ -8,5 +8,5 @@ public interface ITeacherData
     Task<IEnumerable<TeacherModel>> GetTeachers();
     Task InsertTeacher(TeacherModel teacher);
     Task UpdateTeacher(TeacherModel teacher);
-    Task<teacherModel?> loginTeacher(string email, string password);
+    Task<TeacherModel?> loginTeacher(string email, string password);
 }

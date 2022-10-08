@@ -9,21 +9,13 @@ begin
 	('Sue', 'Solomon', 'Sue.Solomon@gmail.com', 'c', null),
 	('Kate', 'Allen', 'Kate.Allen@gmail.com', 'd', 1);
 
-	--insert into dbo.[CategoryList] (Name, Details)
-	--values ('A', null);
+	insert into dbo.[CategoryList] (Name, Details)
+	values ('A', null),  ('B', null), ('D', null), ('E', null), ('F', null);
 
-	--insert into dbo.[CategoryItem] (Name, Details, CategoryListId)
-	--Select 'Apple', null, catList.CategoryListId
-	--FROM dbo.[CategoryList] catList 
-	--where catList.Name = 'A';
+	insert into dbo.[CategoryItem] (Name, Details, CategoryListId)
+	values ('Banana', null, 3), ('Baaaba', null, 3), ('banza', null, 3), ('Blob', null, 3), ('Bob', null, 3)
 
-	--INSERT INTO dbo.[CategorySelection] (StudentId, CategoryItemId, Content)
-	--SELECT name, stu.StudentId, cat.CategoryItemId, null
-	--FROM dbo.[Student] stu, dbo.[CategoryItem] cat
-	--where stu.Email = 'John.Smith@gmail.com' AND stu.Password = 'a'
-	--AND cat.Name= 'Apple';
+	INSERT INTO dbo.[CategorySelection] (StudentId, CategoryItemId, Content)
+	values (3, 3, 'My Fav Piano');
 
-	--DELETE
-	--FROM dbo.[Student]
-	--WHERE Email = 'John.Smith@gmail.com' AND Password = 'a';
 end

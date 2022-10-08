@@ -20,7 +20,7 @@ public class CategorySelectionData : ICategorySelectionData
     public Task<IEnumerable<CategorySelectionModel>> GetCategorySelections() =>
         _db.LoadData<CategorySelectionModel, dynamic>("dbo.spCategorySelection_GetAll", new { });
 
-    public async Task<CategorySelectionModel?> GetCategorySelection(int categoryItemId, int studentId)
+    public async Task<CategorySelectionModel?> GetCategorySelection(int studentId, int categoryItemId)
     {
         var results = await _db.LoadData<CategorySelectionModel, dynamic>(
             "dbo.spCategorySelection_Get",
@@ -38,6 +38,6 @@ public class CategorySelectionData : ICategorySelectionData
     public Task UpdateCategorySelection(CategorySelectionModel categorySelection) =>
         _db.SaveData("dbo.spCategorySelection_Update", categorySelection);
 
-    public Task DeleteCategorySelection(int categoryItemId, int studentId) =>
+    public Task DeleteCategorySelection(int studentId, int categoryItemId) =>
         _db.SaveData("dbo.spCategorySelection_Delete", new { CategoryItemId = categoryItemId, StudentId = studentId });
 }

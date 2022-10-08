@@ -30,7 +30,6 @@ public class CategoryListData : ICategoryListData
 
     public Task InsertCategoryList(CategoryListModel categoryList) =>
         _db.SaveData("dbo.spCategoryList_Insert", new {
-            categoryList.CategoryListId,
             categoryList.Name,
             categoryList.Details
         });

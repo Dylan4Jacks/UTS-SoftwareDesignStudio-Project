@@ -30,7 +30,6 @@ public class GroupData : IGroupData
 
     public Task InsertGroup(GroupModel group) =>
         _db.SaveData("dbo.spGroup_Insert", new {
-            group.GroupId,
             group.GroupName,
             group.Details
         });

@@ -30,7 +30,6 @@ public class StudentData : IStudentData
 
     public Task InsertStudent(StudentModel student) =>
         _db.SaveData("dbo.spStudent_Insert", new {
-            student.StudentId,
             student.FirstName,
             student.LastName,
             student.Email,

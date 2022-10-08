@@ -4,6 +4,6 @@
 	[StudentId] INT NOT NULL,
 	[Content] NVARCHAR(50) NULL, 
     CONSTRAINT [CategoryItemId] FOREIGN KEY (CategoryItemId) REFERENCES [CategoryItem] (CategoryItemId),
-	CONSTRAINT [StudentId] FOREIGN KEY (StudentId) REFERENCES [StudentUser] (StudentId),
+	CONSTRAINT [StudentId] FOREIGN KEY (StudentId) REFERENCES [Student] (StudentId),
 	CONSTRAINT CategorySelectionId PRIMARY KEY (CategoryItemId, StudentId)
 )

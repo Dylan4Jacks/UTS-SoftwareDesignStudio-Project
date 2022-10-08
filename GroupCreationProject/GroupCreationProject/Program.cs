@@ -30,8 +30,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 
 //Lines needed to access UserDB
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
-builder.Services.AddSingleton<IUserData, UserData>();
+builder.Services.AddSingleton<ICategoryItemData, CategoryItemData>();
+builder.Services.AddSingleton<ICategoryListData, CategoryListData>();
+builder.Services.AddSingleton<ICategorySelectionData, CategorySelectionData>();
+builder.Services.AddSingleton<IGroupData, GroupData>();
+builder.Services.AddSingleton<IStudentData, StudentData>();
 builder.Services.AddSingleton<ITeacherData, TeacherData>();
+
 
 
 var app = builder.Build();

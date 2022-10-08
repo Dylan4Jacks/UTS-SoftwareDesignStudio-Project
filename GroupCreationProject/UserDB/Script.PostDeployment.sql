@@ -6,6 +6,13 @@ begin
 	('Sue', 'Solomon', 'Sue.Solomon@gmail.com', 'c', null),
 	('Kate', 'Allen', 'Kate.Allen@gmail.com', 'd', 1);
 
-	insert into dbo.[Group] (GroupName, Details)
-	values (null, null), ('The Incredibles', 'Group filled with Incredible people'), ('Jungle Book', null);
+	insert into dbo.[CategoryList] (Name, Details)
+	values ('A', null);
+
+	insert into dbo.[CategoryItem] (Name, Details, CategoryListId)
+	values ('Apple', null, 1);
+
+	insert into dbo.[CategorySelection] (StudentId, CategoryItemId, Content)
+	values (1, 1, null);
+
 end

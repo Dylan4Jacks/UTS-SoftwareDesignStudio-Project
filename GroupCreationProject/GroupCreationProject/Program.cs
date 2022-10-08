@@ -18,7 +18,12 @@ builder.Services.AddControllersWithViews();
 
 //Lines needed to access UserDB
 builder.Services.AddSingleton<ISqlDataAccess, SqlDataAccess>();
+builder.Services.AddSingleton<IGroupData, CategoryItemData>();
+builder.Services.AddSingleton<IGroupData, CategoryListData>();
+builder.Services.AddSingleton<IGroupData, CategorySelectionData>();
 builder.Services.AddSingleton<IGroupData, GroupData>();
+builder.Services.AddSingleton<IGroupData, StudentData>();
+builder.Services.AddSingleton<IGroupData, TeacherData>();
 
 
 

@@ -8,62 +8,82 @@
 
 <body>
     <form>
-    <table>
-        <button type="button" onclick="addPref('prefList', 'blanket')">
-            add blanket prefernece
-        </button>
+        <table>
+            <button type="button" onclick="addPref('prefList', 'blanket')">
+                add blanket preference
+            </button>
 
-        <tr>
-            <th>PREFERENCES @if(User.IsInRole("teacher")){<button type="button" class="btn-primary">+ add</button>} </th> 
-            <th>BACKGROUND  @if(User.IsInRole("teacher")){<button type="button" class="btn-primary">+ add</button>}</th>
-        </tr>
-        <tr> 
-            <td>
-                <ul id="prefList">
-                    <li id="li_p1">
-                        <input type="checkbox" id="cb_p1" name="p1" value="p1">
-                        <label for="p1">p1</label>
-                        <button onclick="deletePrefLi('li_p1')" type="button" class="del btn-danger">delete</button>
-                    </li>
-                </ul>
-            </td>
-            <td>
-                <ul id="bgList">
-                    <li >
-                        <input type="checkbox" id="cb_b1" name="b1" value="b1">
-                        <label for="b1">Background 1</label>
-                        <button onclick="deletePrefLi('li_p1')" type="button" class="del btn-danger">delete</button>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <th>INTERESTS   @if(User.IsInRole("teacher")){<button type="button" class="btn-primary">+ add</button>}</th>
-            <th>SKILLS      @if(User.IsInRole("teacher")){<button type="button" class="btn-primary">+ add</button>}</th>
-        </tr>
-        <tr>
-            <td>
-                <ul id="intList">
-                    <li>
-                        <input type="checkbox" id="cb_i1" name="i1" value="i1">
-                        <label for="i1">Interest 1</label>
-                        <button onclick="deletePrefLi('li_p1')" type="button" class="del btn-danger">delete</button>
-                    </li>
-                </ul>
-            </td>
-            <td>
-                <ul id="skillList">
-                    <li>
-                        <input type="checkbox" id="s1" name="s1" value="s1">
-                        <label for="s1">Skill 1</label>
-                        <button onclick="deletePrefLi('li_p1')" type="button" class="del btn-danger">delete</button>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    </table>
+            <tr>
+                <th>
+                    PREFERENCES @if (User.IsInRole("teacher"))
+                    {
+                        <button type="button" class="btn-primary">+ add</button>
+                    }
+                </th>
+                <th>
+                    BACKGROUND  @if (User.IsInRole("teacher"))
+                    {
+                        <button type="button" class="btn-primary">+ add</button>
+                    }
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <ul id="prefList">
+                        <li id="li_p1">
+                            <input type="checkbox" id="cb_p1" name="p1" value="p1">
+                            <label for="p1">p1</label>
+                            <button onclick="deletePrefLi('li_p1')" type="button" class="del btn-danger">delete</button>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <ul id="bgList">
+                        <li id="li_b1">
+                            <input type="checkbox" id="cb_b1" name="b1" value="b1">
+                            <label for="b1">Background 1</label>
+                            <button onclick="deletePrefLi('li_b1')" type="button" class="del btn-danger">delete</button>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    INTERESTS   @if (User.IsInRole("teacher"))
+                    {
+                        <button type="button" class="btn-primary">+ add</button>
+                    }
+                </th>
+                <th>
+                    SKILLS      @if (User.IsInRole("teacher"))
+                    {
+                        <button type="button" class="btn-primary">+ add</button>
+                    }
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <ul id="intList">
+                        <li id="li_i1">
+                            <input type="checkbox" id="cb_i1" name="i1" value="i1">
+                            <label for="i1">Interest 1</label>
+                            <button onclick="deletePrefLi('li_i1')" type="button" class="del btn-danger">delete</button>
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <ul id="skillList">
+                        <li id="li_s1">
+                            <input type="checkbox" id="s1" name="s1" value="s1">
+                            <label for="s1">Skill 1</label>
+                            <button onclick="deletePrefLi('li_s1')" type="button" class="del btn-danger">delete</button>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
 
-    <input type="submit" value="Submit">
+        <input type="submit" value="Submit">
     </form>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -71,10 +91,10 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     <script>
-var buttonAccess = @(User.IsInRole("teacher").ToString();
+        var buttonAccess = @(User.IsInRole("teacher")).ToString();
 
-        $(document).ready(function() {
-            if(!buttonpermission){
+        $(document).ready(function () {
+            if (!buttonpermission) {
                 hidebuttons()
             }
         })
@@ -82,18 +102,18 @@ var buttonAccess = @(User.IsInRole("teacher").ToString();
         function hidebuttons() {
             $(".del").hide()
         }
-        
-        function addPrefShowModal(listName){
-        
+
+        function addPrefShowModal(listName) {
+
         }
 
-        function addPref(listName, name){
+        function addPref(listName, name) {
             var li = `
-            <li id="li_${name}">
-                 <input type="checkbox" id="cb_${name}" name="${name}" value="${name}">
-                 <label for="$cb_{name}">${name}</label>
-                 <button type="button" class="del btn-danger">delete</button>
-            </li>`
+                            <li id="li_${name}">
+                                 <input type="checkbox" id="cb_${name}" name="${name}" value="${name}">
+                                 <label for="$cb_{name}">${name}</label>
+                                         <button onclick="deletePrefLi('li_${name}')" type="button" class="del btn-danger">delete</button>
+                            </li>`
             $("#" + listName).append(li)
         }
 

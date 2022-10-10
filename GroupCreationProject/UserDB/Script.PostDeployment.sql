@@ -30,10 +30,10 @@ BEGIN
 	
 	INSERT INTO dbo.[Teacher] (FirstName, LastName, Email, Password)
 	VALUES 
-		('John', 'Smith', 'John.Smith@Teacher.com', '12345'),
-		('Mary', 'Jane', 'Mary.Jane@Teacher.com', 'b'),
-		('Kate', 'Allen', 'Kate.Allen@Teacher.com', 'd'),
-		('Test_A', null, 'TestA@Teacher.com', 'Test_A');
+		('John', 'Smith', 'John.Smith@Teacher.uts.com', '12345'),
+		('Mary', 'Jane', 'Mary.Jane@Teacher.uts.com', 'b'),
+		('Kate', 'Allen', 'Kate.Allen@Teacher.uts.com', 'd'),
+		('Test_A', null, 'TestA@Teacher.uts.com', 'Test_A');
 	
 	--NOTE: NEWID()   is the equivlant to RANDOM()
 
@@ -44,15 +44,15 @@ BEGIN
 	
 	INSERT INTO dbo.[Student] (FirstName, LastName, Email, Password, GroupId)
 	VALUES 
-	('John', 'Smith', 'John.Smith@A.com', '12345', @Random_Group_Id_1),
-	('Mary', 'Jane', 'Mary.Jane@Gmail.com', 'b', @Random_Group_Id_1),
-	('Sue', 'Solomon', 'Sue.Solomon@google.Student.com', 'c', @Random_Group_Id_1),
-	('Kate', 'Allen', 'Kate.Allen@Student.com', 'd', @Random_Group_Id_2),
-	('Test_A', null, 'TestA@Student.com', 'Test_A', @Random_Group_Id_2),
-	('Test_B', null, 'Test.B@Student.com', 'Test_B', @Random_Group_Id_3),
-	('Test_C', 'A', 'Test_C@google.Student.com', 'Test_C', @Random_Group_Id_1),
-	('Test_D', null, 'TestD@Student.com', 'Test_D', null),
-	('Test_E', null, 'TestD@Student.com', 'Test_D', null);
+	('John', 'Smith', 'John.Smith@Student.uts.com', '12345', @Random_Group_Id_1),
+	('Mary', 'Jane', 'Mary.Jane@Student.uts.com', 'b', @Random_Group_Id_1),
+	('Sue', 'Solomon', 'Sue.Solomon@Student.uts.com', 'c', @Random_Group_Id_1),
+	('Kate', 'Allen', 'Kate.Allen@Student.uts.com', 'd', @Random_Group_Id_2),
+	('Test_A', null, 'TestA@Student.uts.com', 'Test_A', @Random_Group_Id_2),
+	('Test_B', null, 'Test.B@Student.uts.com', 'Test_B', @Random_Group_Id_3),
+	('Test_C', 'A', 'Test_C@Student.uts.com', 'Test_C', @Random_Group_Id_1),
+	('Test_D', null, 'TestD@Student.uts.com', 'Test_D', null),
+	('Test_E', null, 'TestD@Student.uts.com', 'Test_D', null);
 
 	INSERT  INTO dbo.[CategorySelection] (StudentId, CategoryItemId, Content)
 	SELECT TOP 20 StudentID, CategoryItemId, null FROM dbo.[Student] CROSS JOIN dbo.[CategoryItem] ORDER BY NEWID();

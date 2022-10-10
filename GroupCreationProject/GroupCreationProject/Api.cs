@@ -51,7 +51,8 @@ public static class Api
         app.MapDelete("/Teachers", DeleteTeacher);
 
         //Authenticate Login
-
+        app.MapPost("/Auth/Teacher", AuthenticateTeacher);
+        app.MapPost("/Auth/Student", AuthenticateStudent);
     }
 
     //CategoryItem API Functions
@@ -408,7 +409,7 @@ public static class Api
         public string? password { get; set; }
     }
 
-    private static async Task<IResult> AuthenticateStudent(loginRequest req, IStudentData data)
+    private static async Task<IResult> AuthenticateStudent([FromBody] loginRequest req, IStudentData data)
     {
         try {
             var results = await data.AuthenticateStudent(req.email, req.password);
@@ -419,7 +420,7 @@ public static class Api
             return Results.Problem(ex.Message);
         }
     }
-    private static async Task<IResult> AuthenticateTeacher(loginRequest req, ITeacherData data)
+    private static async Task<IResult> AuthenticateTeacher( [FromBody] loginRequest req, ITeacherData data)
     {
         try {
             var results = await data.AuthenticateTeacher(req.email, req.password);

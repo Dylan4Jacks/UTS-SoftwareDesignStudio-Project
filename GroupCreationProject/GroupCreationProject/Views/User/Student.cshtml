@@ -16,19 +16,18 @@
         @if (User.IsInRole("student"))
         {
         <!-- Navbar -->
-        <div class="navbar">
-            <div class="container flex">
-                <button id="logout" class="btn btn-primary">Logout</button>
-                <nav>
-                    <ul>
-                        <li><button onclick="    showPartial(this, 'Students');">Students</button></li>
-                        <li><button onclick="    showPartial(this, 'Groups');">Groups</button></li>
-                        <li><button onclick="    showPartial(this, 'Categories');">Categories</button></li>
-                    </ul>
-                </nav>
-
-            </div>
-        </div>
+	    <div class="navbar">
+		    <div class="container flex">
+			    <button id="logout" class="btn btn-primary">Logout</button>
+			    <nav>
+				    <ul>
+					    <li><button onclick="    showPartial(this, 'Groups');">Groups</button></li>
+					    <li><button onclick="    showPartial(this, 'Categories');">Categories</button></li>
+				    </ul>
+			    </nav>
+                
+		    </div>
+	    </div>
 
         <main class="siteContent">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -71,7 +70,7 @@
                     var studentData
             
                     $.ajax({
-                        url: 'https://localhost:7041/Users/' + studentId,
+                        url: 'https://localhost:7041/Students/' + studentId,
                         type: 'GET',
                         success: function(data, status, jqxhr) {
                             studentData = data;

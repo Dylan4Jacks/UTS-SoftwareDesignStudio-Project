@@ -1,11 +1,13 @@
 ﻿using GroupCreationProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace GroupCreationProject.Controllers
 {
     public class UserController : Controller
     {
+        HttpClient c = new HttpClient();
         private readonly ILogger<UserController> _logger;
 
         public UserController(ILogger<UserController> logger)
@@ -23,12 +25,14 @@ namespace GroupCreationProject.Controllers
 
         public IActionResult StudentsPartial()
         {
-            return PartialView("_StudentsPartial");
+            List<StudentModel> students = new List<StudentModel>() { new StudentModel(){ StudentId = 1, FirstName = "Ann", LastName = "Mo", Email = "Ann@Gmail.com", Password = "12345" } };
+            return PartialView("_StudentsPartial", students);
         }
 
         public IActionResult GroupsPartial()
         {
-            return PartialView("_GroupsPartial");
+            List<GroupModel> groups = new List<GroupModel>() { new GroupModel() { GroupId = 1, GroupName = "A" } };
+            return PartialView("_GroupsPartial", groups);
         }
 
         public IActionResult CategoriesPartial()

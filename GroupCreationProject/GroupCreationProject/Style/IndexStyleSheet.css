@@ -1,0 +1,15 @@
+﻿body {
+    margin:0;
+    padding:0;
+    background-color: aqua;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+section {
+    width: 100vw;
+    height: 100vw;
+    background-image: url('c:\users\meist\documents\github\uts-softwaredesignstudio-project\groupcreationproject\groupcreationproject\images\uts newsroom article image resize 1200x2000 (1).jpg');
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}

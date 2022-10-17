@@ -27,18 +27,19 @@ namespace GroupCreationProject.Controllers
                 int id = -1; 
 
                 string role;
-                if (!data.Email.Contains("teacher"))
+                if (!data.Email.ToLowerInvariant().Contains("teacher"))
                 {
                     role = "student";
-                    var Postresult = c.PostAsync("https://localhost:7041/Users/login",  content).Result;
+                    var Postresult = c.PostAsync("https://localhost:7041/Auth/Student",  content).Result;
                     
                     if(Postresult.IsSuccessStatusCode)
                     {
-                        var user = JsonConvert.DeserializeObject<UserModel>(Postresult.Content.ReadAsStringAsync().Result);
+                        //NOTE USER is Depricated. Check for return type of Student or Teacher
+                        var user = JsonConvert.DeserializeObject<StudentModel>(Postresult.Content.ReadAsStringAsync().Result);
                         if(user != null && user.FirstName != null&& user.LastName != null)
                         {
                             name = user.FirstName + " " + user.LastName;
-                            id = user.Id;
+                            id = user.StudentId;
 
                             var claims = new List<Claim>
                             {
@@ -65,15 +66,15 @@ namespace GroupCreationProject.Controllers
                 else
                 {
                     role = "teacher";
-                    var Postresult = c.PostAsync("https://localhost:7041/teacher/login", content).Result;
+                    var Postresult = c.PostAsync("https://localhost:7041/Auth/Teacher", content).Result;
 
                     if (Postresult.IsSuccessStatusCode)
                     {
-                        var teacher = JsonConvert.DeserializeObject<teacherModel>(Postresult.Content.ReadAsStringAsync().Result);
-                        if(teacher != null && teacher.name != null)
+                        var teacher = JsonConvert.DeserializeObject<TeacherModel>(Postresult.Content.ReadAsStringAsync().Result);
+                        if(teacher != null && teacher.FirstName != null)
                         {
-                            name = teacher.name;
-                            id = teacher.Id;
+                            name = teacher.FirstName + " " + teacher.LastName;
+                            id = teacher.TeacherId;
 
                             var claims = new List<Claim>
                             {

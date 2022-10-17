@@ -5,7 +5,7 @@ This is a University project completed by Group 6.
 **Prerequisites:** Install MSSQL 
 1.	Right-click on the `UserDB` project
 2.	Select Publish
-3.	Edit Database Target location (Select MSSQL)
+3.	Edit Database Target location (Select any DB software: Recommendation: MSSQL https://www.microsoft.com/en-au/sql-server/sql-server-downloads)
 4.	Name the database [Optionally publish save profile]
 5.	Publish database
 6.	In Visual studio, Select View + SQL Server Object Explorer

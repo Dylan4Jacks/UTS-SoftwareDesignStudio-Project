@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Models;
 
-public class UserModel
+public class TeacherModel
 {
-    public int Id { get; set; }
+    public int TeacherId { get; set; }
     public string FirstName { get; set; }
-    public string LastName { get; set; }
+    public string? LastName { get; set; }
     public string Email { get; set; }
-    public string Preferences { get; set; }
-    public string Skills { get; set; }
+    public string Password { get; set; }
 
 }

@@ -1,8 +1,58 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<html>  
+    <head>
+	<link href="https://fonts.googleapis.com/css?family=Yellowtail&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+	<link href="c:\users\meist\documents\github\uts-softwaredesignstudio-project\groupcreationproject\groupcreationproject\style\indexstylesheet.css" rel="stylesheet" />
+	<style>	
+		header{
+			background-color: cornflowerblue;
+			color:white;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+		body{
+			background-color: cornflowerblue;
+			background-size: cover;
+			background-repeat: no-repeat;
+			color:white;
+		}
+		button{
+			color:cornflowerblue
+		}
+
+	</style>
+    </head>
+    <body>
+	<div class="text-center">
+		<a> <img src="/images/uts_image.jpg" width="200" height="200" /> </a>
+		<p></p>
+		<h1 class="display-4">Welcome</h1>
+		<p>Press the Button to log in.</p>
+		<a href="/Login"><input id="Button1" type="button" value="Login" ForeColor = "cornflowerblue"/></a>
+		
+	</div>
+    </body>
+</html>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    @if (User.IsInRole("teacher"))
+    {
+        <p>This User is a teacher</p>
+        <p>Name: @User.Identity.Name</p>
+        <p>ID: @User.Claims.Where(a => a.Type == "id").FirstOrDefault()</p>
+    }
+
+    @if (User.IsInRole("student"))
+    {
+        <p>Welcome Student </p>
+        <p>Name: @User.Identity.Name</p>
+        <p>ID: @User.Claims.Where(a => a.Type == "id").FirstOrDefault()</p>
+    }
+
 </div>

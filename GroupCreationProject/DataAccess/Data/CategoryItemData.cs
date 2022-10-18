@@ -28,12 +28,15 @@ public class CategoryItemData : ICategoryItemData
         return results.FirstOrDefault();
     }
 
-    public Task InsertCategoryItem(CategoryItemModel categoryItem) =>
-        _db.SaveData("dbo.spCategoryItem_Insert", new {
+    public async Task<int> InsertCategoryItem(CategoryItemModel categoryItem)
+    {
+        var result = await _db.LoadData<int, dynamic>("dbo.spCategoryItem_Insert", new {
             categoryItem.Name,
             categoryItem.Details,
             categoryItem.CategoryListId
         });
+        return result.FirstOrDefault();
+    }
 
     public Task UpdateCategoryItem(CategoryItemModel categoryItem) =>
         _db.SaveData("dbo.spCategoryItem_Update", categoryItem);

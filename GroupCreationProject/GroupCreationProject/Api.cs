@@ -81,8 +81,8 @@ public static class Api
     private static async Task<IResult> InsertCategoryItem(CategoryItemModel categoryItem, ICategoryItemData Data)
     {
         try {
-            await Data.InsertCategoryItem(categoryItem);
-            return Results.Ok();
+            var id = await Data.InsertCategoryItem(categoryItem);
+            return Results.Ok(id);
         }
         catch (Exception ex) {
             return Results.Problem(ex.Message);

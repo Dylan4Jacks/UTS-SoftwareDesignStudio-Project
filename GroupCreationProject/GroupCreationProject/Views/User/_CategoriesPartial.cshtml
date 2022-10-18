@@ -78,10 +78,10 @@
         var buttonAccess = @(User.IsInRole("teacher").ToString().ToLower()); //if it works, it works
 
         $(document).ready(function () {
+            loadPrefs();
             if (!buttonAccess) {
                 hidebuttons()
             }
-            loadPrefs();
         })
 
         function hidebuttons() {

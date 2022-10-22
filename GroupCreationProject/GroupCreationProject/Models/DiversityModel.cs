@@ -264,6 +264,8 @@ namespace GroupCreationProject.Models
             }
             // if diverese == true: get the most diverse groups
             // if diverese == false: get the most similar groups
+
+
             void getMostDiverseClass(bool diverse)
             {
                 int count = 0;

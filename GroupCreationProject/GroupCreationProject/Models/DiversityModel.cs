@@ -15,13 +15,13 @@ namespace GroupCreationProject.Models
     public class GroupFormation
     {
         public Random rnd { get; set; }
-        public List<GroupModel> Groups { get; set; }
+        public List<GroupPrefModel> Groups { get; set; }
         public List<StuPrefModel> People { get; set; }
         public int GroupCapacity { get; set; }
         public int numberOfGroups { get; set; }
 
 
-        public GroupFormation(int GroupCapacity, List<GroupModel> groups, List<StuPrefModel> people, int numberOfGroups)
+        public GroupFormation(int GroupCapacity, List<GroupPrefModel> groups, List<StuPrefModel> people, int numberOfGroups)
         {
             this.rnd = new Random();
             this.Groups = groups;
@@ -31,7 +31,7 @@ namespace GroupCreationProject.Models
         }
 
         // Randomises a group from a list of people
-        public void randomiseGroups(GroupModel group, List<StuPrefModel> listOfpeople)
+        public void randomiseGroups(GroupPrefModel group, List<StuPrefModel> listOfpeople)
         {
             int groupCounter = 0;
             Random rnd = this.rnd;
@@ -57,7 +57,7 @@ namespace GroupCreationProject.Models
         }
 
         //Calculates the diversity rating for each attribute in a single group
-        public List<Decimal> calculateDiveristy(GroupModel group)
+        public List<Decimal> calculateDiveristy(GroupPrefModel group)
         {
             List<Decimal> groupDiversity = new List<Decimal>();
             Dictionary<string, int> groupAttributes = new Dictionary<string, int>();
@@ -168,7 +168,7 @@ namespace GroupCreationProject.Models
         }
 
         // Creates dictionary of the preferences and their counts for a particular group <string, int> --> <preference, count>
-        public Dictionary<string, int> getGroupAttributes(GroupModel group)
+        public Dictionary<string, int> getGroupAttributes(GroupPrefModel group)
         {
             List<string> groupA = new List<string>();
             groupA = group.getAttributes();
@@ -186,7 +186,7 @@ namespace GroupCreationProject.Models
             //StuPrefModel newStuPref = new(student.StudentId);
         }
 
-        public void transformGroup(GroupModel group)
+        public void transformGroup(GroupPrefModel group)
         {
             // Form groups as 'DiversityGroups'
             // Once all groups are formed transform 'DiversityGroups' --> database groups
@@ -202,12 +202,12 @@ namespace GroupCreationProject.Models
         /*
         public static void Main()
         {
-            void initaliseData(List<GroupModel> groups, List<StuPrefModel> people)
+            void initaliseData(List<GroupPrefModel> groups, List<StuPrefModel> people)
             {
-                GroupModel group1 = new(1, "group1");
-                GroupModel group2 = new(2, "group2");
-                GroupModel group3 = new(3, "group3");
-                GroupModel group4 = new(4, "group4");
+                GroupPrefModel group1 = new(1, "group1");
+                GroupPrefModel group2 = new(2, "group2");
+                GroupPrefModel group3 = new(3, "group3");
+                GroupPrefModel group4 = new(4, "group4");
                 //Group group5 = new(5, "group5");
 
                 groups.Add(group1);
@@ -277,13 +277,13 @@ namespace GroupCreationProject.Models
                     mostDiverse = -1;
                 }
                 Decimal diversity = mostDiverse;
-                List<GroupModel> mostDiverseGroup = new List<GroupModel>();
-                List<GroupModel> current_group = new List<GroupModel>();
+                List<GroupPrefModel> mostDiverseGroup = new List<GroupPrefModel>();
+                List<GroupPrefModel> current_group = new List<GroupPrefModel>();
 
                 Console.WriteLine("----------------------------");
                 while (count < 10000)
                 {
-                    List<GroupModel> groups = new List<GroupModel>();
+                    List<GroupPrefModel> groups = new List<GroupPrefModel>();
                     List<StuPrefModel> people = new List<StuPrefModel>();
                     initaliseData(groups, people);
                     GroupFormation make_groups = new GroupFormation(5, groups, people, 4);
@@ -320,7 +320,7 @@ namespace GroupCreationProject.Models
                 // This loop below is for showing the most diverse group
                 for (int z = 0; z < mostDiverseGroup.Count; z++)
                 {
-                    GroupModel iteratedGroup = mostDiverseGroup[z];
+                    GroupPrefModel iteratedGroup = mostDiverseGroup[z];
                     Console.WriteLine(iteratedGroup.Name);
                     for (int j = 0; j < 5; j++)
                     {

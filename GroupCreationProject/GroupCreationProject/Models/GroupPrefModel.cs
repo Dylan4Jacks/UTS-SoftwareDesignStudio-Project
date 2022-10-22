@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace GroupCreationProject.Models
 {
-    public class GroupModel
+    public class GroupPrefModel
     {
-        public int Number { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
         public int capacity { get; set; }
         public List<StuPrefModel> Members { get; set; }
         public List<string> groupAttributes { get; set; }
 
 
-        public GroupModel(int Number, string Name)
+        public GroupPrefModel(int id, string Name)
         {
-            this.Number = Number;
+            this.ID = id;
             this.Name = Name;
             this.capacity = 5;
             this.Members = new List<StuPrefModel>();

@@ -25,14 +25,12 @@ namespace GroupCreationProject.Controllers
 
         public IActionResult StudentsPartial()
         {
-            List<StudentModel> students = new List<StudentModel>() { new StudentModel(){ StudentId = 1, FirstName = "Ann", LastName = "Mo", Email = "Ann@Gmail.com", Password = "12345" } };
-            return PartialView("_StudentsPartial", students);
+            return PartialView("_StudentsPartial");
         }
 
         public IActionResult GroupsPartial()
         {
-            List<GroupModel> groups = new List<GroupModel>() { new GroupModel() { GroupId = 1, GroupName = "A" } };
-            return PartialView("_GroupsPartial", groups);
+            return PartialView("_GroupsPartial");
         }
 
         public IActionResult CategoriesPartial()

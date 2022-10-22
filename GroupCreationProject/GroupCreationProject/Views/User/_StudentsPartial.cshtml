@@ -1,5 +1,4 @@
-﻿@model List<StudentModel>
-
+﻿
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/css/user/user.css" asp-append-version="true" />
@@ -9,8 +8,8 @@
 
 <body>
 
-<div class="row mb-2">
-    @foreach (StudentModel student in Model)
+<div class="row mb-2" id="StudentsPartial">
+   @* @foreach (StudentModel student in Model)
     {
         <div class="col-md-3">
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -24,5 +23,25 @@
             </div>
         </div>
     }
-</div>
+</div>*@
+
+<script>
+    $(document).ready(function(){
+        getStudents();
+        console.log(studentsList);
+    })
+    function getStudents(){
+        $.ajax({
+            url: 'https://localhost:7041/Users',
+            type: 'GET',
+            success: function(data, status, jqxhr) {
+                studentsList = data;
+            },
+            error:  function(data, status, jqxhr) {
+                console.log(status);
+            },
+            async: false,
+        })
+    }
+</script>
 </body>

@@ -451,10 +451,13 @@ public static class Api
         //Transform Data
         //Execute algorithm
         //Clear groups ()
-        //Create groups and add students
+
+
+        //API call to Create groups and add students to groups
         //Output group data
 
         try {
+            //returns students with new groups 
             return Results.Ok(await dataStu.GetStudents());
         }
         catch (Exception ex) {

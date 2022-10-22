@@ -53,6 +53,9 @@ public static class Api
         //Authenticate Login
         app.MapPost("/Auth/Teacher", AuthenticateTeacher);
         app.MapPost("/Auth/Student", AuthenticateStudent);
+
+        //Algorithm Execution
+        app.MapGet("/Algorithm/Diverse/{isDiverse}", GetGroupsDiverse);
     }
 
     //CategoryItem API Functions
@@ -431,6 +434,34 @@ public static class Api
             return Results.Problem(ex.Message);
         }
     }
+
+    // -------------  Group Diversity Similarity Algorithms  ---------------
+    // Lower Diversiy score = More Diverse
+    // Higher Diversity score = More Similar
+    public static async Task<IResult> GetGroupsDiverse(int isDiverse, IStudentData dataStu, ICategorySelectionData dataCatSel, ICategoryItemData dataCatItem)
+    {
+        // isDiverse passed in api end point  "/Algorithm/Diverse/{isDiverse}"
+        // 1 = Diverse     0 = Similar
+
+        //Get User Data
+        var results_Students_List = await dataStu.GetStudents();
+        int student_ID = 3; //Use results_Students_List
+        var results_CategorySelection_Single_Student = await dataCatSel.GetCategorySelections();
+        var results_CategoryItems = await dataCatItem.GetCategoryItems();
+        //Transform Data
+        //Execute algorithm
+        //Clear groups ()
+        //Create groups and add students
+        //Output group data
+
+        try {
+            return Results.Ok(await dataStu.GetStudents());
+        }
+        catch (Exception ex) {
+            return Results.Problem(ex.Message);
+        }
+    }
+
 }
 
 

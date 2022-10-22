@@ -35,7 +35,7 @@ namespace GroupCreationProject.Models
         {
             List<string> preferences = new List<string>();
             preferences = get_preferences();
-            Console.WriteLine("isLeader: " + preferences[0] + " Preference: " + preferences[1] + " Skill: " + preferences[2]);
+            Console.WriteLine("ID: " + StuID + " -- " + preferences[0] + ", " + preferences[1] + ", " + preferences[2] + ", " + preferences[3]);
         }
     }
 }

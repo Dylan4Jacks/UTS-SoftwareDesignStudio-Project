@@ -11,7 +11,7 @@ using System;
 
 namespace GroupCreationProject.Models
 {
-
+    
     public class GroupFormation
     {
         public Random rnd { get; set; }
@@ -36,9 +36,11 @@ namespace GroupCreationProject.Models
             int groupCounter = 0;
             Random rnd = this.rnd;
 
-            while (groupCounter != GroupCapacity) {
+            while (groupCounter != GroupCapacity)
+            {
                 int people_free = listOfpeople.Count;
-                for (int i = 0; i < GroupCapacity; i++) {
+                for (int i = 0; i < GroupCapacity; i++)
+                {
                     StuPrefModel person_selected = listOfpeople[rnd.Next(people_free)];
                     group.Members.Add(person_selected);
                     listOfpeople.Remove(person_selected);
@@ -62,12 +64,15 @@ namespace GroupCreationProject.Models
             Dictionary<string, int> popAttributes = new Dictionary<string, int>();
             groupAttributes = getGroupAttributes(group);
             popAttributes = attributesCount(getAllAttributes());
-            foreach (KeyValuePair<string, int> attr in popAttributes) {
+            foreach (KeyValuePair<string, int> attr in popAttributes)
+            {
                 Decimal groupA;
-                try {
+                try
+                {
                     groupA = groupAttributes[attr.Key];
                 }
-                catch (Exception) {
+                catch (Exception)
+                {
                     groupA = 0;
                 }
                 Decimal popA = popAttributes[attr.Key];
@@ -83,14 +88,18 @@ namespace GroupCreationProject.Models
         {
             Decimal baseline = Decimal.Divide(1, numberOfGroups);
             Decimal groupScore = 0;
-            if (attRscore == 0) {
+            if (attRscore == 0)
+            {
                 groupScore += 1;
             }
-            else {
-                if (attRscore > baseline) {
+            else
+            {
+                if (attRscore > baseline)
+                {
                     groupScore += (attRscore - baseline);
                 }
-                if (attRscore < baseline) {
+                if (attRscore < baseline)
+                {
                     groupScore += (baseline - attRscore);
                 }
             }
@@ -102,13 +111,16 @@ namespace GroupCreationProject.Models
         {
             List<List<Decimal>> groupDiversity = new List<List<Decimal>>();
             Decimal totalDiversityScore = 0;
-            for (int i = 0; i < Groups.Count; i++) {
+            for (int i = 0; i < Groups.Count; i++)
+            {
                 groupDiversity.Add(calculateDiveristy(Groups[i]));
                 //break; // REMOVE this after testing
             }
 
-            for (int j = 0; j < groupDiversity.Count; j++) {
-                for (int z = 0; z < groupDiversity[j].Count; z++) {
+            for (int j = 0; j < groupDiversity.Count; j++)
+            {
+                for (int z = 0; z < groupDiversity[j].Count; z++)
+                {
                     totalDiversityScore += pointsCalculation(groupDiversity[j][z]);
                     //Console.WriteLine("Score: " + groupDiversity[j][z]);
                     //Console.WriteLine("Points: " + pointsCalculation(groupDiversity[j][z]));
@@ -121,9 +133,11 @@ namespace GroupCreationProject.Models
         {
             List<string> all_preferences = new List<string>();
             List<string> individualPreferences = new List<string>();
-            for (int i = 0; i < People.Count; i++) {
+            for (int i = 0; i < People.Count; i++)
+            {
                 individualPreferences = People[i].get_preferences();
-                for (int j = 0; j < individualPreferences.Count; j++) {
+                for (int j = 0; j < individualPreferences.Count; j++)
+                {
                     all_preferences.Add(individualPreferences[j]);
                 }
             }
@@ -137,13 +151,16 @@ namespace GroupCreationProject.Models
             Dictionary<string, int> totalPop = new Dictionary<string, int>();
             string temp = null;
             totalPop.Clear();
-            for (int i = 0; i < allAttributes.Count; i++) {
+            for (int i = 0; i < allAttributes.Count; i++)
+            {
                 temp = allAttributes[i];
 
-                if (totalPop.ContainsKey(temp)) {
+                if (totalPop.ContainsKey(temp))
+                {
                     totalPop[temp] += 1;
                 }
-                else {
+                else
+                {
                     totalPop.Add(temp, 1);
                 }
             }
@@ -174,8 +191,8 @@ namespace GroupCreationProject.Models
             // Form groups as 'DiversityGroups'
             // Once all groups are formed transform 'DiversityGroups' --> database groups
         }
-    }
-}
+
+    
 
 
         
@@ -315,8 +332,8 @@ namespace GroupCreationProject.Models
             }
             getMostDiverseClass(true);
         }
+        */
     }
 }
-*/
 
 

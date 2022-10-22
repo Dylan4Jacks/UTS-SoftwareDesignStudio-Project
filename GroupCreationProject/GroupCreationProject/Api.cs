@@ -55,7 +55,7 @@ public static class Api
         app.MapPost("/Auth/Student", AuthenticateStudent);
 
         //Algorithm Execution
-        app.MapGet("/Algorithm/Diverse/{isDiverse}", GetGroupsDiverse);
+        //app.MapGet("/Algorithm/Diverse/{isDiverse}", GetGroupsDiverse);
     }
 
     //CategoryItem API Functions
@@ -438,6 +438,7 @@ public static class Api
     // -------------  Group Diversity Similarity Algorithms  ---------------
     // Lower Diversiy score = More Diverse
     // Higher Diversity score = More Similar
+    /*
     public static async Task<IResult> GetGroupsDiverse(int isDiverse, IStudentData dataStu, ICategorySelectionData dataCatSel, ICategoryItemData dataCatItem)
     {
         // isDiverse passed in api end point  "/Algorithm/Diverse/{isDiverse}"
@@ -448,7 +449,41 @@ public static class Api
         int student_ID = 3; //Use results_Students_List
         var results_CategorySelection_Single_Student = await dataCatSel.GetCategorySelections();
         var results_CategoryItems = await dataCatItem.GetCategoryItems();
+       
         //Transform Data
+        List<int> stuIds = new List<int>();
+        foreach(var stu in results_Students_List)
+        {
+            stuIds.Add(stu.StudentId);
+        }
+        Dictionary<int, int> stuId_catSelect = new Dictionary<int, int>();
+        for (int i = 0; i<stuIds.Count; i++)
+        {
+            foreach(var catSelectId in results_CategorySelection_Single_Student)
+            {
+                if (catSelectId.StudentId == stuIds[i])
+                {
+                    stuId_catSelect.Add(stuIds[i], catSelectId.CategoryItemId);
+                }
+            }
+        }
+
+        foreach(var catItemId in results_CategoryItems)
+        {
+            catItemId.
+        }
+
+        Dictionary<int, string> stuId_catItem = new Dictionary<int, string>();
+        for (int j = 0; j<stuIds.Count; j++)
+        {
+            foreach(KeyValuePair<int, int> attr in stuId_catSelect)
+            {
+                if (stuIds[j] == stuId_catSelect[attr.Key])
+                {
+                    stuId_catSelect.Add(stuIds[j], GetCategoryItems().Result)
+                }
+            }
+        }
         //Execute algorithm
         //Clear groups ()
 
@@ -464,6 +499,7 @@ public static class Api
             return Results.Problem(ex.Message);
         }
     }
+    */
 
 }
 

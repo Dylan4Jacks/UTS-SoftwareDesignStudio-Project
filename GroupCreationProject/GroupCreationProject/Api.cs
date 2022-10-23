@@ -55,6 +55,7 @@ public static class Api
         app.MapPost("/Auth/Student", AuthenticateStudent);
     }
 
+
     //CategoryItem API Functions
     public static async Task<IResult> GetCategoryItems(ICategoryItemData data)
     {

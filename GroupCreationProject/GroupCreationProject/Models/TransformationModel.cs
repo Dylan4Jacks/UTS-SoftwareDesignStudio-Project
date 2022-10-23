@@ -80,7 +80,6 @@ namespace GroupCreationProject.Models
             }
             return students;
         }
-
         
         public static void Main()
         {

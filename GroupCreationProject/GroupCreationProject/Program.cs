@@ -124,10 +124,10 @@ CategorySelectionModel[] categorySelections = new CategorySelectionModel[]
                 new CategorySelectionModel {CategoryItemId = 3, StudentId = 2},
                 new CategorySelectionModel {CategoryItemId = 4, StudentId = 2},
                 new CategorySelectionModel {CategoryItemId = 8, StudentId = 2},
-                new CategorySelectionModel {CategoryItemId = 10, StudentId = 2},
+                new CategorySelectionModel {CategoryItemId = 12, StudentId = 2},
 
                 new CategorySelectionModel {CategoryItemId = 3, StudentId = 3},
-                new CategorySelectionModel {CategoryItemId = 7, StudentId = 3},
+                new CategorySelectionModel {CategoryItemId = 4, StudentId = 3},
                 new CategorySelectionModel {CategoryItemId = 8, StudentId = 3},
                 new CategorySelectionModel {CategoryItemId = 11, StudentId = 3},
 
@@ -151,7 +151,7 @@ CategorySelectionModel[] categorySelections = new CategorySelectionModel[]
                 new CategorySelectionModel {CategoryItemId = 8, StudentId = 7},
                 new CategorySelectionModel {CategoryItemId = 11, StudentId = 7},
 
-                new CategorySelectionModel {CategoryItemId = 2, StudentId = 8},
+                new CategorySelectionModel {CategoryItemId = 1, StudentId = 8},
                 new CategorySelectionModel {CategoryItemId = 6, StudentId = 8},
                 new CategorySelectionModel {CategoryItemId = 8, StudentId = 8},
                 new CategorySelectionModel {CategoryItemId = 10, StudentId = 8},
@@ -166,99 +166,29 @@ IEnumerable<CategorySelectionModel> allCatSelects()
 {
     return categorySelections;
 }
-/*
+
+
+
+
+/* -------- THE CODE BELOW COMMENTED OUT RUNS THE DIVERSITY ALGORITHM IN PROGRAM.CS --------------
 TransformationModel transform = new(getAllStudents(), allCatSelects(), getAllCategoryItemModels());
+List<StuPrefModel> people = new(transform.transformStu());
+GroupFormation make_groups = new(3, people, 3);
+List<GroupPrefModel> diverseClass = make_groups.mostDiverseClass(false);
 
-List<StuPrefModel> stuPrefs = new List<StuPrefModel>();
-stuPrefs = transform.transformStu();
-for (int i = 0; i < stuPrefs.Count; i++)
+Console.WriteLine(diverseClass.Count);
+// This loop below is for showing the most diverse group
+for (int z = 0; z < diverseClass.Count; z++)
 {
-    stuPrefs[i].displayPreferences();
-}
-*/
-GroupPrefModel group1 = new(1, "group 1");
-GroupPrefModel group2 = new(2, "group 2");
-GroupPrefModel group3 = new(3, "group 3");
-
-void initalise_data(List<GroupPrefModel> groups)
-{
- 
-
-    groups.Add(group1);
-    groups.Add(group2);
-    groups.Add(group3);
+    GroupPrefModel iteratedGroup = diverseClass[z];
+    Console.WriteLine(iteratedGroup.Name);
+    for (int j = 0; j < 3; j++)
+    {
+        iteratedGroup.Members[j].displayPreferences();
+    }
 }
 
-
-
-void getMostDiverseClass(bool diverse)
-{
-    int count = 0;
-    Decimal mostDiverse;
-    if (diverse == true)
-    {
-        mostDiverse = 999999999;
-    }
-    else
-    {
-        mostDiverse = -1;
-    }
-    Decimal diversity = mostDiverse;
-    List<GroupPrefModel> mostDiverseGroup = new List<GroupPrefModel>();
-    List<GroupPrefModel> current_group = new List<GroupPrefModel>();
-    TransformationModel transform = new(getAllStudents(), allCatSelects(), getAllCategoryItemModels());
-    List<StuPrefModel> people = new(transform.transformStu());
-
-
-    Console.WriteLine("----------------------------");
-    while (count < 1000)
-    {
-        List<GroupPrefModel> groups = new List<GroupPrefModel>();
-        initalise_data(groups);
-        GroupFormation make_groups = new(3, groups, people, 3);
-        List<StuPrefModel> proper_list = make_groups.copyList(people);
-        for (int i = 0; i < make_groups.Groups.Count; i++)
-        {
-            make_groups.randomiseGroups(make_groups.Groups[i], proper_list);
-        }
-        current_group = groups.ToList();
-        diversity = make_groups.groupDiversity();
-        if (diverse == true)
-        {
-            if (mostDiverse > diversity)
-            {
-                mostDiverse = diversity;
-                diversity = 0;
-                mostDiverseGroup = current_group;
-            }
-        }
-        else
-        {
-            if (mostDiverse < diversity)
-            {
-                mostDiverse = diversity;
-                diversity = 0;
-                mostDiverseGroup = current_group;
-            }
-        }
-        count += 1;
-        proper_list = make_groups.copyList(people);
-    }
-    Console.WriteLine("MOST DIVERSE: " + mostDiverse);
-
-    // This loop below is for showing the most diverse group
-    for (int z = 0; z < mostDiverseGroup.Count; z++)
-    {
-        GroupPrefModel iteratedGroup = mostDiverseGroup[z];
-        Console.WriteLine(iteratedGroup.Name);
-        for (int j = 0; j < 3; j++)
-        {
-            iteratedGroup.Members[j].displayPreferences();
-        }
-    }
-}
-getMostDiverseClass(false);
 Console.WriteLine("----------------------------");
-
+*/
 
 app.Run();

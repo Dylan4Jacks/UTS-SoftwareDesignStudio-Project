@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using GroupCreationProject.Models;
 
 public static class Api
 {
@@ -55,7 +56,7 @@ public static class Api
         app.MapPost("/Auth/Student", AuthenticateStudent);
 
         //Algorithm Execution
-        //app.MapGet("/Algorithm/Diverse/{isDiverse}", GetGroupsDiverse);
+        app.MapGet("/Algorithm/Diverse/{isDiverse}", GetGroupsDiverse);
     }
 
     //CategoryItem API Functions
@@ -438,54 +439,66 @@ public static class Api
     // -------------  Group Diversity Similarity Algorithms  ---------------
     // Lower Diversiy score = More Diverse
     // Higher Diversity score = More Similar
-    /*
-    public static async Task<IResult> GetGroupsDiverse(int isDiverse, IStudentData dataStu, ICategorySelectionData dataCatSel, ICategoryItemData dataCatItem)
+    
+    public static async Task<IResult> GetGroupsDiverse(int isDiverse, IStudentData dataStu, ICategorySelectionData dataCatSel, ICategoryItemData dataCatItem, IGroupData groupData, int sizeOfGroups, int numOfGroups)
     {
         // isDiverse passed in api end point  "/Algorithm/Diverse/{isDiverse}"
-        // 1 = Diverse     0 = Similar
+        // 0 = Diverse     1 = Similar
 
         //Get User Data
         var results_Students_List = await dataStu.GetStudents();
-        int student_ID = 3; //Use results_Students_List
         var results_CategorySelection_Single_Student = await dataCatSel.GetCategorySelections();
         var results_CategoryItems = await dataCatItem.GetCategoryItems();
-       
+        var all_groups = await groupData.GetGroups();
+
         //Transform Data
-        List<int> stuIds = new List<int>();
-        foreach(var stu in results_Students_List)
+        TransformationModel transformData = new(results_Students_List, results_CategorySelection_Single_Student, results_CategoryItems);
+        List<StuPrefModel> stuPrefModels = transformData.transformStu();
+        GroupFormation make_groups = new(sizeOfGroups, stuPrefModels, numOfGroups);
+
+        bool diverse;
+        if (isDiverse == 1)
         {
-            stuIds.Add(stu.StudentId);
+            diverse = false;
         }
-        Dictionary<int, int> stuId_catSelect = new Dictionary<int, int>();
-        for (int i = 0; i<stuIds.Count; i++)
+        else
         {
-            foreach(var catSelectId in results_CategorySelection_Single_Student)
+            diverse = true;
+        }
+
+        List<GroupPrefModel> diverseClass = make_groups.mostDiverseClass(diverse);
+
+        for (int i = 0; i<diverseClass.Count; i++)
+        {
+            int group_id = diverseClass[i].ID;
+            for (int j=0; j < diverseClass[i].Members.Count; j++)
             {
-                if (catSelectId.StudentId == stuIds[i])
+
+                StuPrefModel studentPref = diverseClass[i].Members[j];
+                var updateStudent = await dataStu.GetStudent(studentPref.StuID);
+                try
                 {
-                    stuId_catSelect.Add(stuIds[i], catSelectId.CategoryItemId);
+                    updateStudent.GroupId = group_id;
+                    StudentModel updatedStu = updateStudent;
+                    await dataStu.UpdateStudent(updatedStu);
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Can't get student");
                 }
             }
         }
 
-        foreach(var catItemId in results_CategoryItems)
+        // ClearGroups()
+        
+        for (int j = 0; j<diverseClass.Count; j++)
         {
-            catItemId.
-        }
-
-        Dictionary<int, string> stuId_catItem = new Dictionary<int, string>();
-        for (int j = 0; j<stuIds.Count; j++)
-        {
-            foreach(KeyValuePair<int, int> attr in stuId_catSelect)
-            {
-                if (stuIds[j] == stuId_catSelect[attr.Key])
-                {
-                    stuId_catSelect.Add(stuIds[j], GetCategoryItems().Result)
-                }
-            }
+            GroupModel new_group = new();
+            new_group.GroupId = diverseClass[j].ID;
+            new_group.GroupName = diverseClass[j].Name;
+            await groupData.InsertGroup(new_group);
         }
         //Execute algorithm
-        //Clear groups ()
 
 
         //API call to Create groups and add students to groups
@@ -499,7 +512,7 @@ public static class Api
             return Results.Problem(ex.Message);
         }
     }
-    */
+    
 
 }
 

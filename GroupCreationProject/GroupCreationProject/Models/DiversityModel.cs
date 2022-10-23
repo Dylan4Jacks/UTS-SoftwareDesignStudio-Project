@@ -21,13 +21,29 @@ namespace GroupCreationProject.Models
         public int numberOfGroups { get; set; }
 
 
-        public GroupFormation(int GroupCapacity, List<GroupPrefModel> groups, List<StuPrefModel> people, int numberOfGroups)
+        public GroupFormation(int GroupCapacity, List<StuPrefModel> people, int numberOfGroups)
         {
             this.rnd = new Random();
-            this.Groups = groups;
+            this.Groups = createGroups();
             this.People = people;
             this.GroupCapacity = GroupCapacity;
             this.numberOfGroups = numberOfGroups;
+        }
+
+
+        public List<GroupPrefModel> createGroups()
+        {
+            List<GroupPrefModel> groups = new List<GroupPrefModel>();
+
+            for (int i = 0; i<3; i++)
+            {
+                string group_name = "group" + i;
+                GroupPrefModel new_group = new(i, group_name);
+                Console.WriteLine(new_group.ID);
+                groups.Add(new_group);
+                
+            }
+            return groups;
         }
 
         // Randomises a group from a list of people
@@ -35,7 +51,6 @@ namespace GroupCreationProject.Models
         {
             int groupCounter = 0;
             Random rnd = this.rnd;
-
             while (groupCounter != GroupCapacity)
             {
                 int people_free = listOfpeople.Count;
@@ -111,6 +126,7 @@ namespace GroupCreationProject.Models
         {
             List<List<Decimal>> groupDiversity = new List<List<Decimal>>();
             Decimal totalDiversityScore = 0;
+            Console.WriteLine(totalDiversityScore);
             for (int i = 0; i < Groups.Count; i++)
             {
                 groupDiversity.Add(calculateDiveristy(Groups[i]));
@@ -126,6 +142,7 @@ namespace GroupCreationProject.Models
                     //Console.WriteLine("Points: " + pointsCalculation(groupDiversity[j][z]));
                 }
             }
+            
             return totalDiversityScore;
         }
         // Gets all the preferences for the whole population(class of students) as a list<string>
@@ -178,19 +195,63 @@ namespace GroupCreationProject.Models
             return groupAttributes;
         }
 
-        public void transformStudent(StudentModel student)
+        public List<GroupPrefModel> mostDiverseClass(bool diverse)
         {
-            // Transform StudentModel --> StuPrefModel
-            // Return StuPrefModel
-            // get students 
-            //StuPrefModel newStuPref = new(student.StudentId);
+            int count = 0;
+            Decimal mostDiverse;
+            if (diverse == true)
+            {
+                mostDiverse = 999999999;
+            }
+            else
+            {
+                mostDiverse = -1;
+            }
+            Decimal diversity = mostDiverse;
+            List<GroupPrefModel> mostDiverseGroup = new List<GroupPrefModel>();
+            List<GroupPrefModel> current_group = new List<GroupPrefModel>();
+
+            Console.WriteLine("----------------------------");
+            while (count < 3)
+            {
+                List<GroupPrefModel> groups = new List<GroupPrefModel>();
+                groups = Groups;
+                //List<StuPrefModel> people = new List<StuPrefModel>();
+                List<StuPrefModel> proper_list = copyList(People);
+                for (int i = 0; i < Groups.Count; i++)
+                {
+                    randomiseGroups(Groups[i], proper_list);
+                }
+                current_group = groups.ToList();
+                diversity = groupDiversity();
+                if (diverse == true)
+                {
+                    if (mostDiverse > diversity)
+                    {
+                        mostDiverse = diversity;
+                        diversity = 0;
+                        mostDiverseGroup = current_group;
+                    }
+                }
+                else
+                {
+                    if (mostDiverse < diversity)
+                    {
+                        mostDiverse = diversity;
+                        diversity = 0;
+                        mostDiverseGroup = current_group;
+                    }
+                }
+                count += 1;
+                proper_list = copyList(People);
+                
+            }
+            Console.WriteLine("MOST DIVERSE: " + mostDiverse);
+            Console.WriteLine(mostDiverseGroup.Count);
+            return mostDiverseGroup;
+            
         }
 
-        public void transformGroup(GroupPrefModel group)
-        {
-            // Form groups as 'DiversityGroups'
-            // Once all groups are formed transform 'DiversityGroups' --> database groups
-        }
 
     
 

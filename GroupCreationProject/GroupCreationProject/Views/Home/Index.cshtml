@@ -9,15 +9,15 @@
 	<style>	
 		header{
 			background-color: cornflowerblue;
-			color:white;
+			color:floralwhite;
 			background-size: cover;
 			background-repeat: no-repeat;
 		}
 		body{
-			background-color: cornflowerblue;
+			
 			background-size: cover;
 			background-repeat: no-repeat;
-			color:white;
+			color: black;
 		}
 		button{
 			color:cornflowerblue
@@ -29,7 +29,7 @@
 	<div class="text-center">
 		<a> <img src="/images/uts_image.jpg" width="200" height="200" /> </a>
 		<p></p>
-		<h1 class="display-4">Welcome</h1>
+		<h1 class="display-4">Group Management System</h1>
 		<p>Press the Button to log in.</p>
 		<a href="/Login"><input id="Button1" type="button" value="Login" ForeColor = "cornflowerblue"/></a>
 		
@@ -38,8 +38,7 @@
 </html>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    
 
     @if (User.IsInRole("teacher"))
     {

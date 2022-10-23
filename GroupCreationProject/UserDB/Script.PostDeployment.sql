@@ -1,10 +1,10 @@
 ﻿IF NOT EXISTS (SELECT 1 FROM dbo.[Student])
 BEGIN
-	INSERT INTO dbo.[Group] (GroupId, GroupName, Details)
-	values (1, 'Alian Force', null), (2, 'The Avengers', 'Apple'), (3, 'Power Puff Girls', 'Hi'), 
-		(4, 'Cats!', 'This is literaly a group full of cats who may or may not be part of the play Cats'), 
-		(5, '42', 'Apple'), (6, 'Apples', 'Apple'), (7, '7', null), (8, '8', null), (9, '10', 'Apple'), (10, '42', 'Apple'),
-		(11, 'Test1', null), (12, 'Test2', null), (13, 'Test3', null), (14, 'Test4', null);
+	INSERT INTO dbo.[Group] (GroupName, Details)
+	values ('Alian Force', null), ('The Avengers', 'Apple'), ('Power Puff Girls', 'Hi'), 
+		('Cats!', 'This is literaly a group full of cats who may or may not be part of the play Cats'), 
+		('42', 'Apple'), ('Apples', 'Apple'), ('7', null), ('8', null), ('10', 'Apple'), ('42', 'Apple'),
+		('Test1', null), ('Test2', null), ('Test3', null), ('Test4', null);
 
 	INSERT INTO dbo.[CategoryList] (Name, Details)
 	VALUES 

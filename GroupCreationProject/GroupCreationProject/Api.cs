@@ -32,7 +32,7 @@ public static class Api
         //Group API Endpoints
         app.MapGet("/Groups", GetGroups);
         app.MapGet("/Groups/{id}", GetGroup);
-        app.MapPost("/Groups", InsertGroup);
+        app.MapPost("/Groups/{id}", InsertGroup);
         app.MapPut("/Groups", UpdateGroup);
         app.MapDelete("/Groups", DeleteGroup);
 

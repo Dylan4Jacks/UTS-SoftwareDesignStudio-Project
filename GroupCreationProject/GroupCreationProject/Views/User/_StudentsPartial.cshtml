@@ -1,4 +1,4 @@
-﻿@model List<StudentModel>
+﻿
 
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -10,19 +10,49 @@
 <body>
 
 <div class="row mb-2">
-    @foreach (StudentModel student in Model)
-    {
-        <div class="col-md-3">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                <div class="col p-4 d-flex flex-column position-static">
-                    <strong class="mb-2 text-center text-primary border-bottom">@student.FirstName</strong>
-                    <div class="row mb-2">
-                        <div class="col position-start">Preference </div>
-                        <div class="col position-end"><p class="text-end">@student.Email</p></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
+    <div id="itemholder"/>
 </div>
+<script>
+    $(document).ready(function () {
+        var students; 
+            
+        $.ajax({
+            url: 'https://localhost:7041/Students',
+            type: 'GET',
+            contentType: 'application/json',
+            success: function(data, status, jqxhr) {
+                students = data;
+            },
+            error: function(data, status, jqxhr) {
+                console.log(status);
+                console.log(data);
+                console.log(jqxhr);
+            },
+            async: false,
+        });
+        students.forEach(function(e, i) {
+            console.log(e.StudentId, e.FirstName);
+            addStudentUI(e.FirstName, e.Email);
+        });
+    })
+
+    function addStudentUI(firstName, email){
+             var li = `
+                    <div class="col-md-3">
+                        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                            <div class="col p-4 d-flex flex-column position-static">
+                                <strong class="mb-2 text-center text-primary border-bottom">${firstName}</strong>
+                                <div class="row mb-2">
+                                    <div class="col position-start">Preference </div>
+                                    <div class="col position-end"><p class="text-end">${email}</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     `
+            $("#" + itemholder).append(li)
+        }
+        
+</script>    
+
 </body>

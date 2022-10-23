@@ -1,4 +1,6 @@
-﻿@model List<GroupModel> 
+﻿@*@{
+    List<GroupModel> Model;
+}*@
 
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -9,7 +11,8 @@
 
 <body>
 <div class="row mb-2">
-    @foreach (GroupModel group in Model)
+    app
+   @* @foreach (GroupModel group in Model)
     {
         <div class="col-md-3">
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -22,6 +25,17 @@
                 </div>
             </div>
         </div>
-    }
+    }*@
 </div>
+<script>
+    $(document).ready(function () {
+        loadGroups();
+        if (!buttonAccess) {
+            hidebuttons()
+        }
+     })
+
+</script>
+    
+
 </body>

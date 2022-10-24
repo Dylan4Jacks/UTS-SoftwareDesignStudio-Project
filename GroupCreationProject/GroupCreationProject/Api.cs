@@ -59,6 +59,7 @@ public static class Api
         app.MapGet("/Algorithm/Diverse/{isDiverse}", GetGroupsDiverse);
     }
 
+
     //CategoryItem API Functions
     public static async Task<IResult> GetCategoryItems(ICategoryItemData data)
     {

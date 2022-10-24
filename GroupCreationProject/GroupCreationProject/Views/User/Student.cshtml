@@ -23,6 +23,7 @@
 				    <ul>
 					    <li><button onclick="    showPartial(this, 'ProfilePartial');">Profile</button></li>
 					    <li><button onclick="showPartial(this, 'CategoriesPartial');">Categories</button></li>
+					    <li><button onclick="showPartial(this, 'groupPartial');">My Group</button></li>
 				    </ul>
 			    </nav>
                 
@@ -42,17 +43,20 @@
                 <label><strong>First Name:</strong> </label> <p id="firstname"></p>
                 <label><strong>Last Name: </strong></label> <p id="lastname"></p>
                 <label><strong>Email:     </strong>  </label> <p id="email"></p>
-                <label><strong>Skills:    </strong>  </label> <p id="skills"></p>
-                <label><strong>Preferences:    </strong>  </label> <p id="prefs"></p>
-                <br>
-                <br />
-                <br />
-                <label>Change Skill</label>
-                <input type=text id="skillinput"/>
-                <label>Change Pref</label>
-                <input type=text id="prefinput"/>
-                <button onclick="UpdateUserClicked()">update user</button>
             </div>
+
+            <div id="groupPartial" style="display: none;">
+                <h1 id="GroupName"></h1>
+                <div id="message">You are current not in a group, please check again when you have been assigned to a group</div>
+                <table id="gtable">
+                    <tr>
+                        <th> First Name </th>
+                        <th> Last Name</th>
+                        <th> Email </th>
+                    </tr>
+                </table>
+            </div>
+
         </main>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -60,7 +64,7 @@
 
         <script>
             var StudentData
-            var visiblePartial = null;
+            var visiblePartial = document.getElementById("ProfilePartial");
             var selectedBtn = null;
 
             $(document).ready(function(){
@@ -74,7 +78,65 @@
                 $("#skills").text(StudentData.skills)
                 $("#prefs").text(StudentData.preferences)
 
+                showGroup(StudentData.groupId);
+
             })
+
+            function showGroup(groupId){
+                if (groupId != null) {
+
+                    var group = getGroupData(groupId)
+                    var studentList = getGroupStudents(groupId);
+
+                    console.log(group, studentList);
+                    console.log(group.groupName);
+                    $("#GroupName").text(group.groupName);
+                    $("#message").empty();
+                    studentList.forEach(function(e, i) {
+                        $("#gtable").append(`<tr>
+                            <td>${e.firstName}</td>
+                            <td>${e.lastName}</td>
+                            <td>${e.email}</td>
+                        </tr>`)
+                    })
+
+                }
+            }
+
+            function getGroupStudents(id){
+                var studentsdata;
+                $.ajax({
+                        url: 'https://localhost:7041/Students/',
+                        type: 'GET',
+                        success: function(data, status, jqxhr) {
+                            studentsdata = data;
+                        },
+                        error:  function(data, status, jqxhr) {
+                            console.log(status);
+                        },
+                        async: false,
+                })
+
+                return $.grep(studentsdata, function(element) { return element.groupId == id });
+            }
+
+            function getGroupData(id){
+                var group;
+                $.ajax({
+                        url: 'https://localhost:7041/Groups/' + id,
+                        type: 'GET',
+                        success: function(data, status, jqxhr) {
+                            console.log(data);
+                            group = data;
+                        },
+                        error:  function(data, status, jqxhr) {
+                            console.log(status);
+                        },
+                        async: false,
+                })
+                console.log(group);
+                return group;
+            }
 
             function getStudentData(studentId) {
                     var studentData

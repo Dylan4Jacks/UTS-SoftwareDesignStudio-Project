@@ -37,5 +37,6 @@ namespace GroupCreationProject.Models
             }
             return groupAttributes;
         }
+        
     }
 }

@@ -79,7 +79,14 @@ StudentModel[] students = new StudentModel[]
                 new StudentModel { StudentId = 6, FirstName = "MrCool", Email = "JohnSmith.com", Password = "cool" },
                 new StudentModel { StudentId = 7, FirstName = "Roger", Email = "JohnSmith.com", Password = "cool" },
                 new StudentModel { StudentId = 8, FirstName = "Federa", Email = "JohnSmith.com", Password = "cool" },
-                new StudentModel { StudentId = 9, FirstName = "Ethan", Email = "JohnSmith.com", Password = "cool" }
+                new StudentModel { StudentId = 9, FirstName = "Ethan", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 10, FirstName = "coolMan", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 11, FirstName = "OkMan", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 12, FirstName = "YesMan", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 13, FirstName = "YesMan1", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 14, FirstName = "YesMan2", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 15, FirstName = "YesMan3", Email = "JohnSmith.com", Password = "cool" },
+
             };
 
 IEnumerable<StudentModel> getAllStudents()
@@ -106,7 +113,6 @@ CategoryItemModel[] categoryItems = new CategoryItemModel[]
                 new CategoryItemModel {CategoryItemId = 10,Name = "Server SQL",CategoryListId = 4},
                 new CategoryItemModel {CategoryItemId = 11,Name = "Programming",CategoryListId = 4},
                 new CategoryItemModel {CategoryItemId = 12,Name = "Team Leading",CategoryListId = 4}
-
 };
 
 IEnumerable<CategoryItemModel> getAllCategoryItemModels()
@@ -117,17 +123,17 @@ IEnumerable<CategoryItemModel> getAllCategoryItemModels()
 CategorySelectionModel[] categorySelections = new CategorySelectionModel[]
 {
                 new CategorySelectionModel { CategoryItemId = 1, StudentId = 1},
-                new CategorySelectionModel { CategoryItemId = 4, StudentId = 1 },
-                new CategorySelectionModel { CategoryItemId = 9, StudentId = 1 },
-                new CategorySelectionModel { CategoryItemId = 12, StudentId = 1 },
+                new CategorySelectionModel { CategoryItemId = 4, StudentId = 1},
+                new CategorySelectionModel { CategoryItemId = 9, StudentId = 1},
+                new CategorySelectionModel { CategoryItemId = 12, StudentId = 1},
 
                 new CategorySelectionModel {CategoryItemId = 3, StudentId = 2},
-                new CategorySelectionModel {CategoryItemId = 4, StudentId = 2},
+                new CategorySelectionModel {CategoryItemId = 6, StudentId = 2},
                 new CategorySelectionModel {CategoryItemId = 8, StudentId = 2},
                 new CategorySelectionModel {CategoryItemId = 12, StudentId = 2},
 
                 new CategorySelectionModel {CategoryItemId = 3, StudentId = 3},
-                new CategorySelectionModel {CategoryItemId = 4, StudentId = 3},
+                new CategorySelectionModel {CategoryItemId = 7, StudentId = 3},
                 new CategorySelectionModel {CategoryItemId = 8, StudentId = 3},
                 new CategorySelectionModel {CategoryItemId = 11, StudentId = 3},
 
@@ -159,7 +165,38 @@ CategorySelectionModel[] categorySelections = new CategorySelectionModel[]
                 new CategorySelectionModel {CategoryItemId = 3, StudentId = 9},
                 new CategorySelectionModel {CategoryItemId = 4, StudentId = 9},
                 new CategorySelectionModel {CategoryItemId = 9, StudentId = 9},
-                new CategorySelectionModel {CategoryItemId = 11, StudentId = 9}
+                new CategorySelectionModel {CategoryItemId = 10, StudentId = 9},
+
+                new CategorySelectionModel {CategoryItemId = 1, StudentId = 10},
+                new CategorySelectionModel {CategoryItemId = 7, StudentId = 10},
+                new CategorySelectionModel {CategoryItemId = 9, StudentId = 10},
+                new CategorySelectionModel {CategoryItemId = 11, StudentId = 10},
+
+                new CategorySelectionModel {CategoryItemId = 3, StudentId = 11},
+                new CategorySelectionModel {CategoryItemId = 5, StudentId = 11},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 11},
+                new CategorySelectionModel {CategoryItemId = 11, StudentId = 11},
+
+                new CategorySelectionModel {CategoryItemId = 2, StudentId = 12},
+                new CategorySelectionModel {CategoryItemId = 4, StudentId = 12},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 12},
+                new CategorySelectionModel {CategoryItemId = 11, StudentId = 12},
+
+                new CategorySelectionModel {CategoryItemId = 2, StudentId = 13},
+                new CategorySelectionModel {CategoryItemId = 4, StudentId = 13},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 13},
+                new CategorySelectionModel {CategoryItemId = 11, StudentId = 13},
+
+                new CategorySelectionModel {CategoryItemId = 2, StudentId = 14},
+                new CategorySelectionModel {CategoryItemId = 4, StudentId = 14},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 14},
+                new CategorySelectionModel {CategoryItemId = 10, StudentId = 14},
+
+                new CategorySelectionModel {CategoryItemId = 2, StudentId = 15},
+                new CategorySelectionModel {CategoryItemId = 4, StudentId = 15},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 15},
+                new CategorySelectionModel {CategoryItemId = 10, StudentId = 15}
+
 };
 
 IEnumerable<CategorySelectionModel> allCatSelects()
@@ -173,7 +210,7 @@ IEnumerable<CategorySelectionModel> allCatSelects()
 /* -------- THE CODE BELOW COMMENTED OUT RUNS THE DIVERSITY ALGORITHM IN PROGRAM.CS --------------
 TransformationModel transform = new(getAllStudents(), allCatSelects(), getAllCategoryItemModels());
 List<StuPrefModel> people = new(transform.transformStu());
-GroupFormation make_groups = new(3, people, 3);
+GroupFormation make_groups = new(5, people, 3);
 List<GroupPrefModel> diverseClass = make_groups.mostDiverseClass(false);
 
 Console.WriteLine(diverseClass.Count);
@@ -181,10 +218,12 @@ Console.WriteLine(diverseClass.Count);
 for (int z = 0; z < diverseClass.Count; z++)
 {
     GroupPrefModel iteratedGroup = diverseClass[z];
-    Console.WriteLine(iteratedGroup.Name);
-    for (int j = 0; j < 3; j++)
+    Console.WriteLine(iteratedGroup.Name, iteratedGroup.Members.Count);
+    for (int j = 0; j < 5; j++)
     {
-        iteratedGroup.Members[j].displayPreferences();
+        
+            iteratedGroup.Members[j].displayPreferences();
+       
     }
 }
 

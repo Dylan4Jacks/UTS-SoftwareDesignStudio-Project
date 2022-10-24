@@ -3,6 +3,7 @@ using GroupCreationProject.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using GroupCreationProject.Models;
 //using Microsoft.EntityFrameworkCore;
 
 
@@ -67,5 +68,166 @@ app.MapControllerRoute(
 app.MapRazorPages();
 
 app.ConfigureApi();
+
+StudentModel[] students = new StudentModel[]
+            {
+                new StudentModel {StudentId = 1, FirstName = "John", Email = "JohnSmith.com", Password = "cool"},
+                new StudentModel {StudentId = 2, FirstName = "Ben", Email = "JohnSmith.com", Password = "cool"},
+                new StudentModel { StudentId = 3, FirstName = "Alfred", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 4, FirstName = "Maso", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 5, FirstName = "Darla", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 6, FirstName = "MrCool", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 7, FirstName = "Roger", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 8, FirstName = "Federa", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 9, FirstName = "Ethan", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 10, FirstName = "coolMan", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 11, FirstName = "OkMan", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 12, FirstName = "YesMan", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 13, FirstName = "YesMan1", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 14, FirstName = "YesMan2", Email = "JohnSmith.com", Password = "cool" },
+                new StudentModel { StudentId = 15, FirstName = "YesMan3", Email = "JohnSmith.com", Password = "cool" },
+
+            };
+
+IEnumerable<StudentModel> getAllStudents()
+{
+    return students;
+}
+
+CategorySelectionModel[] categorySelects = new CategorySelectionModel[]
+{
+                new CategorySelectionModel {StudentId = 1}
+};
+
+CategoryItemModel[] categoryItems = new CategoryItemModel[]
+{
+                new CategoryItemModel{CategoryItemId = 1, Name = "High Distinction",  CategoryListId = 1},
+                new CategoryItemModel {CategoryItemId = 2,Name = "Pass",CategoryListId = 1},
+                new CategoryItemModel {CategoryItemId = 3,Name = "Distinction",CategoryListId = 1},
+                new CategoryItemModel {CategoryItemId = 4,Name = "Server Development",CategoryListId = 2},
+                new CategoryItemModel {CategoryItemId = 5,Name = "Web Development",CategoryListId = 2},
+                new CategoryItemModel {CategoryItemId = 6,Name = "Data Analysis",CategoryListId = 2},
+                new CategoryItemModel {CategoryItemId = 7,Name = "Management",CategoryListId = 2},
+                new CategoryItemModel {CategoryItemId = 8,Name = "Cooking",CategoryListId = 3},
+                new CategoryItemModel {CategoryItemId = 9,Name = "Sports",CategoryListId = 3},
+                new CategoryItemModel {CategoryItemId = 10,Name = "Server SQL",CategoryListId = 4},
+                new CategoryItemModel {CategoryItemId = 11,Name = "Programming",CategoryListId = 4},
+                new CategoryItemModel {CategoryItemId = 12,Name = "Team Leading",CategoryListId = 4}
+};
+
+IEnumerable<CategoryItemModel> getAllCategoryItemModels()
+{
+    return categoryItems;
+}
+
+CategorySelectionModel[] categorySelections = new CategorySelectionModel[]
+{
+                new CategorySelectionModel { CategoryItemId = 1, StudentId = 1},
+                new CategorySelectionModel { CategoryItemId = 4, StudentId = 1},
+                new CategorySelectionModel { CategoryItemId = 9, StudentId = 1},
+                new CategorySelectionModel { CategoryItemId = 12, StudentId = 1},
+
+                new CategorySelectionModel {CategoryItemId = 3, StudentId = 2},
+                new CategorySelectionModel {CategoryItemId = 6, StudentId = 2},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 2},
+                new CategorySelectionModel {CategoryItemId = 12, StudentId = 2},
+
+                new CategorySelectionModel {CategoryItemId = 3, StudentId = 3},
+                new CategorySelectionModel {CategoryItemId = 7, StudentId = 3},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 3},
+                new CategorySelectionModel {CategoryItemId = 11, StudentId = 3},
+
+                new CategorySelectionModel {CategoryItemId = 2, StudentId = 4},
+                new CategorySelectionModel {CategoryItemId = 5, StudentId = 4},
+                new CategorySelectionModel {CategoryItemId = 9, StudentId = 4},
+                new CategorySelectionModel {CategoryItemId = 12, StudentId = 4},
+
+                new CategorySelectionModel {CategoryItemId = 2, StudentId = 5},
+                new CategorySelectionModel {CategoryItemId = 7, StudentId = 5},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 5},
+                new CategorySelectionModel {CategoryItemId = 10, StudentId = 5},
+
+                new CategorySelectionModel {CategoryItemId = 1, StudentId = 6},
+                new CategorySelectionModel {CategoryItemId = 6, StudentId = 6},
+                new CategorySelectionModel {CategoryItemId = 9, StudentId = 6},
+                new CategorySelectionModel {CategoryItemId = 12, StudentId = 6},
+
+                new CategorySelectionModel {CategoryItemId = 1, StudentId = 7},
+                new CategorySelectionModel {CategoryItemId = 4, StudentId = 7},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 7},
+                new CategorySelectionModel {CategoryItemId = 11, StudentId = 7},
+
+                new CategorySelectionModel {CategoryItemId = 1, StudentId = 8},
+                new CategorySelectionModel {CategoryItemId = 6, StudentId = 8},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 8},
+                new CategorySelectionModel {CategoryItemId = 10, StudentId = 8},
+
+                new CategorySelectionModel {CategoryItemId = 3, StudentId = 9},
+                new CategorySelectionModel {CategoryItemId = 4, StudentId = 9},
+                new CategorySelectionModel {CategoryItemId = 9, StudentId = 9},
+                new CategorySelectionModel {CategoryItemId = 10, StudentId = 9},
+
+                new CategorySelectionModel {CategoryItemId = 1, StudentId = 10},
+                new CategorySelectionModel {CategoryItemId = 7, StudentId = 10},
+                new CategorySelectionModel {CategoryItemId = 9, StudentId = 10},
+                new CategorySelectionModel {CategoryItemId = 11, StudentId = 10},
+
+                new CategorySelectionModel {CategoryItemId = 3, StudentId = 11},
+                new CategorySelectionModel {CategoryItemId = 5, StudentId = 11},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 11},
+                new CategorySelectionModel {CategoryItemId = 11, StudentId = 11},
+
+                new CategorySelectionModel {CategoryItemId = 2, StudentId = 12},
+                new CategorySelectionModel {CategoryItemId = 4, StudentId = 12},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 12},
+                new CategorySelectionModel {CategoryItemId = 11, StudentId = 12},
+
+                new CategorySelectionModel {CategoryItemId = 2, StudentId = 13},
+                new CategorySelectionModel {CategoryItemId = 4, StudentId = 13},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 13},
+                new CategorySelectionModel {CategoryItemId = 11, StudentId = 13},
+
+                new CategorySelectionModel {CategoryItemId = 2, StudentId = 14},
+                new CategorySelectionModel {CategoryItemId = 4, StudentId = 14},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 14},
+                new CategorySelectionModel {CategoryItemId = 10, StudentId = 14},
+
+                new CategorySelectionModel {CategoryItemId = 2, StudentId = 15},
+                new CategorySelectionModel {CategoryItemId = 4, StudentId = 15},
+                new CategorySelectionModel {CategoryItemId = 8, StudentId = 15},
+                new CategorySelectionModel {CategoryItemId = 10, StudentId = 15}
+
+};
+
+IEnumerable<CategorySelectionModel> allCatSelects()
+{
+    return categorySelections;
+}
+
+
+
+
+/* -------- THE CODE BELOW COMMENTED OUT RUNS THE DIVERSITY ALGORITHM IN PROGRAM.CS --------------
+TransformationModel transform = new(getAllStudents(), allCatSelects(), getAllCategoryItemModels());
+List<StuPrefModel> people = new(transform.transformStu());
+GroupFormation make_groups = new(5, people, 3);
+List<GroupPrefModel> diverseClass = make_groups.mostDiverseClass(false);
+
+Console.WriteLine(diverseClass.Count);
+// This loop below is for showing the most diverse group
+for (int z = 0; z < diverseClass.Count; z++)
+{
+    GroupPrefModel iteratedGroup = diverseClass[z];
+    Console.WriteLine(iteratedGroup.Name, iteratedGroup.Members.Count);
+    for (int j = 0; j < 5; j++)
+    {
+        
+            iteratedGroup.Members[j].displayPreferences();
+       
+    }
+}
+
+Console.WriteLine("----------------------------");
+*/
 
 app.Run();

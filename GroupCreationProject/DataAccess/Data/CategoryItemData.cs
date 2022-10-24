@@ -33,6 +33,7 @@ public class CategoryItemData : ICategoryItemData
         var result = await _db.LoadData<int, dynamic>("dbo.spCategoryItem_Insert", new {
             categoryItem.Name,
             categoryItem.Details,
+            categoryItem.Ranking,
             categoryItem.CategoryListId
         });
         return result.FirstOrDefault();

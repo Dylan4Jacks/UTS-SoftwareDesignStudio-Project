@@ -55,23 +55,14 @@ BEGIN
 	('SAMECat_B', null, 'SAMECat.B@Student.uts.com', 'Test_B', @Random_Group_Id_4),
 	('SAMECat_D', null, 'SAMECatD@Student.uts.com', 'Test_D', null);
 
-	INSERT  INTO dbo.[CategorySelection] (StudentId, CategoryItemId, Content)
-	SELECT TOP 20 StudentID, CategoryItemId, null FROM dbo.[Student] CROSS JOIN dbo.[CategoryItem] ORDER BY NEWID();
-
-	DECLARE @Stu_Id_1 int = (SELECT StudentId FROM dbo.[Student] WHERE FirstName = 'John' AND LastName =   'Smith')
-	DECLARE @Stu_Id_2 int = (SELECT StudentId FROM dbo.[Student] WHERE FirstName = 'Mary' AND LastName =   'Jane')
-	DECLARE @Stu_Id_3 int = (SELECT StudentId FROM dbo.[Student] WHERE FirstName = 'Sue' AND LastName =    'Solomon')
-	DECLARE @Stu_Id_4 int = (SELECT StudentId FROM dbo.[Student] WHERE FirstName = 'Kate' AND LastName =   'Allen')
-	DECLARE @Stu_Id_5 int = (SELECT StudentId FROM dbo.[Student] WHERE FirstName = 'SAMECat_A' AND LastName = null)
-	DECLARE @Stu_Id_6 int = (SELECT StudentId FROM dbo.[Student] WHERE FirstName = 'SAMECat_B' AND LastName = null)
-	DECLARE @Stu_Id_8 int = (SELECT StudentId FROM dbo.[Student] WHERE FirstName = 'SAMECat_D' AND LastName = null)
+	
 	INSERT INTO dbo.[CategorySelection] (StudentId, CategoryItemId, Content)
 	VALUES 
-	(@Stu_Id_1 , 1, null),(@Stu_Id_1 , 5, null),(@Stu_Id_1 , 9, null),(@Stu_Id_1 , 13, null),
-	(@Stu_Id_2 , 2, null),(@Stu_Id_2 , 6, null),(@Stu_Id_2 , 10, null),(@Stu_Id_2 , 14, null),
-	(@Stu_Id_3 , 3, null),(@Stu_Id_3 , 7, null),(@Stu_Id_3 , 11, null),(@Stu_Id_3 , 15, null),
-	(@Stu_Id_4 , 4, null),(@Stu_Id_4 , 8, null),(@Stu_Id_4 , 12, null),(@Stu_Id_4 , 16, null),
-	(@Stu_Id_5 , 2, null),(@Stu_Id_5 , 7, null),(@Stu_Id_5 , 9, null),(@Stu_Id_5 , 16, null),
-	(@Stu_Id_6 , 2, null),(@Stu_Id_6 , 7, null),(@Stu_Id_6 , 9, null),(@Stu_Id_6 , 16, null),
-	(@Stu_Id_8 , 2, null),(@Stu_Id_8 , 7, null),(@Stu_Id_8 , 9, null),(@Stu_Id_8 , 16, null);
+	(1 , 1, null),(1 , 5, null),(1 , 9, null),(1 , 13, null),
+	(2 , 2, null),(2 , 6, null),(2 , 10, null),(2 , 14, null),
+	(3 , 3, null),(3 , 7, null),(3 , 11, null),(3 , 15, null),
+	(4 , 4, null),(4 , 8, null),(4 , 12, null),(4 , 16, null),
+	(5 , 2, null),(5 , 7, null),(5 , 9, null),(5 , 16, null),
+	(6 , 2, null),(6 , 7, null),(6 , 9, null),(6 , 16, null),
+	(7 , 2, null),(7 , 7, null),(7 , 9, null),(7 , 16, null);
 end

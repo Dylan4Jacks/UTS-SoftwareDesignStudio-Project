@@ -56,7 +56,7 @@ public static class Api
         app.MapPost("/Auth/Student", AuthenticateStudent);
 
         //Algorithm Execution
-        app.MapGet("/Algorithm/Diverse/{isDiverse}", GetGroupsDiverse);
+        app.MapGet("/Algorithm/Diverse/{isDiverse}/{sizeOfGroups}/{numOfGroups}", GetGroupsDiverse);
     }
 
 

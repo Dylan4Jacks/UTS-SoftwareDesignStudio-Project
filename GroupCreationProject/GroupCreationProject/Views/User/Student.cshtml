@@ -18,10 +18,10 @@
         <!-- Navbar -->
 	    <div class="navbar">
 		    <div class="container flex">
-			    <button id="logout" class="btn btn-primary">Logout</button>
+			    <button  id="logout" class="btn btn-primary"><a href="/">Logout</a></button>
 			    <nav>
 				    <ul>
-					    <li><button onclick="    showPartial(this, 'ProfilePartial');">Profile</button></li>
+					    <li><button onclick="    showPartial(this, 'ProfilePartial');" id="selectedBtn">Profile</button></li>
 					    <li><button onclick="showPartial(this, 'CategoriesPartial');">Categories</button></li>
 					    <li><button onclick="showPartial(this, 'groupPartial');">My Group</button></li>
 				    </ul>
@@ -65,7 +65,7 @@
         <script>
             var StudentData
             var visiblePartial = document.getElementById("ProfilePartial");
-            var selectedBtn = null;
+            var selectedBtn = document.getElementById("selectedBtn");
 
             $(document).ready(function(){
                 var studentId = @User.Claims.Where(a => a.Type == "id").FirstOrDefault().Value;

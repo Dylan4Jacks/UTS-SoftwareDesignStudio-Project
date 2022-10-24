@@ -56,7 +56,7 @@ public static class Api
         app.MapPost("/Auth/Student", AuthenticateStudent);
 
         //Algorithm Execution
-        app.MapGet("/Algorithm/Diverse/{isDiverse}", GetGroupsDiverse);
+        app.MapGet("/Algorithm/Diverse/{isDiverse}/{sizeOfGroups}/{numOfGroups}", GetGroupsDiverse);
     }
 
 
@@ -441,7 +441,7 @@ public static class Api
     // Lower Diversiy score = More Diverse
     // Higher Diversity score = More Similar
     
-    public static async Task<IResult> GetGroupsDiverse(int isDiverse, IStudentData dataStu, ICategorySelectionData dataCatSel, ICategoryItemData dataCatItem, IGroupData groupData, int sizeOfGroups, int numOfGroups)
+    public static async Task<IResult> GetGroupsDiverse(int isDiverse, int sizeOfGroups, int numOfGroups, IStudentData dataStu, ICategorySelectionData dataCatSel, ICategoryItemData dataCatItem, IGroupData groupData)
     {
         // isDiverse passed in api end point  "/Algorithm/Diverse/{isDiverse}"
         // 0 = Diverse     1 = Similar

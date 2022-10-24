@@ -4,6 +4,45 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/css/user/user.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/user/_categoriesPartial.css" asp-append-version="true" />
+
+    <style>
+
+        body{
+            background-image: linear-gradient(to bottom right, floralwhite, #C1E1C1);
+            background-repeat: no-repeat;
+        }
+
+        table{
+            background-color: floralwhite;
+            border-radius: 6px;
+        }
+        th{
+            font-family: 'Lucida Sans';
+            border-radius: 7px;
+            background-color: #D0F0C0;
+        }
+
+        button{
+            font-family: 'Lucida Sans';
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            color: #ffff;
+         background-image: linear-gradient(to right, black, black);
+            border-radius: 6px;
+            outline: none;
+        }
+
+        input[type=submit]{
+            font-family: 'Lucida Sans';
+            text-align: center;
+            text-decoration: none;
+            color: #ffff;
+            background-image: linear-gradient(to right, black, black);
+            border-radius: 6px;
+            outline: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -13,13 +52,13 @@
                 <th>
                     PREFERENCES @if (User.IsInRole("teacher"))
                     {
-                        <button type="button" onclick="addPrefShowModal('prefList')" class="btn-primary">+ add</button>
+                        <button type="button" onclick="addPrefShowModal('prefList')" class="btn-primary">Add</button>
                     }
                 </th>
                 <th>
                     BACKGROUND  @if (User.IsInRole("teacher"))
                     {
-                        <button type="button" onclick="addPrefShowModal('bgList')" class="btn-primary">+ add</button>
+                        <button type="button" onclick="addPrefShowModal('bgList')" class="btn-primary">Add</button>
                     }
                 </th>
             </tr>
@@ -41,13 +80,13 @@
                 <th>
                     INTERESTS   @if (User.IsInRole("teacher"))
                     {
-                        <button type="button" onclick="addPrefShowModal('intList')" class="btn-primary">+ add</button>
+                        <button type="button" onclick="addPrefShowModal('intList')" class="btn-primary">Add</button>
                     }
                 </th>
                 <th>
                     SKILLS      @if (User.IsInRole("teacher"))
                     {
-                        <button type="button" onclick="addPrefShowModal('skillList')" class="btn-primary">+ add</button>
+                        <button type="button" onclick="addPrefShowModal('skillList')" class="btn-primary">Add</button>
                     }
                 </th>
             </tr>
@@ -146,7 +185,7 @@
                             <label for="$cb_{name}">${name}</label>
                           </div>
                           <div class="col-md-6">
-                            <button onclick="deletePrefLi('${id}')" type="button" class="del btn-danger">delete</button>
+                            <button onclick="deletePrefLi('${id}')" type="button" class="del btn-danger">Delete</button>
                            </div>
                         </div>
 

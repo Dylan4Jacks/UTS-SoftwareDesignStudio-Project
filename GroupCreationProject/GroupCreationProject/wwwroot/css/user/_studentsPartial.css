@@ -4,12 +4,14 @@ table {
     width: 80%;
     margin-left: 50px;
     margin-right: 50px;
+    background-color: floralwhite;
+    border-radius: 6px;
 }
 
 th {
-    background-color: #AFE1AF;
+    background-color: floralwhite;
     color: black;
-    font-family: Arial;
+    font-family: 'Lucida Sans';
 }
 
 th,
@@ -18,5 +20,6 @@ td {
     text-align: left;
     margin: 30px;
     padding: 5px;
-    font-family: 'Arial';
+    font-family: 'Lucida Sans';
+    
 }

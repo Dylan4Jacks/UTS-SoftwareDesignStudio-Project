@@ -106,7 +106,7 @@
             </tr>
         </table>
 
-        <input type="submit" value="Submit">
+        <input type="button" onclick="submitClick()" value="Submit">
     </form>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -181,7 +181,7 @@
                         <div class="row">
 
                           <div class="col-md-6">
-                            <input type="checkbox" id="cb_${id}" name="${name}" value="${id}">
+                            <input type="checkbox" class="prefcb" id="cb_${id}" name="${name}" value="${id}">
                             <label for="$cb_{name}">${name}</label>
                           </div>
                           <div class="col-md-6">

@@ -79,6 +79,8 @@
                 $("#prefs").text(StudentData.preferences)
 
                 showGroup(StudentData.groupId);
+                setPrefSelections(studentId);
+
 
             })
 
@@ -102,6 +104,73 @@
 
                 }
             }
+
+            function submitClick() {
+                setPrefsSelections(@User.Claims.Where(a => a.Type == "id").FirstOrDefault().Value);
+            }
+
+            function setPrefSelections(id) {
+                var prefselections;
+                $.ajax({
+                    
+                     url: 'https://localhost:7041/CategorySelections/Student/' + id,
+                        type: 'GET',
+                        success: function(data, status, jqxhr) {
+                            prefselections = data;
+                        },
+                        error:  function(data, status, jqxhr) {
+                            console.log(status);
+                        },
+                        async: false,
+                })
+
+
+                prefselections.forEach(function(e, i) {
+                    $("#cb_" + e.categoryItemId).prop('checked', true);
+                })
+
+            }
+
+            function setPrefsSelections(id) {
+                $(".prefcb").each(function(i, e){
+
+                    delPrefSelection(id, $(e).value)
+
+                    if( $(e).is(':checked') ){
+                        $.ajax({
+                        url: 'https://localhost:7041/CategorySelections',
+                        type: 'POST',
+                        data: JSON.stringify({StudentId: id, categoryItemId: $(e).value}),
+                        contentType : 'application/json',
+                        success: function(data, status, jqxhr) {
+                        },
+                        error:  function(data, status, jqxhr) {
+                            console.log(status);
+                        },
+                        async: false,
+                    })
+                    }
+                })
+            }
+
+            function delPrefSelection(studid, catid){
+                console.log("at del");
+
+                 $.ajax({
+                        url: 'https://localhost:7041/CategorySelections',
+                        type: 'DELETE',
+                        data: JSON.stringify({StudentId: studid, categoryItemId: catid}),
+                        contentType : 'application/json',
+                        success: function(data, status, jqxhr) {
+                        },
+                        error:  function(data, status, jqxhr) {
+                            console.log(status);
+                        },
+                        async: false,
+                    })
+            }
+
+            
 
             function getGroupStudents(id){
                 var studentsdata;

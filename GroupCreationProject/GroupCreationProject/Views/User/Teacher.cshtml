@@ -1,129 +1,174 @@
-﻿@{
-    ViewData["Title"] = "Teacher Page";
-    
-}
+﻿<!DOCTYPE html>
 
-<!DOCTYPE html>
+<html>
 
-<html> 
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <link rel="stylesheet" href="~/css/user/user.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/css/user/student.css" asp-append-version="true" />
-    </head>
-        <body>
-        @if (User.IsInRole("teacher"))
-        {
-            <!-- Navbar -->
-	        <div class="navbar">
-		        <div class="container flex">
-			        <button id="logout" class="btn btn-primary">Logout</button>
-			        <nav>
-				        <ul>
-					        <li><button onclick="    showPartial(this, 'StudentsPartial');">Students</button></li>
-					        <li><button onclick="    showPartial(this, 'GroupsPartial');">Groups</button></li>
-					        <li><button onclick="    showPartial(this, 'CategoriesPartial');">Categories</button></li>
-				        </ul>
-			        </nav>
-		        </div>
-	        </div>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/user/user.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/user/student.css" asp-append-version="true" />
+</head>
 
-            <!-- Content -->
-        
-            <section class="showcase">
-	            <div class="container" id="StudentsPartial" style="display: none;">
-                    <partial name="~/Views/User/_StudentsPartial.cshtml"/>
-	            </div>
-	            <div class="container" id="GroupsPartial" style="display: none;">
-                    <partial name="~/Views/User/_GroupsPartial.cshtml"/>
-	            </div>
-	            <div class="container" id="CategoriesPartial" style="display: none;">
-                    <partial name="~/Views/User/_CategoriesPartial.cshtml"/>
-	            </div>
-            </section>
+<body>
+    @if (User.IsInRole("teacher"))
+    {
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="container flex">
+                <button id="logout" class="btn btn-primary">Logout</button>
+                <nav>
+                    <ul>
+                        <li><button onclick="    showPartial(this, 'StudentsPartial');">Students</button></li>
+                        <li><button onclick="    showPartial(this, 'GroupsPartial');">Groups</button></li>
+                        <li><button onclick="    showPartial(this, 'CategoriesPartial');">Categories</button></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
 
-            <!-- Scripts -->
-            <script src="~/lib/jquery/dist/jquery.min.js"></script>
-            <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-            <script src="~/js/site.js" asp-append-version="true"></script>
+        <!-- Content -->
+
+        <section class="showcase">
+            <div class="container" id="StudentsPartial" style="display: none;">
+                <div class="row mb-2" id="OuterStudentsPartial">
+                    @*<partial name="_StudentsPartial"/>*@
+                </div>
+            </div>
+            <div class="container" id="GroupsPartial" style="display: none;">
+                <div class="row mb-2" id="OuterGroupsPartial">
+                    @*<partial name="_GroupsPartial"/>*@
+                </div>
+            </div>
+            <div class="container" id="CategoriesPartial" style="display: none;">
+
+                <partial name="_CategoriesPartial" />
+            </div>
+        </section>
+
+        <!-- Scripts -->
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
 
         <script type="text/javascript">
             var studentsList;
+            var groupsList;
             var visiblePartial = null;
             var selectedBtn = null;
 
-            $(document).ready(function(){
-            getStudents();
-            console.log(studentsList);
+            $(document).ready(function () {
+                getStudents();
+                getGroups();
+                console.log(studentsList);
+                addGroupsUI();
+                addStudentsUI();
             })
 
-            function getStudents(){
-            $.ajax({
-            url: 'https://localhost:7041/Users',
-            type: 'GET',
-            success: function(data, status, jqxhr) {
-            studentsList = data;
-            },
-            error:  function(data, status, jqxhr) {
-            console.log(status);
-            },
-            async: false,
-            })
+
+
+            function getStudents() {
+                $.ajax({
+                    url: 'https://localhost:7041/Students',
+                    type: 'GET',
+                    success: function (data, status, jqxhr) { studentsList = data; },
+                    error: function (data, status, jqxhr) { console.log(status); },
+                    async: false,
+                })
             }
+
+            function addStudentsUI() {
+                studentsList.forEach(function (e, i) {
+                    $('#OuterStudentsPartial').append(
+                        `<div class="col-md-3">
+                                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                    <div class="col p-4 d-flex flex-column position-static">
+                                        <strong class="mb-2 text-center text-primary border-bottom">${e.studentId}</strong>
+                                        <div class="row mb-2">
+                                            <div class="col position-start">Preference </div>
+                                            <div class="col position-end"><p class="text-end">${e.email}</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`);
+                });
+            }
+
+            function getGroups() {
+                $.ajax({
+                    url: 'https://localhost:7041/Groups',
+                    type: 'GET',
+                    success: function (data, status, jqxhr) { groupsList = data; },
+                    error: function (data, status, jqxhr) { console.log(status); },
+                    async: false,
+                })
+            }
+
+            function addGroupsUI() {
+                groupsList.forEach(function (e, i) {
+                    $('#OuterGroupsPartial').append(
+                        `<div class="col-md-3">
+                                <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                    <div class="col p-4 d-flex flex-column position-static">
+                                        <strong class="mb-2 text-center text-primary border-bottom">${e.groupId}</strong>
+                                        <div class="row mb-2">
+                                            <div class="col position-start">${e.groupName}</div>
+                                            <div class="col position-end"><p class="text-end">${e.groupId}</p></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>`);
+                });
+            }
+
 
             function getStudentData(studentId) {
-            var studentData
+                var studentData
 
-            $.ajax({
-            url: 'https://localhost:7041/Users/' + studentId,
-            type: 'GET',
-            success: function(data, status, jqxhr) {
-            studentData = data;
-            },
-            error:  function(data, status, jqxhr) {
-            console.log(status);
-            },
-            async: false,
-            })
-
-            return studentData;
+                $.ajax({
+                    url: 'https://localhost:7041/Users/' + studentId,
+                    type: 'GET',
+                    success: function (data, status, jqxhr) { studentData = data; },
+                    error: function (data, status, jqxhr) { console.log(status); },
+                    async: false,
+                })
+                return studentData;
             }
 
-            function showPartial(eventBtn, partialId){
-            eventBtn.disabled = true;
-            if (visiblePartial !== null ) {
-            visiblePartial.style.display = 'none';
-            }
-            visiblePartial = document.getElementById(partialId);
-            visiblePartial.style.display = 'block';
+            function showPartial(eventBtn, partialId) {
+                eventBtn.disabled = true;
+                if (visiblePartial !== null) {
+                    visiblePartial.style.display = 'none';
+                }
+                visiblePartial = document.getElementById(partialId);
+                visiblePartial.style.display = 'block';
 
-            if (selectedBtn !== null) {
-            selectedBtn.removeAttribute('id');
-            selectedBtn.disabled = false;
-            }
-            selectedBtn = eventBtn;
-            selectedBtn.setAttribute('id', 'selectedBtn');
+                if (selectedBtn !== null) {
+                    selectedBtn.removeAttribute('id');
+                    selectedBtn.disabled = false;
+                }
+                selectedBtn = eventBtn;
+                selectedBtn.setAttribute('id', 'selectedBtn');
 
             }
 
-            function logout(){
-            $('#StudentsPartial').modal('show');
+            function logout() { //Currently doesnt work
+                $('#StudentsPartial').modal('show');
             }
 
             function studentDetailsClicked(studentId) { //This runs when a student is selected, anda  model should show up showing the student details 
-            var student = getStudentData(studentId) //
-            $('#StudentsPartial').modal('show');
-            //then set the values of the modal to the values from student;
-            console.log(student);
+                var student = getStudentData(studentId) //
+                $('#StudentsPartial').modal('show');
+                //then set the values of the modal to the values from student;
+                console.log(student);
             }
 
         </script>
-        }
-        else
-        {
-            <div>
-              <p>Access Denied</p>
-            </div>
-        }
+    }
+    else
+    {
+        <div>
+            <p>Access Denied</p>
+        </div>
+    }
 </body>
+
 </html>

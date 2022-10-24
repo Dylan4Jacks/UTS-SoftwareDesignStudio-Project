@@ -11,6 +11,7 @@ public class CategoryItemModel
     public int CategoryItemId { get; set; }
     public string Name { get; set; }
     public string? Details { get; set; }
+    public int? Ranking { get; set; }
     public int CategoryListId { get; set; }
 
 }

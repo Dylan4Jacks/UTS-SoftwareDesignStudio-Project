@@ -28,12 +28,12 @@
             <section class="showcase">
 	            <div class="container" id="StudentsPartial" style="display: none;">
                     <div class="row mb-2" id="OuterStudentsPartial">
-                        <partial name="_StudentsPartial"/>
+                        @*<partial name="_StudentsPartial"/>*@
                     </div>
 	            </div>
 	            <div class="container" id="GroupsPartial" style="display: none;">
                     <div class="row mb-2" id="OuterGroupsPartial">
-                        <partial name="_GroupsPartial"/>
+                        @*<partial name="_GroupsPartial"/>*@
                     </div>
 	            </div>
 	            <div class="container" id="CategoriesPartial" style="display: none;">
@@ -49,15 +49,19 @@
 
         <script type="text/javascript">
             var studentsList;
+            var groupsList;
             var visiblePartial = null;
             var selectedBtn = null;
 
             $(document).ready(function(){
                 getStudents();
+                getGroups();
                 console.log(studentsList);
-                //addGroupsUI();
-                //addStudentsUI();
+                addGroupsUI();
+                addStudentsUI();
             })
+
+
 
             function getStudents(){
                 $.ajax({
@@ -69,9 +73,50 @@
                 })
             }
 
-            function addStudentsUI(listName, name, id){
-                $("#" + listName).append(`<partial name="_StudentsPartial"/>`)
+            function addStudentsUI(){
+                studentsList.forEach(function(e, i) {
+                    $('#OuterStudentsPartial').append(
+                        `<div class="col-md-3">
+                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                <div class="col p-4 d-flex flex-column position-static">
+                                    <strong class="mb-2 text-center text-primary border-bottom">${e.studentId}</strong>
+                                    <div class="row mb-2">
+                                        <div class="col position-start">Preference </div>
+                                        <div class="col position-end"><p class="text-end">${e.email}</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`);
+                });
             }
+
+            function getGroups(){
+                $.ajax({
+                    url:        'https://localhost:7041/Groups',
+                    type:       'GET',
+                    success:    function(data, status, jqxhr) {groupsList = data;},
+                    error:      function(data, status, jqxhr) {console.log(status);},
+                    async:      false,
+                })
+            }
+
+            function addGroupsUI(){
+                groupsList.forEach(function(e, i) {
+                    $('#OuterGroupsPartial').append(
+                        `<div class="col-md-3">
+                            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                                <div class="col p-4 d-flex flex-column position-static">
+                                    <strong class="mb-2 text-center text-primary border-bottom">${e.groupId}</strong>
+                                    <div class="row mb-2">
+                                        <div class="col position-start">${e.groupName}</div>
+                                        <div class="col position-end"><p class="text-end">${e.groupId}</p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`);
+                });
+            }
+
 
             function getStudentData(studentId) {
                 var studentData

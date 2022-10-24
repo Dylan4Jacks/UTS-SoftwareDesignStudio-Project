@@ -6,4 +6,5 @@ AS
 BEGIN
 	INSERT INTO dbo.[CategoryItem] (Name, Details, CategoryListId)
 	VALUES (@Name, @Details, @CategoryListId)
+	SELECT SCOPE_IDENTITY()
 END

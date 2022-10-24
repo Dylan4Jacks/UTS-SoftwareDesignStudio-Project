@@ -6,65 +6,219 @@
     <link rel="stylesheet" href="~/css/user/_categoriesPartial.css" asp-append-version="true" />
 </head>
 
-
 <body>
     <form>
-    <table>
-        <tr>
-            <th>PREFERENCES</th>
-            <th>BACKGROUND</th>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" id="p1" name="p1" value="p1">
-                <label for="p1">Preference 1</label><br>
+        <table>
+            <tr>
+                <th>
+                    PREFERENCES @if (User.IsInRole("teacher"))
+                    {
+                        <button type="button" onclick="addPrefShowModal('prefList')" class="btn-primary">+ add</button>
+                    }
+                </th>
+                <th>
+                    BACKGROUND  @if (User.IsInRole("teacher"))
+                    {
+                        <button type="button" onclick="addPrefShowModal('bgList')" class="btn-primary">+ add</button>
+                    }
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <ul id="prefList">
+                        <li id="li_p1">
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <ul id="bgList">
+                        <li id="li_b1">
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    INTERESTS   @if (User.IsInRole("teacher"))
+                    {
+                        <button type="button" onclick="addPrefShowModal('intList')" class="btn-primary">+ add</button>
+                    }
+                </th>
+                <th>
+                    SKILLS      @if (User.IsInRole("teacher"))
+                    {
+                        <button type="button" onclick="addPrefShowModal('skillList')" class="btn-primary">+ add</button>
+                    }
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <ul id="intList">
+                        <li id="li_i1">
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <ul id="skillList">
+                        <li id="li_s1">
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </table>
 
-                <input type="checkbox" id="p2" name="p2" value="p2">
-                <label for="p2">Preference 2</label><br>
-
-                <input type="checkbox" id="p3" name="p3" value="p3">
-                <label for="p3">Preference 3</label><br>
-            </td>
-            <td>
-                <input type="checkbox" id="b1" name="b1" value="b1">
-                <label for="b1">Background 1</label><br>
-
-                <input type="checkbox" id="b2" name="b2" value="b2">
-                <label for="b2">Background 2</label><br>
-
-                <input type="checkbox" id="b3" name="b3" value="b3">
-                <label for="b3">Background 3</label><br>
-            </td>
-        </tr>
-        <tr>
-            <th>INTERESTS</th>
-            <th>SKILLS</th>
-        </tr>
-        <tr>
-            <td>
-                <input type="checkbox" id="i1" name="i1" value="i1">
-                <label for="i1">Interest 1</label><br>
-
-                <input type="checkbox" id="i2" name="i2" value="i2">
-                <label for="i2">Interest 2</label><br>
-
-                <input type="checkbox" id="i3" name="i3" value="i3">
-                <label for="i3">Interest 3</label><br>
-            </td>
-            <td>
-                <input type="checkbox" id="s1" name="s1" value="s1">
-                <label for="s1">Skill 1</label><br>
-
-                <input type="checkbox" id="s2" name="s2" value="s2">
-                <label for="s2">Skill 2</label><br>
-
-                <input type="checkbox" id="s3" name="s3" value="s3">
-                <label for="s3">Skill 3</label><br>
-            </td>
-        </tr>
-    </table>
-
-    <input type="submit" value="Submit">
+        <input type="submit" value="Submit">
     </form>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script>
+        var buttonAccess = @(User.IsInRole("teacher").ToString().ToLower()); //if it works, it works
+
+        $(document).ready(function () {
+            loadPrefs();
+            if (!buttonAccess) {
+                hidebuttons()
+            }
+        })
+
+        function hidebuttons() {
+            $(".del").hide()
+        }
+
+        function addPrefShowModal(listName) {
+            var newname = prompt('Enter the name of the new preference'); //couldn't be bothered to do an actual modal
+            addPref(listName, newname);
+        }
+
+        function addPref(listName, name) {
+            
+            var listid;
+
+            switch (listName) {
+                case "prefList":
+                    listid = 1; break;
+                case "bgList":
+                    listid = 2; break;
+                case "intList":
+                    listid = 3; break;
+                case "skillList":
+                    listid = 4; break;
+            }
+
+            var prefObj = {
+                Name : name,
+                Details : '',
+                CategoryListId : listid,
+                CategoryItemId : 0
+            }
+
+            var newid;
+            
+            $.ajax({
+                url: 'https://localhost:7041/CategoryItems',
+                type: 'POST',
+                data: JSON.stringify(prefObj),
+                contentType: 'application/json',
+                success: function(data, status, jqxhr) {
+                    newid = data;
+                },
+                error: function(data, status, jqxhr) {
+                    console.log(status);
+                    console.log(data);
+                    console.log(jqxhr);
+                },
+                async: false,
+            });
+
+            addPrefUI(listName, name, newid);  
+        }
+
+        function addPrefUI(listName, name, id){
+             var li = `
+                     <li id="li_${id}">
+                        <div class="row">
+
+                          <div class="col-md-6">
+                            <input type="checkbox" id="cb_${id}" name="${name}" value="${id}">
+                            <label for="$cb_{name}">${name}</label>
+                          </div>
+                          <div class="col-md-6">
+                            <button onclick="deletePrefLi('${id}')" type="button" class="del btn-danger">delete</button>
+                           </div>
+                        </div>
+
+                     </li>
+                     `
+                    
+            $("#" + listName).append(li)
+        }
+
+        function loadPrefs() {
+            var prefs; 
+            
+            $.ajax({
+                url: 'https://localhost:7041/CategoryItems',
+                type: 'GET',
+                contentType: 'application/json',
+                success: function(data, status, jqxhr) {
+                    prefs = data;
+                },
+                error: function(data, status, jqxhr) {
+                    console.log(status);
+                    console.log(data);
+                    console.log(jqxhr);
+                },
+                async: false,
+            });
+
+
+            prefs.forEach(function(e, i) {
+                var listid;
+                console.log('categoryId', e.categoryListId)
+
+                switch (e.categoryListId) {
+                    case 1:
+                        listid = "prefList"; break;
+                    case 2:
+                        listid = "bgList"; break;
+                    case 3:
+                        listid = "intList"; break;
+                    case 4:
+                        listid = "skillList"; break;
+
+                }
+                console.log(listid, e.name);
+                addPrefUI(listid, e.name, e.categoryItemId);
+            });
+        }
+
+        function deletePrefLi(id) {
+
+            $.ajax({
+                url: 'https://localhost:7041/CategoryItems?id=' + id,
+                type: 'DELETE',
+                contentType: 'application/json',
+                success: function(data, status, jqxhr) {
+                    prefs = data;
+                    console.log(data, status, jqxhr);
+                },
+                error: function(data, status, jqxhr) {
+                    console.log(status);
+                    console.log(data);
+                    console.log(jqxhr);
+                },
+                async: false,
+            });
+
+            if (buttonAccess) {
+                $('#li_' + id).remove();
+            }
+        }
+
+    </script>
+
 </body>
 </html>

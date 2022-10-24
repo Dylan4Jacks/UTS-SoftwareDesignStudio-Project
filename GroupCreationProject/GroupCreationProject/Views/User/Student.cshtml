@@ -21,8 +21,9 @@
 			    <button id="logout" class="btn btn-primary">Logout</button>
 			    <nav>
 				    <ul>
-					    <li><button onclick="    showPartial(this, 'Groups');">Groups</button></li>
-					    <li><button onclick="    showPartial(this, 'Categories');">Categories</button></li>
+					    <li><button onclick="    showPartial(this, 'ProfilePartial');">Profile</button></li>
+					    <li><button onclick="showPartial(this, 'CategoriesPartial');">Categories</button></li>
+					    <li><button onclick="showPartial(this, 'groupPartial');">My Group</button></li>
 				    </ul>
 			    </nav>
                 
@@ -30,21 +31,32 @@
 	    </div>
 
         <main class="siteContent">
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
-            <label><strong>First Name:</strong> </label> <p id="firstname"></p>
-            <label><strong>Last Name: </strong></label> <p id="lastname"></p>
-            <label><strong>Email:     </strong>  </label> <p id="email"></p>
-            <label><strong>Skills:    </strong>  </label> <p id="skills"></p>
-            <label><strong>Preferences:    </strong>  </label> <p id="prefs"></p>
-            <br>
-            <br />
-            <br />
-            <label>Change Skill</label>
-            <input type=text id="skillinput"/>
-            <label>Change Pref</label>
-            <input type=text id="prefinput"/>
-            <button onclick="UpdateUserClicked()">update user</button>
+            <section class="showcase">
+	            <div class="container" id="CategoriesPartial" style="display: none;">
+                    <partial name="~/Views/User/_CategoriesPartial.cshtml"/>
+	            </div>
+            </section>
+
+            <div id="ProfilePartial">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+                <label><strong>First Name:</strong> </label> <p id="firstname"></p>
+                <label><strong>Last Name: </strong></label> <p id="lastname"></p>
+                <label><strong>Email:     </strong>  </label> <p id="email"></p>
+            </div>
+
+            <div id="groupPartial" style="display: none;">
+                <h1 id="GroupName"></h1>
+                <div id="message">You are current not in a group, please check again when you have been assigned to a group</div>
+                <table id="gtable">
+                    <tr>
+                        <th> First Name </th>
+                        <th> Last Name</th>
+                        <th> Email </th>
+                    </tr>
+                </table>
+            </div>
+
         </main>
         <script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -52,6 +64,8 @@
 
         <script>
             var StudentData
+            var visiblePartial = document.getElementById("ProfilePartial");
+            var selectedBtn = null;
 
             $(document).ready(function(){
                 var studentId = @User.Claims.Where(a => a.Type == "id").FirstOrDefault().Value;
@@ -64,7 +78,65 @@
                 $("#skills").text(StudentData.skills)
                 $("#prefs").text(StudentData.preferences)
 
+                showGroup(StudentData.groupId);
+
             })
+
+            function showGroup(groupId){
+                if (groupId != null) {
+
+                    var group = getGroupData(groupId)
+                    var studentList = getGroupStudents(groupId);
+
+                    console.log(group, studentList);
+                    console.log(group.groupName);
+                    $("#GroupName").text(group.groupName);
+                    $("#message").empty();
+                    studentList.forEach(function(e, i) {
+                        $("#gtable").append(`<tr>
+                            <td>${e.firstName}</td>
+                            <td>${e.lastName}</td>
+                            <td>${e.email}</td>
+                        </tr>`)
+                    })
+
+                }
+            }
+
+            function getGroupStudents(id){
+                var studentsdata;
+                $.ajax({
+                        url: 'https://localhost:7041/Students/',
+                        type: 'GET',
+                        success: function(data, status, jqxhr) {
+                            studentsdata = data;
+                        },
+                        error:  function(data, status, jqxhr) {
+                            console.log(status);
+                        },
+                        async: false,
+                })
+
+                return $.grep(studentsdata, function(element) { return element.groupId == id });
+            }
+
+            function getGroupData(id){
+                var group;
+                $.ajax({
+                        url: 'https://localhost:7041/Groups/' + id,
+                        type: 'GET',
+                        success: function(data, status, jqxhr) {
+                            console.log(data);
+                            group = data;
+                        },
+                        error:  function(data, status, jqxhr) {
+                            console.log(status);
+                        },
+                        async: false,
+                })
+                console.log(group);
+                return group;
+            }
 
             function getStudentData(studentId) {
                     var studentData
@@ -110,15 +182,20 @@
                 updateStudent(skilltext, preftext);
             }
 
-            function showPartial(selectedBtn, partialName){
-                $('#partialview').load('https://localhost:7041/user/'+ partialName +'Partial');
-                selection = document.querySelector('#selectedPartial')
-                if (selection !== null) {
-                    selection.removeAttribute('id');
-                    selection.disabled = false;
+            function showPartial(eventBtn, partialId){
+                eventBtn.disabled = true;
+                if (visiblePartial !== null ) {
+                    visiblePartial.style.display = 'none';
                 }
-                selectedBtn.setAttribute('id', 'selectedPartial');
-                selectedBtn.disabled = true;
+                visiblePartial = document.getElementById(partialId);
+                visiblePartial.style.display = 'block';
+
+                if (selectedBtn !== null) {
+                    selectedBtn.removeAttribute('id');
+                    selectedBtn.disabled = false;
+                }
+                selectedBtn = eventBtn;
+                selectedBtn.setAttribute('id', 'selectedBtn');
             }
 
         </script>

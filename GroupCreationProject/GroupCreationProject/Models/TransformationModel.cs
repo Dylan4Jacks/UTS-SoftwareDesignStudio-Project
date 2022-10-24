@@ -71,12 +71,14 @@ namespace GroupCreationProject.Models
                         }
                     }
                 }
-                string preference1 = preferences[0];
-                string preference2 = preferences[1];
-                string preference3 = preferences[2];
-                string preference4 = preferences[3];
+                if (preferences.Count >= 4) { 
+                    string preference1 = preferences[0];
+                    string preference2 = preferences[1];
+                    string preference3 = preferences[2];
+                    string preference4 = preferences[3];
                 StuPrefModel new_student = new(data.Key, preference1, preference2, preference3, preference4);
                 students.Add(new_student);
+                }
             }
             return students;
         }

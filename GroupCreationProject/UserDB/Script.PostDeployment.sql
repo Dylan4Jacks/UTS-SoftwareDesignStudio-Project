@@ -1,6 +1,6 @@
 ﻿IF NOT EXISTS (SELECT 1 FROM dbo.[Student])
 BEGIN
-	INSERT INTO dbo.[Group] (GroupName, Details)
+	INSERT INTO dbo.[Group] (GroupId, GroupName, Details)
 	values (1, 'Alian Force', null), (2, 'The Avengers', 'Apple'), (3, 'Power Puff Girls', 'Hi'), 
 		(4, 'Cats!', 'This is literaly a group full of cats who may or may not be part of the play Cats'), 
 		(5, '42', 'Apple'), (6, 'Apples', 'Apple'), (7, '7', null), (8, '8', null), (9, '10', 'Apple'), (10, '42', 'Apple'),
@@ -21,7 +21,7 @@ BEGIN
 	DECLARE @Capabilities_Id int = (SELECT [CategoryListId] FROM dbo.[CategoryList] WHERE Name = 'Capabilities')
 	DECLARE @F_Id int = (SELECT [CategoryListId] FROM dbo.[CategoryList] WHERE Name = 'F')
 	
-	INSERT INTO dbo.[CategoryItem] (Name, Details, CategoryListId)
+	INSERT INTO dbo.[CategoryItem] (Name, Details, Ranking, CategoryListId)
 	VALUES 
 		('High Distinction', null, 1, @preferences_Id), ('Pass', null, 5, @preferences_Id), ('Distinction', null, 9, @preferences_Id),
 		('Server Development', null, 2, @Background_Id), ('Web Development', null, 6, @Background_Id), ('Data Analysis', null, 10, @Background_Id), ('Management', null, 12, @Background_Id),

@@ -41,4 +41,7 @@ public class GroupData : IGroupData
     public Task DeleteGroup(int id) =>
         _db.SaveData("dbo.spGroup_Delete", new { GroupId = id });
 
+    public Task DeleteAllGroups() =>
+        _db.SaveData("dbo.spGroup_Delete_All", new { });
+
 }

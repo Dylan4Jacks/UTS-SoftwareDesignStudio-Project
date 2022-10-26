@@ -6,5 +6,5 @@
     [Email] NVARCHAR(100) NOT NULL,
     [Password] NVARCHAR(50) NOT NULL,
     [GroupId] INT NULL,  
-    CONSTRAINT [GroupId] FOREIGN KEY (GroupId) REFERENCES [Group] (GroupId)
+    CONSTRAINT [GroupId] FOREIGN KEY (GroupId) REFERENCES [Group] (GroupId) ON DELETE SET NULL
 )

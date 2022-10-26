@@ -56,7 +56,7 @@ public static class Api
         app.MapPost("/Auth/Student", AuthenticateStudent);
 
         //Algorithm Execution
-        app.MapGet("/Algorithm/Diverse/{isDiverse}/{sizeOfGroups}/{numOfGroups}", GetGroupsDiverse);
+        app.MapGet("/Algorithm/Diverse/{isDiverse}/{groupSize}", GetGroupsDiverse);
     }
 
 
@@ -441,73 +441,30 @@ public static class Api
     // Lower Diversiy score = More Diverse
     // Higher Diversity score = More Similar
     
-    public static async Task<IResult> GetGroupsDiverse(int isDiverse, int sizeOfGroups, int numOfGroups, IStudentData dataStu, ICategorySelectionData dataCatSel, ICategoryItemData dataCatItem, IGroupData groupData)
+    public static async Task<IResult> GetGroupsDiverse(int isDiverse, int groupSize, IStudentData dataStu, ICategorySelectionData dataCatSel, ICategoryItemData dataCatItem, IGroupData dataGroup)
     {
-        // isDiverse passed in api end point  "/Algorithm/Diverse/{isDiverse}"
-        // 0 = Diverse     1 = Similar
-
         //Get User Data
-        var results_Students_List = await dataStu.GetStudents();
-        var results_CategorySelection_Single_Student = await dataCatSel.GetCategorySelections();
-        var results_CategoryItems = await dataCatItem.GetCategoryItems();
-        var all_groups = await groupData.GetGroups();
-
-        //Transform Data
-        TransformationModel transformData = new(results_Students_List, results_CategorySelection_Single_Student, results_CategoryItems);
-        List<StuPrefModel> stuPrefModels = transformData.transformStu();
-        GroupFormation make_groups = new(sizeOfGroups, stuPrefModels, numOfGroups);
-
-        bool diverse;
-        if (isDiverse == 1)
-        {
-            diverse = false;
-        }
-        else
-        {
-            diverse = true;
-        }
-
-        List<GroupPrefModel> diverseClass = make_groups.mostDiverseClass(diverse);
-
-        for (int i = 0; i<diverseClass.Count; i++)
-        {
-            int group_id = diverseClass[i].ID;
-            for (int j=0; j < diverseClass[i].Members.Count; j++)
-            {
-
-                StuPrefModel studentPref = diverseClass[i].Members[j];
-                var updateStudent = await dataStu.GetStudent(studentPref.StuID);
-                try
-                {
-                    updateStudent.GroupId = group_id;
-                    StudentModel updatedStu = updateStudent;
-                    await dataStu.UpdateStudent(updatedStu);
-                }
-                catch (Exception)
-                {
-                    Console.WriteLine("Can't get student");
-                }
-            }
-        }
-
-        // ClearGroups()
+        var students = await dataStu.GetStudents();
+        var catSelections = await dataCatSel.GetCategorySelections();
+        var catItems = await dataCatItem.GetCategoryItems();
+        var groups = await dataGroup.GetGroups();
+        //Get Diverse/Similar Groups
+        DiversityModel divModel = new(students, catSelections, catItems);
+        IEnumerable<GroupModel> newGroups= divModel.getDiverseGroups(groupSize, Convert.ToBoolean(isDiverse));
         
-        for (int j = 0; j<diverseClass.Count; j++)
-        {
-            GroupModel new_group = new();
-            new_group.GroupId = diverseClass[j].ID;
-            new_group.GroupName = diverseClass[j].Name;
-            await groupData.InsertGroup(new_group);
+        //Delete Old Groups - (Student groupId is automaticaly updated to null)
+        await dataGroup.DeleteAllGroups();
+        //Create new Groups
+        foreach (GroupModel group in newGroups) {
+            await dataGroup.InsertGroup(group);
         }
-        //Execute algorithm
-
-
-        //API call to Create groups and add students to groups
-        //Output group data
-
+        //Add Students to groups
+        foreach (StudentModel student in students) {
+            student.GroupId = null;
+            await dataStu.UpdateStudent(student);
+        }
         try {
-            //returns students with new groups 
-            return Results.Ok(await dataStu.GetStudents());
+            return Results.Ok();
         }
         catch (Exception ex) {
             return Results.Problem(ex.Message);

@@ -105,6 +105,7 @@
     <Build Include="dbo\StoredProcedures\CategorySelection\spCategorySelection_Item_GetAll.sql" />
     <Build Include="dbo\StoredProcedures\Student\spStudent_Auth_Get.sql" />
     <Build Include="dbo\StoredProcedures\Teacher\spTeacher_Auth_Get.sql" />
+    <Build Include="dbo\StoredProcedures\Group\spGroup_Delete_All.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.PostDeployment.sql" />

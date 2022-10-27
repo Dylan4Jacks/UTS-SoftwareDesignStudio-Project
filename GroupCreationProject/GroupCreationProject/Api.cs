@@ -450,19 +450,19 @@ public static class Api
         var groups = await dataGroup.GetGroups();
         //Get Diverse/Similar Groups
         DiversityModel divModel = new(students, catSelections, catItems);
-        IEnumerable<GroupModel> newGroups= divModel.getDiverseGroups(groupSize, Convert.ToBoolean(isDiverse));
+        List<List<int>> newGroups= divModel.getDiverseGroups(groupSize, Convert.ToBoolean(isDiverse));
         
         //Delete Old Groups - (Student groupId is automaticaly updated to null)
         await dataGroup.DeleteAllGroups();
         //Create new Groups
-        foreach (GroupModel group in newGroups) {
-            await dataGroup.InsertGroup(group);
+        for (int Id = 1; Id <= newGroups.Count; Id++) {
+            await dataGroup.InsertGroup(new() { GroupId=Id });
+            foreach(int studentId in newGroups[Id-1]) {
+                
+                await dataStu.UpdateStudent(students.FirstOrDefault(student => student.StudentId == studentId));
+            }
         }
-        //Add Students to groups
-        foreach (StudentModel student in students) {
-            student.GroupId = null;
-            await dataStu.UpdateStudent(student);
-        }
+
         try {
             return Results.Ok();
         }

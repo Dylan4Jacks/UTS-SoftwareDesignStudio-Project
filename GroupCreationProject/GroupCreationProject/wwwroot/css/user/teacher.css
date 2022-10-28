@@ -1,1 +1,13 @@
 
+.algoGroups {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    justify-content: space-evenly;
+    justify-items: center;
+    margin-bottom: 10px;
+}
+.algoGroups>div{
+    padding: 0 2px 0 2px;
+}

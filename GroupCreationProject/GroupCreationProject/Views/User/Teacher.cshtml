@@ -5,7 +5,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="~/css/user/user.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/user/student.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/user/teacher.css" asp-append-version="true" />
 
     <style>
         ul{
@@ -41,6 +41,10 @@
                 </div>
             </div>
             <div class="container" id="GroupsPartial" style="display: none;">
+                <div class="algoGroups">
+                    <button  id="diverseBtn" class="btn btn-primary" onclick="    addGroupsModal(1);">Make Diverse Groups</button>
+                    <button  id="similarBtn" class="btn btn-primary" onclick="    addGroupsModal(0);">Make Similar Groups</button>
+                </div>
                 <div class="row mb-2" id="OuterGroupsPartial">
                     @*<partial name="_GroupsPartial"/>*@
                 </div>
@@ -66,7 +70,7 @@
                 getStudents();
                 getGroups();
                 console.log(studentsList);
-                addGroupsUI();
+                addGroupsUI(groupsList);
                 addStudentsUI();
             })
 
@@ -109,8 +113,8 @@
                 })
             }
 
-            function addGroupsUI() {
-                groupsList.forEach(function (e, i) {
+            function addGroupsUI(groups) {
+                groups.forEach(function (e, i) {
                     $('#OuterGroupsPartial').append(
                         `<div class="col-md-3">
                                 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -166,6 +170,20 @@
                 $('#StudentsPartial').modal('show');
                 //then set the values of the modal to the values from student;
                 console.log(student);
+            }
+
+            function addGroupsModal(isDiverse) {
+                var newGroups
+                var groupSize = prompt('Enter the Size of your groups'); //couldn't be bothered to do an actual modal
+                $.ajax({
+                    url: 'https://localhost:7041/Algorithm/Diverse/'+isDiverse+'/'+groupSize,
+                    type: 'GET',
+                    success: function (data, status, jqxhr) { newGroups = data; },
+                    error: function (data, status, jqxhr) { console.log(status); },
+                    async: false,
+                })
+                $('#OuterGroupsPartial').empty();
+                addGroupsUI(newGroups);
             }
 
         </script>

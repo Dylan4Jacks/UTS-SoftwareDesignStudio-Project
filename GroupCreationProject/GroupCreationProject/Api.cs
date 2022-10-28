@@ -451,7 +451,16 @@ public static class Api
         //Get Diverse/Similar Groups
         DiversityModel divModel = new(students, catSelections, catItems);
         List<List<int>> newGroups= divModel.getDiverseGroups(groupSize, Convert.ToBoolean(isDiverse));
-        
+
+        //demo code
+        //newGroups = (Convert.ToBoolean(isDiverse)) ?
+        //    new List<List<int>>() {
+                
+        //    } :
+        //    new List<List<int>>() {
+
+        //    };
+
         //Delete Old Groups - (Student groupId is automaticaly updated to null)
         await dataGroup.DeleteAllGroups();
         //Create new Groups
@@ -464,7 +473,9 @@ public static class Api
         }
 
         try {
-            return Results.Ok();
+            IEnumerable<GroupModel> results = await dataGroup.GetGroups();
+            if (results == null) return Results.NotFound();
+            return Results.Ok(results);
         }
         catch (Exception ex) {
             return Results.Problem(ex.Message);
